@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
 import classes from './vector.module.scss';
-import matrixBracket from '../../../Resources/matrix-bracket.png';
 
 const Vector = (props) => {
     let borderColor;

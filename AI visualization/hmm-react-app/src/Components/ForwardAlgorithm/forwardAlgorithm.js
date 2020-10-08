@@ -2,6 +2,8 @@ import React from 'react';
 import classes from './forwardAlgorithm.module.css';
 
 
+import forwardAlgorithmBG from '../../Resources/Images/Backgrounds/bg2.png';
+
 // --- COMPONENTS ---
 import Subsection from '../Common/Subsection/subsection';
 import Vector from '../Common/Vector/vector';
@@ -20,9 +22,11 @@ const ForwardAlgorithm = (props) => {
 
     return (
         <div className={classes.ForwardAlgorithm}>
+            <img src = {forwardAlgorithmBG} className={classes.backgroundImage}  />
+
             <h1>Forward Algorithm</h1>
 
-            <Subsection header = "About the Forward Algorithm" maxHeight="140px" hideDefault={true}>
+            <Subsection header = "About the Forward Algorithm" maxHeight="140px" hideDefault={false}>
                 <p>
                     The algoritm is used to solve problems in the category <b>evaluation/filtering</b>. That is, if we want to compute the
                     likelihood 𝑃( {O("0:T-1")} | {lambda("x")} ) = 𝑃( {O("x")} | {lambda("x")} ) = 𝑃( {curlyLeft} {O("0")}, {O("1")}, ..., {O("T-1")}
@@ -30,7 +34,7 @@ const ForwardAlgorithm = (props) => {
                 </p>
             </Subsection>
 
-            <Subsection header = "Given information" maxHeight="200px" hideDefault={false}>
+            <Subsection header = "Given information" maxHeight="200px" hideDefault={true}>
                 <p>
                     In order to perform the forward algorithm, we first need to know what model we should
                     use to make the evaluation. The currently selected example is the weather example and

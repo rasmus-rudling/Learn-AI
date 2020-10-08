@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import classes from './subsection.module.scss';
-import downArrow from '../../../Resources/down-arrow.svg';
+import downArrow from '../../../Resources/Icons/down-arrow.svg';
 
 
 const Subsection = (props) => {
