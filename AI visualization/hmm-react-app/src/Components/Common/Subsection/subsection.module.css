@@ -1,17 +1,23 @@
 .Subsection {
     background-color: #fff;
-    width: 600px;
+    width: 750px;
     margin: 0 auto;
     border-radius: 10px;
 }
 
 .headerContainer {
     display: grid;
-    grid-template-columns: 550px 50px;
+    grid-template-columns: 700px 50px;
     grid-template-rows: 50px;
     background-color: rgba(255, 255, 255, 0);
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+}
+
+.applyRadiusBottomRight {
+    border-bottom-right-radius: 10px;
+}
+
+.applyRadiusBottomLeft {
+    border-bottom-left-radius: 10px;
 }
 
 .headerPart {
@@ -19,6 +25,7 @@
     color: #fff;
     padding: 10px 0;
     border-top-left-radius: 10px;
+    transition: .2s;
 }
 
 .showHideContentToggler {
@@ -34,6 +41,13 @@
 .showHideContentToggler img {
     width: 30px;
     transform: rotate(180deg);
+    transition: .7s;
+    user-select: none;
+}
+
+.rotateArrow {
+    transition: .7s;
+    transform: rotate(0deg) !important;
 }
 
 .showHideContentToggler:hover {
@@ -42,16 +56,11 @@
 }
 
 .contentPart {
-    padding: 20px 30px;
+    padding-left: 30px;
+    padding-right: 30px;
 
     overflow-y: hidden;
-	max-height: 500px; /* approximate max height */
 
-	transition-property: all;
-	transition-duration: .5s;
-	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-}
-
-.slider.closed {
-	max-height: 0;
+	/* transition-property: all; */
+	transition-duration: .7s;
 }
