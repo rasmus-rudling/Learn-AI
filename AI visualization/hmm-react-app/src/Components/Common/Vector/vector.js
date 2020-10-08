@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React from 'react';
 import classes from './vector.module.scss';
 
 const Vector = (props) => {
@@ -15,11 +15,11 @@ const Vector = (props) => {
             <span style={{"marginRight":"10px"}}>{props.vectorName}</span> = 
             <div className={classes.leftBracket} style={{"borderColor": borderColor, "marginLeft":"10px"}} />
             <ul>
-                {props.vectorElements.map((element, index) => {
+                {props.vector.map((element, index) => {
                     return (
                         <li 
                             className={classes.vectorElement}
-                            style = {index !== (props.vectorElements.length - 1) ? {"marginRight":"20px"} : {"marginRight":"0px"}}
+                            style = {index !== (props.vector.length - 1) ? {"marginRight":"20px"} : {"marginRight":"0px"}}
                         >
                             {element}
                         </li>
