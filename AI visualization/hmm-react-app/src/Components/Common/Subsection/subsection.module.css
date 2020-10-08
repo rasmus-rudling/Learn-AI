@@ -5,21 +5,43 @@
     border-radius: 10px;
 }
 
+.headerContainer {
+    display: grid;
+    grid-template-columns: 550px 50px;
+    grid-template-rows: 50px;
+    background-color: rgba(255, 255, 255, 0);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
 .headerPart {
     background-color: #43AFCA;
     color: #fff;
     padding: 10px 0;
     border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
 }
 
 .showHideContentToggler {
-    float: right;
     background-color: #287689;
-    height: 100%;
     box-sizing: border-box;
+    border-top-right-radius: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    transition: .2s;
+}
+
+.showHideContentToggler img {
+    width: 30px;
+    transform: rotate(180deg);
+}
+
+.showHideContentToggler:hover {
+    background-color: #123741;
+    cursor: pointer;
 }
 
 .contentPart {
-    padding: 10px;
+    padding: 20px 30px;
+    display: table-cell;
 }
