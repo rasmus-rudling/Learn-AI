@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import classes from './subsection.module.css';
+import classes from './subsection.module.scss';
 import downArrow from '../../../Resources/down-arrow.svg';
 
 
@@ -28,8 +28,6 @@ const Subsection = (props) => {
         arrowClassList = [classes.showHideContentToggler];
         headerPartClassList = [classes.headerPart];
     }
-
-
 
     return (
         <div className={classes.Subsection}>
