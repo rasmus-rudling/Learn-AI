@@ -11,7 +11,10 @@ const Subsection = (props) => {
                     <h2>{props.header}</h2>
                 </div>
 
-                <div className={classes.showHideContentToggler} >
+                <div className={classes.showHideContentToggler} onClick = {() => {
+                    // Skapa ref till contentpart och skriv in : 
+                    //document.getElementById('slider').classList.toggle('closed');
+                }}>
                     <img src = {downArrow} alt="arrow" />
                 </div>
             </div>
