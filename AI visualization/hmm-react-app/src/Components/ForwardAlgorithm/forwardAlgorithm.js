@@ -1,7 +1,10 @@
 import React from 'react';
 import classes from './forwardAlgorithm.module.css';
 
-import Subsection from '../Common/Subsection/subsection'
+
+// --- COMPONENTS ---
+import Subsection from '../Common/Subsection/subsection';
+import Vector from '../Common/Vector/vector';
 
 const ForwardAlgorithm = (props) => {
 
@@ -15,15 +18,11 @@ const ForwardAlgorithm = (props) => {
     const O = (x) => <span style={{"color":"#43AFCA"}}>O<sub>{x}</sub></span>;
 
 
-    const createVectorElement = (vectorName, vectorElements) => {
-        
-    }
-
     return (
         <div className={classes.ForwardAlgorithm}>
             <h1>Forward Algorithm</h1>
 
-            <Subsection header = "About the Forward Algorithm" maxHeight="140px" hideDefault={false}>
+            <Subsection header = "About the Forward Algorithm" maxHeight="140px" hideDefault={true}>
                 <p>
                     The algoritm is used to solve problems in the category <b>evaluation/filtering</b>. That is, if we want to compute the
                     likelihood 𝑃( {O("0:T-1")} | {lambda("x")} ) = 𝑃( {O("x")} | {lambda("x")} ) = 𝑃( {curlyLeft} {O("0")}, {O("1")}, ..., {O("T-1")}
@@ -31,7 +30,7 @@ const ForwardAlgorithm = (props) => {
                 </p>
             </Subsection>
 
-            <Subsection header = "Given information" maxHeight="130px" hideDefault={true}>
+            <Subsection header = "Given information" maxHeight="200px" hideDefault={false}>
                 <p>
                     In order to perform the forward algorithm, we first need to know what model we should
                     use to make the evaluation. The currently selected example is the weather example and
@@ -40,8 +39,7 @@ const ForwardAlgorithm = (props) => {
                     checked out how we got that specific {lambda("w")}, I strongly encourage you to do so <u>here</u>):
                 </p>
 
-                {createVectorElement("π(i)", ["0.435", "0.125", "0.44"])}
-
+                <Vector vectorName={pi("i")} vectorElements={["0.435", "0.125", "0.44"]} themeColor="green"/>
             </Subsection>
         </div>
     );

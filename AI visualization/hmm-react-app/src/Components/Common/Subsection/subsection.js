@@ -47,9 +47,9 @@ const Subsection = (props) => {
             
             <div 
                 style={{
-                    "max-height": maxHeight, 
-                    "padding-top": paddingForContent, 
-                    "padding-bottom": paddingForContent}} 
+                    "maxHeight": maxHeight, 
+                    "paddingTop": paddingForContent, 
+                    "paddingBottom": paddingForContent}} 
                 className={classes.contentPart} 
                 ref={contentPartElement}
             >
