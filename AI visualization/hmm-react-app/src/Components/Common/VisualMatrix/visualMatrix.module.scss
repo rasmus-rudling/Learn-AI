@@ -4,12 +4,11 @@ $bracketHeight: 30px;
 $bracketWidth: 7px;
 
 
-.Matrix {
+.VisualMatrix {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin: 20px 0;
 }
 
 
@@ -33,19 +32,40 @@ $bracketWidth: 7px;
 
 .matrixContent {
     display: table;
+    border-collapse: collapse;
+    border: 2px solid;
     flex-direction: column;
 }
 
 .rowContainer {
+    border: 2px solid;
     display: table-row;
     flex-direction: row;
 }
 
 .rowContainer div {
     display: table-cell;
+    border: 2px solid;
     text-align: center;
     vertical-align:middle;
+    padding: 0 10px;
+}
+
+
+.weatherCell img {
+    display: table-cell;
+    margin: 0 auto;
+    vertical-align:middle;
     line-height: 27px;
-    width: 50px;
-    padding: 0 5px;
+    height: 20px;
+    padding: 7px 20px;
+    
+}
+
+.runnerCell img {
+    display: table-cell;
+    margin: 0 auto;
+    align-self: center;
+    height: 20px;
+    padding: 5px 10px;
 }

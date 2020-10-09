@@ -30,7 +30,6 @@ const ExampleButtons = (props) => {
                 backgroundImg={runnerBG}
                 example="Runner example"
                 onClickHandler = {() => {
-                    console.log("Hej")
                     if (props.weatherExampleSelected) {
                         handleChangeActiveExample()
                     }

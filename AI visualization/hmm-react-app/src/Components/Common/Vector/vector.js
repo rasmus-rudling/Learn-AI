@@ -18,6 +18,7 @@ const Vector = (props) => {
                 {props.vector.map((element, index) => {
                     return (
                         <li 
+                            key = {index}
                             className={classes.vectorElement}
                             style = {index !== (props.vector.length - 1) ? {"marginRight":"20px"} : {"marginRight":"0px"}}
                         >

@@ -20,11 +20,10 @@ const Matrix = (props) => {
 
     const heightOfBrackets = (numberOfRowsInMatrix * 27) + 3 + "px";
     
-    console.log(props.matrix)
 
     return (
         <div className={classes.Matrix} >
-            <span style={{"marginRight":"10px"}}>{props.vectorName}</span> = 
+            <span style={{"marginRight":"10px"}}>{props.matrixName}</span> = 
             <div className={classes.leftBracket} 
                 style={{
                     "borderColor": borderColor, 
@@ -35,11 +34,11 @@ const Matrix = (props) => {
             />
 
             <div className={classes.matrixContent}>
-                {props.matrix.map(matrixRow => {
+                {props.matrix.map((matrixRow, i) => {
                     return (
-                        <div className={classes.rowContainer}>
-                            {matrixRow.map(element => {
-                                return (<div>{element}</div>)
+                        <div className={classes.rowContainer} key={String(i)}>
+                            {matrixRow.map((element, j) => {
+                                return (<div key={String(i) + String(j)}>{element}</div>)
                             })}
                         </div>
                     )
