@@ -14,11 +14,11 @@ const ExampleButton = (props) => {
     return (
         <div 
             className={stylesList.join(" ")}
-
             style = { props.example === "Weather example" ? 
                 {"backgroundImage":`url(${props.backgroundImg})`, "marginBottom":"10px"} :
                 {"backgroundImage":`url(${props.backgroundImg})`}
             }
+            onClick = {props.onClickHandler}
         >
             <p>{props.example}</p>
         </div>

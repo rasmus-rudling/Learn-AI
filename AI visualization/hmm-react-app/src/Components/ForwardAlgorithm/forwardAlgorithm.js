@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './forwardAlgorithm.module.scss';
 
 import forwardAlgorithmBG from '../../Resources/Images/Backgrounds/bg2.png';
+
+import {weatherPiVector, weatherAMatrix, weatherBMatrix} from '../../App';
+import {runnerPiVector, runnerAMatrix, runnerBMatrix} from '../../App';
+
 
 // --- COMPONENTS ---
 import Subsection from '../Common/Subsection/subsection';
@@ -12,9 +16,22 @@ import HomeButton from '../Common/HomeButton/homeButton';
 import ExampleButtons from '../Common/ExampleButtons/exampleButtons';
 
 const ForwardAlgorithm = (props) => {
+    const [weatherExampleSelected, setWeatherExampleSelected] = useState(false)
 
     let curlyLeft = "{";
     let curlyRight = "}";
+
+    let examplePi, exampleA, exampleB;
+
+    if (weatherExampleSelected) {
+        examplePi = weatherPiVector;
+        exampleA = weatherAMatrix;
+        exampleB = weatherBMatrix;
+    } else {
+        examplePi = runnerPiVector;
+        exampleA = runnerAMatrix;
+        exampleB = runnerBMatrix;
+    }
 
     const lambda = (x) => <span style={{"color":"#E967E0"}}>λ<sub>{x}</sub></span>;
     const pi = (x) => <span style={{"color":"#6EC668"}}>π<sub>{x}</sub></span>;
@@ -24,20 +41,9 @@ const ForwardAlgorithm = (props) => {
     const b = (x) => <span style={{"color":"#43AFCA"}}>b<sub>{x}</sub></span>;
     const O = (x) => <span style={{"color":"#43AFCA"}}>O<sub>{x}</sub></span>;
 
-    const piVector = [0.435, 0.125, 0.44]
-
-    const aMatrix = [
-        [0.42, 0.32, 0.26],
-        [0.25, 0.40, 0.35],
-        [0.49, 0.33, 0.18]
-    ]
-
-    const bMatrix = [
-        [0.17, 0.00, 0.37, 0.04, 0.42],
-        [0.24, 0.41, 0.09, 0.23, 0.03],
-        [0.11, 0.67, 0.04, 0.10, 0.08]
-    ]
-
+    const handleChangeActiveExample = () => {
+        setWeatherExampleSelected(!weatherExampleSelected);
+    }
 
     return (
         <div className={classes.ForwardAlgorithm}>
@@ -48,7 +54,7 @@ const ForwardAlgorithm = (props) => {
 
             <h1>Forward Algorithm</h1>
 
-            <ExampleButtons />
+            <ExampleButtons weatherExampleSelected={weatherExampleSelected} handleChangeActiveExample={handleChangeActiveExample} />
 
             <Subsection header = "About the Forward Algorithm" maxHeight="140px" hideDefault={true}>
                 <p>
@@ -58,20 +64,23 @@ const ForwardAlgorithm = (props) => {
                 </p>
             </Subsection>
 
-            <Subsection header = "Given information" maxHeight="440px" hideDefault={false}>
+            <Subsection header = "Given information" maxHeight="600px" hideDefault={false}>
                 <p>
                     In order to perform the forward algorithm, we first need to know what model we should
                     use to make the evaluation. The currently selected example is the weather example and
                     is what we will use to illustrate the algorithm (you can change example in the top-right
-                    corner). The λw for the weather example is presented below (if you haven't already
+                    corner). The {lambda("w")} for the weather example is presented below (if you haven't already
                     checked out how we got that specific {lambda("w")}, I strongly encourage you to do so <u>here</u>):
                 </p>
 
-                <Vector vectorName={pi("i")} vector={piVector} themeColor="green" />
 
-                <Matrix vectorName={a("i, j")} matrix={aMatrix} themeColor="red" />
-
-                <Matrix vectorName={b("j, k")} matrix={bMatrix} themeColor="blue" />
+                {console.log(weatherPiVector)}
+                {console.log(weatherAMatrix)}
+                <Vector vectorName={pi("i")} vector={examplePi} themeColor="green" />
+                
+                <Matrix vectorName={a("i, j")} matrix={exampleA} themeColor="red" />
+                
+                <Matrix vectorName={b("j, k")} matrix={exampleB} themeColor="blue" />
             </Subsection>
         </div>
     );
