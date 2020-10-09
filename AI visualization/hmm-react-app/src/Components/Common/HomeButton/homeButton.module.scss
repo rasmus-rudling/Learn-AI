@@ -1,14 +1,21 @@
 .HomeButton {
-    height: 150px;
-    width: 150px;
+    height: 110px;
+    width: 110px;
     background-color: #fff;
-    border: 2px solid #6EC668;
+    border: 3px solid  #43AFCA;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+    transition: .3s;
 }
 
 .HomeButton img {
     height: 75%;
+}
+
+.HomeButton:hover {
+    background-color: #f8f8f8;
+    transform: scale(1.03);
+    cursor: pointer;
 }
