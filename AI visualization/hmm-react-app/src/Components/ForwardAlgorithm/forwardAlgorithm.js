@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './forwardAlgorithm.module.css';
+import classes from './forwardAlgorithm.module.scss';
 
 import forwardAlgorithmBG from '../../Resources/Images/Backgrounds/bg2.png';
 
@@ -7,6 +7,7 @@ import forwardAlgorithmBG from '../../Resources/Images/Backgrounds/bg2.png';
 import Subsection from '../Common/Subsection/subsection';
 import Vector from '../Common/Vector/vector';
 import Matrix from '../Common/Matrix/matrix';
+import BackButton from '../Common/BackButton/backButton';
 
 const ForwardAlgorithm = (props) => {
 
@@ -39,6 +40,8 @@ const ForwardAlgorithm = (props) => {
     return (
         <div className={classes.ForwardAlgorithm}>
             <img src = {forwardAlgorithmBG} className={classes.backgroundImage}  />
+
+            <BackButton />
 
             <h1>Forward Algorithm</h1>
 
