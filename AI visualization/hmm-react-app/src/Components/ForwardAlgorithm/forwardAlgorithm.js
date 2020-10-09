@@ -8,6 +8,7 @@ import Subsection from '../Common/Subsection/subsection';
 import Vector from '../Common/Vector/vector';
 import Matrix from '../Common/Matrix/matrix';
 import BackButton from '../Common/BackButton/backButton';
+import HomeButton from '../Common/HomeButton/homeButton';
 
 const ForwardAlgorithm = (props) => {
 
@@ -41,6 +42,7 @@ const ForwardAlgorithm = (props) => {
         <div className={classes.ForwardAlgorithm}>
             <img src = {forwardAlgorithmBG} className={classes.backgroundImage}  />
 
+            <HomeButton />
             <BackButton />
 
             <h1>Forward Algorithm</h1>

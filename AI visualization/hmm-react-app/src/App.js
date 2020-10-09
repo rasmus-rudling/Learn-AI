@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.module.css';
-import './typography.css'
+import './typography.scss'
 
 import {
     BrowserRouter as Router,
