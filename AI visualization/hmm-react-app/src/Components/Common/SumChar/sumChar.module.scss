@@ -1,0 +1,26 @@
+.SumChar {
+    display: flex;
+    flex-flow: column wrap;
+    text-align: center;
+    margin-top: -10px;
+}
+
+.theSumChar {
+    font-size: 40px;
+    font-weight: 300;
+}
+
+.invisable {
+    color: rgba(46, 46, 46, 0);
+    margin-top: -15px;
+    margin-bottom: -5px
+}
+
+.topOfSum {
+    margin-top: -15px;
+    margin-bottom: -5px;
+}
+
+.bottomOfSum {
+    margin-top: 3px;
+}
