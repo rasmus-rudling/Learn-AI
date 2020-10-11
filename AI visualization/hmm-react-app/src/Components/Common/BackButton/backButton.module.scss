@@ -1,13 +1,13 @@
 .BackButton {
     background-color: #fff;
-    border-radius: 20px;
-    padding: 9px 0;
-    width: 120px;
+    border-radius: 10px;
+    height: 40px;
+    width: 100px;
     display: flex;
     justify-content: center;
-    align-content: center;
+    align-items: center;
     position: absolute;
-    top: 125px;
+    top: 110px;
     left: 40px;
     transition: .4s;
     border: 2px solid #43AFCA;

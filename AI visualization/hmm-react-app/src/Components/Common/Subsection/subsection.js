@@ -28,11 +28,21 @@ const Subsection = (props) => {
         arrowClassList = [classes.showHideContentToggler];
         headerPartClassList = [classes.headerPart];
     }
-
     return (
-        <div className={classes.Subsection}>
-            <div className={classes.headerContainer}>
-                <div className={headerPartClassList.join(" ")} ref={headerPartElement}>
+        <div 
+            className={classes.Subsection} 
+            style={props.newWidth !== undefined ? {"width":props.newWidth} : {}}
+        >
+            <div 
+                className={classes.headerContainer}
+                style={props.newWidth !== undefined ? {"gridTemplateColumns": "92% 8%", "borderRadius":"10px"} : {}}
+            >
+                <div 
+                    className={headerPartClassList.join(" ")} 
+                    ref={headerPartElement}
+                    style={props.newWidth !== undefined ? 
+                        {"backgroundColor":props.headerBackgroundColor} : {}}
+                >
                     <h2>{props.header}</h2>
                 </div>
 
@@ -40,14 +50,21 @@ const Subsection = (props) => {
                     className={arrowClassList.join(" ")}
                     ref={arrowContainerElement}
                     onClick = {() => toggleContent()}
+                    style={props.newWidth !== undefined ? {"backgroundColor":props.buttonColor} : {}}
                 >
                     <img src = {downArrow} alt="arrow" ref={arrowElement} className={props.hideDefault ? classes.rotateArrow : ""}/>
                 </div>
             </div>
             
             <div 
-                style={{
+                style={props.newWidth !== undefined ? 
+                    {"backgroundColor":props.contentBackgroundColor,
                     "maxHeight": maxHeight, 
+                    "paddingTop": paddingForContent, 
+                    "paddingBottom": paddingForContent,
+                    "borderRadius":"0px 0px 10px 10px"}
+                    : 
+                    {"maxHeight": maxHeight, 
                     "paddingTop": paddingForContent, 
                     "paddingBottom": paddingForContent}} 
                 className={classes.contentPart} 

@@ -364,7 +364,7 @@ const ForwardAlgorithm = (props) => {
                     (bca), (cab), (cba) {curlyRight}.
                 </p>
 
-                <ExampleExplanation>
+                <ExampleExplanation header = "Further explenation using the weather example" maxHeight="70px" hideDefault={false}>
                     Hej här förklaras det!!
                 </ExampleExplanation>
             </Subsection>
