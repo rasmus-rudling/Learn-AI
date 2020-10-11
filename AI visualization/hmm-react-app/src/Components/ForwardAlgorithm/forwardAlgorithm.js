@@ -33,6 +33,7 @@ import VisualMatrix from '../Common/VisualMatrix/visualMatrix';
 import ImportantInfo from '../Common/ImportantInfo/importantInfo';
 import MathContent from '../Common/MathContent/mathContent';
 import SumChar from '../Common/SumChar/sumChar';
+import ExampleExplanation from '../Common/ExampleExplanation/exampleExplanation';
 
 const ForwardAlgorithm = (props) => {
     const [weatherExampleSelected, setWeatherExampleSelected] = useState(true);
@@ -356,12 +357,16 @@ const ForwardAlgorithm = (props) => {
 
                 <p>
                     It might be difficult to get your head around what's what in the expression above. To
-                    clearify, note that we are summing over all possible permutations ST(S) = ST(S0:T-1). ST is
+                    clearify, note that we are summing over all possible permutations {S_black("T")}({S_alone()}) = ST({S("0:T-1")}). ST is
                     the standard notation for denoting the set of all possible permutations of a set. The T in
-                    ST says how many elements there are in the current set. E.g. if we have the set 𝑋 =
-                    = {curlyLeft} a, b, c {curlyRight}, then we denote all permutations of 𝑋 by S3 = {curlyLeft} (abc), (acb), (bac), 
+                    S<sub>T</sub> says how many elements there are in the current set. E.g. if we have the set 𝑋 =
+                    {curlyLeft} a, b, c {curlyRight}, then we denote all permutations of 𝑋 by S<sub>3</sub> = {curlyLeft} (abc), (acb), (bac), 
                     (bca), (cab), (cba) {curlyRight}.
                 </p>
+
+                <ExampleExplanation>
+                    Hej här förklaras det!!
+                </ExampleExplanation>
             </Subsection>
         </div>
     );
