@@ -9,7 +9,7 @@ const ExampleExplanations = (props) => {
             <Subsection 
                 contentBackgroundColor="#F2FFF1" 
                 headerBackgroundColor="#6EC668" 
-                buttonColor="#4E8F4A"
+                buttonHoverColor="#1F471C"
                 newWidth = "100%"
                 header = {props.header}
                 maxHeight= {props.maxHeight}

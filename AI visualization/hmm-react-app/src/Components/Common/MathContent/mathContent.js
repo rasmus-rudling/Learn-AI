@@ -4,7 +4,7 @@ import classes from './mathContent.module.scss';
 
 const MathContent = (props) => {
     return (
-        <div className={classes.MathContent}>
+        <div className={classes.MathContent} style={props.extraStyle !== undefined ? props.extraStyle : {}}>
             {props.children}
         </div>
     )

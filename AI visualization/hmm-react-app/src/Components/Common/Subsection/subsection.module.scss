@@ -67,3 +67,11 @@ $darkBlueHover: #123741;
     overflow-y: hidden;
 	transition-duration: .7s;
 }
+
+.exampleModeHover {
+    background-color: #4E8F4A;
+}
+
+.exampleModeHover:hover {
+    background-color: #214b1f;
+}

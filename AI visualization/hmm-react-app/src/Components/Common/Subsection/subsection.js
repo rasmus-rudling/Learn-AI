@@ -11,6 +11,8 @@ const Subsection = (props) => {
     const [maxHeight, setMaxHeight] = useState(props.hideDefault ? "0px" : props.maxHeight);
     const [paddingForContent, setPaddingForContent] = useState(props.hideDefault ? "0px" : "20px");
 
+    const exampleMode = props.newWidth !== undefined;
+
     const toggleContent = () => {
         arrowElement.current.classList.toggle(classes.rotateArrow);
         arrowContainerElement.current.classList.toggle(classes.applyRadiusBottomRight);
@@ -28,19 +30,24 @@ const Subsection = (props) => {
         arrowClassList = [classes.showHideContentToggler];
         headerPartClassList = [classes.headerPart];
     }
+
+    if (exampleMode) {
+        arrowClassList.push(classes.exampleModeHover)
+    }    
+
     return (
         <div 
             className={classes.Subsection} 
-            style={props.newWidth !== undefined ? {"width":props.newWidth} : {}}
+            style={exampleMode ? {"width":props.newWidth} : {}}
         >
             <div 
                 className={classes.headerContainer}
-                style={props.newWidth !== undefined ? {"gridTemplateColumns": "92% 8%", "borderRadius":"10px"} : {}}
+                style={exampleMode ? {"gridTemplateColumns": "92% 8%", "borderRadius":"10px"} : {}}
             >
                 <div 
                     className={headerPartClassList.join(" ")} 
                     ref={headerPartElement}
-                    style={props.newWidth !== undefined ? 
+                    style={exampleMode ? 
                         {"backgroundColor":props.headerBackgroundColor} : {}}
                 >
                     <h2>{props.header}</h2>
@@ -50,14 +57,13 @@ const Subsection = (props) => {
                     className={arrowClassList.join(" ")}
                     ref={arrowContainerElement}
                     onClick = {() => toggleContent()}
-                    style={props.newWidth !== undefined ? {"backgroundColor":props.buttonColor} : {}}
                 >
                     <img src = {downArrow} alt="arrow" ref={arrowElement} className={props.hideDefault ? classes.rotateArrow : ""}/>
                 </div>
             </div>
             
             <div 
-                style={props.newWidth !== undefined ? 
+                style={exampleMode ? 
                     {"backgroundColor":props.contentBackgroundColor,
                     "maxHeight": maxHeight, 
                     "paddingTop": paddingForContent, 

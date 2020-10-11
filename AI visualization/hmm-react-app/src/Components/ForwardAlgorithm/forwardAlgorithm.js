@@ -84,6 +84,8 @@ const ForwardAlgorithm = (props) => {
             _bracketColor = "#E95252";
         } else if (bracketColor == "blue") {
             _bracketColor = "#43AFCA";
+        } else if (bracketColor == "black") {
+            _bracketColor = "#2d2d2d";
         }
 
         if (contentColor == "green") {
@@ -92,6 +94,8 @@ const ForwardAlgorithm = (props) => {
             _contentColor = "#E95252";
         } else if (contentColor == "blue") {
             _contentColor = "#43AFCA";
+        } else if (contentColor == "black") {
+            _contentColor = "#2d2d2d";
         }
 
         return <span>
@@ -156,7 +160,8 @@ const ForwardAlgorithm = (props) => {
         );
     }
 
-    
+    const imageInText = (image) => <div className={classes.observationImageInText} style={{"margin":"0 2px"}}><img src={image}/></div>;
+
     const setVectorsForExamples = (_weatherExampleSelected) => {
         changeObservationSequenceInText(_weatherExampleSelected);
 
@@ -182,9 +187,6 @@ const ForwardAlgorithm = (props) => {
         setVectorsForExamples(false);
         changeObservationSequenceInText(false);
     }, []);
-    
-
-    
 
     const handleChangeActiveExample = () => {
         setVectorsForExamples(weatherExampleSelected);
@@ -267,7 +269,7 @@ const ForwardAlgorithm = (props) => {
                 𝑃( {observationsSequenceInImages} | {lambda(exampleSubscript)} ).
             </Subsection>
 
-            <Subsection header = "Mathematical derivation" maxHeight={"1200px"} hideDefault={false}>
+            <Subsection header = "Mathematical derivation" maxHeight={"1475px"} hideDefault={true}>
                 <p><i>
                     If you haven't already, check out the <u>Mathematical concepts</u> section to understand the
                     basic mathematics. Also, remember that</i> {S_alone()} = {S("0:T-1")}.
@@ -360,13 +362,84 @@ const ForwardAlgorithm = (props) => {
                     clearify, note that we are summing over all possible permutations {S_black("T")}({S_alone()}) = ST({S("0:T-1")}). ST is
                     the standard notation for denoting the set of all possible permutations of a set. The T in
                     S<sub>T</sub> says how many elements there are in the current set. E.g. if we have the set 𝑋 =
-                    {curlyLeft} a, b, c {curlyRight}, then we denote all permutations of 𝑋 by S<sub>3</sub> = {curlyLeft} (abc), (acb), (bac), 
-                    (bca), (cab), (cba) {curlyRight}.
+                    {curlyLeft} <b>a</b>, <b>b</b>, <b>c</b> {curlyRight}, then we denote all permutations of 𝑋 by S<sub>3</sub> = 
+                    {curlyLeft} (<b>abc</b>), (<b>acb</b>), (<b>bac</b>), (<b>bca</b>), (<b>cab</b>), (<b>cba</b>) {curlyRight}.
                 </p>
 
-                <ExampleExplanation header = "Further explenation using the weather example" maxHeight="70px" hideDefault={false}>
-                    Hej här förklaras det!!
+                <ExampleExplanation 
+                    header = {`Further explenation using the ${weatherExampleSelected ? "weather" : "runner"} example`} 
+                    maxHeight="390px" 
+                    hideDefault={true}
+                >
+                    These expressions is probably not easy to grasp at first glance, but let's look at the same
+                    expressions using our example
+
+                    <MathContent>
+                        <span>𝑃( {O(`0:${exampleObservationSequence.length - 1}`)} | {lambda(exampleSubscript)} ) = </span>
+                        <SumChar top="" bottom={<div>{S_alone()} ∈ {S_black(exampleA.length)} ({S_alone()})</div>}/>
+                        <span>( {pi_alone()}{brackets(0, "red", "green")} {multiply}&nbsp;</span>
+                        { a_alone()}{brackets(0, "red", "red")}{brackets(1, "red", "red")} &nbsp; {multiply} &nbsp; 
+                        { a_alone()}{brackets(1, "red", "red")}{brackets(2, "red", "red")} &nbsp; {multiply} &nbsp; 
+                        { a_alone()}{brackets(2, "red", "red")}{brackets(3, "red", "red")} &nbsp; {multiply} &nbsp; 
+                        { a_alone()}{brackets(3, "red", "red")}{brackets(4, "red", "red")} &nbsp; {multiply} &nbsp; 
+                    </MathContent> 
+
+                    <MathContent extraStyle = {{"marginTop":"-10px"}}> 
+                        {multiply} &nbsp; {b_alone()}{brackets(0, "red", "blue")}{brackets(0, "blue", "blue")} &nbsp; {multiply} &nbsp; 
+                        {b_alone()}{brackets(1, "red", "blue")}{brackets(1, "blue", "blue")} &nbsp; {multiply} &nbsp;  
+                        {b_alone()}{brackets(2, "red", "blue")}{brackets(2, "blue", "blue")} &nbsp; {multiply} &nbsp;  
+                        {b_alone()}{brackets(3, "red", "blue")}{brackets(3, "blue", "blue")} &nbsp; {multiply} &nbsp;  
+                        {b_alone()}{brackets(4, "red", "blue")}{brackets(4, "blue", "blue")} &nbsp;) = 
+                    </MathContent>
+
+                    <MathContent>
+                        =
+                        <SumChar top="" bottom={<div>{S_alone()} ∈ {S_black(exampleA.length)} ({S_alone()})</div>}/>
+                        <span>( {pi_alone()}{brackets(0, "red", "green")} {multiply}&nbsp;</span>
+                        { a_alone()}{brackets(0, "red", "red")}{brackets(1, "red", "red")} &nbsp; {multiply} &nbsp; 
+                        { a_alone()}{brackets(1, "red", "red")}{brackets(2, "red", "red")} &nbsp; {multiply} &nbsp; 
+                        { a_alone()}{brackets(2, "red", "red")}{brackets(3, "red", "red")} &nbsp; {multiply} &nbsp; 
+                        { a_alone()}{brackets(3, "red", "red")}{brackets(4, "red", "red")} &nbsp; {multiply} &nbsp; 
+                    </MathContent> 
+
+                    <MathContent extraStyle = {{"marginTop":"-10px"}}> 
+                        {multiply} &nbsp; {b_alone()}{brackets(0, "red", "blue")}{brackets(exampleObservationSequence[0], "black", "blue")} &nbsp; {multiply} &nbsp; 
+                        {b_alone()}{brackets(1, "red", "blue")}{brackets(exampleObservationSequence[1], "black", "blue")} &nbsp; {multiply} &nbsp;  
+                        {b_alone()}{brackets(2, "red", "blue")}{brackets(exampleObservationSequence[2], "black", "blue")} &nbsp; {multiply} &nbsp;  
+                        {b_alone()}{brackets(3, "red", "blue")}{brackets(exampleObservationSequence[3], "black", "blue")} &nbsp; {multiply} &nbsp;  
+                        {b_alone()}{brackets(4, "red", "blue")}{brackets(exampleObservationSequence[4], "black", "blue")} &nbsp;) = 
+                    </MathContent>
+
+                    <MathContent>
+                        =
+                        <SumChar top="" bottom={<div>{S_alone()} ∈ {S_black(exampleA.length)} ({S_alone()})</div>}/>
+                        <span>( {pi_alone()}{brackets(0, "red", "green")} {multiply}&nbsp;</span>
+                        { a_alone()}{brackets(0, "red", "red")}{brackets(1, "red", "red")} &nbsp; {multiply} &nbsp; 
+                        { a_alone()}{brackets(1, "red", "red")}{brackets(2, "red", "red")} &nbsp; {multiply} &nbsp; 
+                        { a_alone()}{brackets(2, "red", "red")}{brackets(3, "red", "red")} &nbsp; {multiply} &nbsp; 
+                        { a_alone()}{brackets(3, "red", "red")}{brackets(4, "red", "red")} &nbsp; {multiply} &nbsp; 
+                    </MathContent> 
+
+                    <MathContent extraStyle = {{"marginTop":"-10px"}}> 
+    {multiply} &nbsp;   {b_alone()}{brackets(0, "red", "blue")}{brackets(imageInText(exampleObservationsImages[0]), "black", "blue")} &nbsp; {multiply} &nbsp; 
+                        {b_alone()}{brackets(1, "red", "blue")}{brackets(imageInText(exampleObservationsImages[1]), "black", "blue")} &nbsp; {multiply} &nbsp;  
+                        {b_alone()}{brackets(2, "red", "blue")}{brackets(imageInText(exampleObservationsImages[2]), "black", "blue")} &nbsp; {multiply} &nbsp;  
+                        {b_alone()}{brackets(3, "red", "blue")}{brackets(imageInText(exampleObservationsImages[3]), "black", "blue")} &nbsp; {multiply} &nbsp;  
+                        {b_alone()}{brackets(4, "red", "blue")}{brackets(imageInText(exampleObservationsImages[4]), "black", "blue")} &nbsp;)
+                    </MathContent>
                 </ExampleExplanation>
+
+                <p>
+                    There are two algorithms that will return the desired likelihood: the <b>forward algorithm </b> 
+                     (also called <b>α-pass</b>) and the <u>backward algorithm</u> (also called <u>β-pass</u>). In this section we
+                    will discuss the <b>forward algorithm</b>.
+                </p>
+            </Subsection>
+        
+            <Subsection header = "The Forward Algorithm / α-pass" maxHeight="140px" hideDefault={false}>
+                <p>
+
+                </p>
             </Subsection>
         </div>
     );
