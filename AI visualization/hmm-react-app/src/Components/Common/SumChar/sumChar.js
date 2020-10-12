@@ -3,7 +3,7 @@ import classes from './sumChar.module.scss';
 
 
 const SumChar = (props) => {
-    let noElementOnTop = props.top == "";
+    let noElementOnTop = props.top === "";
     
     let topElement =  noElementOnTop ? 
         <div className={classes.invisable}>5</div> :

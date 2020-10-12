@@ -14,12 +14,15 @@ p, div {
 
 h1,
 h2,
-h3,
-h4,
-h5 {
+h3 {
     font-weight: 300;
     text-align: center;
     color: #fff;
+}
+
+h4 {
+    text-transform: uppercase;
+    margin-bottom: 5px;
 }
 
 h1 {

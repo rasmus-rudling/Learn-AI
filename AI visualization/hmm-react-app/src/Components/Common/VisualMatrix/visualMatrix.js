@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import classes from './visualMatrix.module.scss';
 
 const VisualMatrix = (props) => {
@@ -23,7 +23,7 @@ const VisualMatrix = (props) => {
     
     let matrixToVisualizeCopy;
 
-    if (matrixToVisualize[1].length == props.horizontalImages.length) {
+    if (matrixToVisualize[1].length === props.horizontalImages.length) {
         matrixToVisualizeCopy = vertImages.map((image, index) => {
             return [image, ...matrixToVisualize[index + 1]]
         }) 
@@ -38,14 +38,14 @@ const VisualMatrix = (props) => {
                     return (
                         <div className={classes.rowContainer} key={String(rowIndex)}>
                             {matrixRow.map((element, columnIndex) => {
-                                if ((rowIndex == 0 && columnIndex !== 0) || (rowIndex != 0 && columnIndex == 0)) {
+                                if ((rowIndex === 0 && columnIndex !== 0) || (rowIndex !== 0 && columnIndex === 0)) {
                                     return (
                                         <div 
                                             style={{"borderColor":borderColor}} 
                                             className={props.weatherExampleSelected ? classes.weatherCell : classes.runnerCell}
                                             key={String(rowIndex) + String(columnIndex)}
                                         >
-                                            <img src={element} />
+                                            <img src={element} alt="matrix image" />
                                         </div>)
                                 } else {
                                     return (

@@ -24,14 +24,8 @@
 
 .observationImageInText img {
     height: 14px;
-}
-
-.imageInText {
-    display: inline;
-}
-
-.imageInText img {
-    height: 14px;
+    position: relative;
+    top: 1.5px;
 }
 
 

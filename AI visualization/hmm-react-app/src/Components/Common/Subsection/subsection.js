@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import classes from './subsection.module.scss';
 import downArrow from '../../../Resources/Icons/down-arrow.svg';
 
@@ -17,8 +17,8 @@ const Subsection = (props) => {
         arrowElement.current.classList.toggle(classes.rotateArrow);
         arrowContainerElement.current.classList.toggle(classes.applyRadiusBottomRight);
         headerPartElement.current.classList.toggle(classes.applyRadiusBottomLeft);
-        setMaxHeight(maxHeight == "0px" ? props.maxHeight : "0px");
-        setPaddingForContent(paddingForContent == "0px" ? "20px" : "0px");
+        setMaxHeight(maxHeight === "0px" ? props.maxHeight : "0px");
+        setPaddingForContent(paddingForContent === "0px" ? "20px" : "0px");
     }
 
     let arrowClassList, headerPartClassList;

@@ -9,7 +9,7 @@ const HomeButton = (props) => {
     classesList = [...classesList, props.extraClass]
     return (
         <div className={classesList.join(" ")}>
-            <img src={homeIcon} />
+            <img src={homeIcon} alt="Homebutton" />
         </div>
     )
 }
