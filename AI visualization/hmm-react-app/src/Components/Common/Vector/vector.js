@@ -4,10 +4,10 @@ import classes from './vector.module.scss';
 const Vector = (props) => {
     let borderColor;
 
-    const greenColor = "#6EC668";
-
     if (props.themeColor === "green") {
-        borderColor = greenColor;
+        borderColor = "#6EC668";
+    } else if (props.themeColor === "orange") {
+        borderColor = "#FFA500";
     }
 
     return (

@@ -5,25 +5,6 @@ import forwardAlgorithmBG from '../../Resources/Images/Backgrounds/bg2.png';
 
 import * as utility from '../Common/Utility/utility';
 
-// import {
-//     weatherPiVector, 
-//     weatherAMatrix, 
-//     weatherBMatrix, 
-//     weatherStatesImages, 
-//     weatherObservationsImages,
-//     weatherObservationSequence
-// } from '../Common/Utility/utility';
-
-// import {
-//     runnerPiVector,
-//     runnerAMatrix, 
-//     runnerBMatrix, 
-//     runnerStatesImages, 
-//     runnerObservationsImages,
-//     runnerObservationSequence
-// } from '../Common/Utility/utility';
-
-
 // --- COMPONENTS ---
 import Subsection from '../Common/Subsection/subsection';
 import Vector from '../Common/Vector/vector';
@@ -454,8 +435,8 @@ const ForwardAlgorithm = (props) => {
 
                 <ExampleExplanation
                     header = {`Further explenation using the ${weatherExampleSelected ? "weather" : "runner"} example`} 
-                    maxHeight="500px" 
-                    hideDefault={false}
+                    maxHeight="865px" 
+                    hideDefault={true}
                 >
                     <p>
                         To make things a little clearer, let's look at our example. We know that {utility.O(0)} = O<sub>0</sub> ={utility.blankSpace}
@@ -479,11 +460,143 @@ const ForwardAlgorithm = (props) => {
 
                     <MathContent extraStyle={{"margin":"-5px 0 5px 0"}}>
                         = 𝑃({utility.S(0)} = {utility.imageInText(exampleStatesImages[0])}) {utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                        𝑃({utility.O_black('0')} {utility.blankSpace} | {utility.blankSpace} {utility.S(0)} = {utility.S_black("0")})
+                        𝑃({utility.imageInText(exampleObservationsImages[0])} | {utility.blankSpace} {utility.S(0)} = {utility.imageInText(exampleStatesImages[0])})
                     </MathContent>
 
+                    <MathContent extraStyle={{"margin":"-5px 0 5px 0"}}>
+                    = {examplePi[0]} {utility.blankSpace} {utility.multiply} {utility.blankSpace} {exampleB[0][0]} = {examplePi[0] * exampleB[0][0]}
+                    </MathContent>
+
+                    {/* --- ALPHA(S1) --- */}
+                    <MathContent extraStyle={{"margin":"10px 0 5px 0"}}>
+                        {utility.alpha_orange("0", "1")} {utility.blankSpace} = {utility.blankSpace} {utility.pi_parenthesis(utility.S_black(1))} 
+                        {utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                        {utility.b_parenthesis("0", utility.O('0'))} {utility.blankSpace} = {utility.blankSpace} {utility.pi_parenthesis(utility.S_black(1))} 
+                        {utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                        {utility.b_parenthesis("0", utility.O_black('0'))} {utility.blankSpace} =
+                    </MathContent>
+
+                    <MathContent extraStyle={{"margin":"-5px 0 5px 0"}}>
+                        = 𝑃({utility.S(0)} = {utility.S_black("1")}) {utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                        𝑃({utility.O_black('0')} {utility.blankSpace} | {utility.blankSpace} {utility.S(0)} = {utility.S_black("1")})
+                    </MathContent>
+
+                    <MathContent extraStyle={{"margin":"-5px 0 5px 0"}}>
+                        = 𝑃({utility.S(0)} = {utility.imageInText(exampleStatesImages[1])}) {utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                        𝑃({utility.imageInText(exampleObservationsImages[0])} | {utility.blankSpace} {utility.S(0)} = {utility.imageInText(exampleStatesImages[1])})
+                    </MathContent>
+
+                    <MathContent extraStyle={{"margin":"-5px 0 5px 0"}}>
+                        = {examplePi[1]} {utility.blankSpace} {utility.multiply} {utility.blankSpace} {exampleB[1][0]} = {examplePi[1] * exampleB[1][0]}
+                    </MathContent>
+
+                    <MathContent extraStyle={{"margin":"-5px 0 5px 0"}}>
+                    </MathContent>
+                    
+
+                    {/* --- ALPHA(S2) --- */}
+                    <MathContent extraStyle={{"margin":"10px 0 5px 0"}}>
+                        {utility.alpha_orange("0", "2")} {utility.blankSpace} = {utility.blankSpace} {utility.pi_parenthesis(utility.S_black(2))} 
+                        {utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                        {utility.b_parenthesis("0", utility.O('0'))} {utility.blankSpace} = {utility.blankSpace} {utility.pi_parenthesis(utility.S_black(2))} 
+                        {utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                        {utility.b_parenthesis("0", utility.O_black('0'))} {utility.blankSpace} =
+                    </MathContent>
+
+                    <MathContent extraStyle={{"margin":"-5px 0 5px 0"}}>
+                        = 𝑃({utility.S(0)} = {utility.S_black("2")}) {utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                        𝑃({utility.O_black('0')} {utility.blankSpace} | {utility.blankSpace} {utility.S(0)} = {utility.S_black("2")})
+                    </MathContent>
+
+                    <MathContent extraStyle={{"margin":"-5px 0 5px 0"}}>
+                        = 𝑃({utility.S(0)} = {utility.imageInText(exampleStatesImages[2])}) {utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                        𝑃({utility.imageInText(exampleObservationsImages[0])} | {utility.blankSpace} {utility.S(0)} = {utility.imageInText(exampleStatesImages[2])})
+                    </MathContent>
+
+                    <MathContent extraStyle={{"margin":"-5px 0 5px 0"}}>
+                    = {examplePi[2]} {utility.blankSpace} {utility.multiply} {utility.blankSpace} {exampleB[2][0]} = {examplePi[2] * exampleB[2][0]}
+                    </MathContent>
+
+                    {/* --- ALPHA(S3) --- */}
+                    {!weatherExampleSelected ? <div>
+                    <MathContent extraStyle={{"margin":"10px 0 5px 0"}}>
+                        {utility.alpha_orange("0", "3")} {utility.blankSpace} = {utility.blankSpace} {utility.pi_parenthesis(utility.S_black(3))} 
+                        {utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                        {utility.b_parenthesis("0", utility.O('0'))} {utility.blankSpace} = {utility.blankSpace} {utility.pi_parenthesis(utility.S_black(3))} 
+                        {utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                        {utility.b_parenthesis("0", utility.O_black('0'))} {utility.blankSpace} =
+                    </MathContent>
+
+                    <MathContent extraStyle={{"margin":"-5px 0 5px 0"}}>
+                        = 𝑃({utility.S(0)} = {utility.S_black("3")}) {utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                        𝑃({utility.O_black('0')} {utility.blankSpace} | {utility.blankSpace} {utility.S(0)} = {utility.S_black("3")})
+                    </MathContent>
+
+                    <MathContent extraStyle={{"margin":"-5px 0 5px 0"}}>
+                        = 𝑃({utility.S(0)} = {utility.imageInText(exampleStatesImages[3])}) {utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                        𝑃({utility.imageInText(exampleObservationsImages[0])} | {utility.blankSpace} {utility.S(0)} = {utility.imageInText(exampleStatesImages[3])})
+                    </MathContent>
+
+                    <MathContent extraStyle={{"margin":"-5px 0 5px 0"}}>
+                    = {examplePi[3]} {utility.blankSpace} {utility.multiply} {utility.blankSpace} {exampleB[3][0]} = {examplePi[3] * exampleB[3][0]}
+                    </MathContent> </div> : null}
+
+                    <p>
+                        Now we can summarize the results in a vector
+                    </p>
+
+                    <MathContent extraStyle={{"margin":"-5px 0 -5px 0"}}>
+                        <Vector 
+                            vectorName={utility.alpha_orange("0", "i")} 
+                            vector={ weatherExampleSelected ? 
+                                [examplePi[0] * exampleB[0][0], examplePi[1] * exampleB[1][0], examplePi[2] * exampleB[2][0]] :
+                                [examplePi[0] * exampleB[0][0], examplePi[1] * exampleB[1][0], examplePi[2] * exampleB[2][0], examplePi[3] * exampleB[3][0]] 
+                            }
+                                themeColor="orange" />
+                    </MathContent>
+
+                    <p>
+                        With these results we can now calculate the total likelihood of observing a{utility.blankSpace}
+                        {utility.imageInText(exampleObservationsImages[0])} at time {utility.blankSpace} step 0
+                    </p>
+
+                    <MathContent extraStyle={{"margin":"-10px 0 0px 0"}}>
+                        𝑃({utility.O('0')} {utility.blankSpace} = {utility.blankSpace}{utility.imageInText(exampleObservationsImages[0])}) = 
+                        {utility.blankSpace} {utility.alpha_orange("0", utility.S_black(0))}{utility.blankSpace} +{utility.blankSpace} 
+                        {utility.alpha_orange("0", utility.S_black(1))}{utility.blankSpace} +{utility.blankSpace} 
+                        {utility.alpha_orange("0", utility.S_black(2))}{utility.blankSpace}
+                        {!weatherExampleSelected ? <span> + {utility.alpha_orange("0", utility.S_black(3))}{utility.blankSpace} </span> : null} =
+                    </MathContent>
+
+                    <MathContent extraStyle={{"margin":"0px 0 -5px 0"}}>
+                        = 
+                        {utility.blankSpace} {utility.alpha_orange("0", utility.imageInText(exampleStatesImages[0]))}{utility.blankSpace} +{utility.blankSpace} 
+                        {utility.alpha_orange("0", utility.imageInText(exampleStatesImages[1]))}{utility.blankSpace} +{utility.blankSpace} 
+                        {utility.alpha_orange("0", utility.imageInText(exampleStatesImages[2]))}{utility.blankSpace} 
+                        {!weatherExampleSelected ? <span> + {utility.alpha_orange("0", utility.imageInText(exampleStatesImages[3]))}{utility.blankSpace} </span> : null} =
+                    </MathContent>
+
+                    <MathContent extraStyle={{"margin":"0px 0 -5px 0"}}>
+                        {weatherExampleSelected ? 
+                            <div>
+                                = {examplePi[0] * exampleB[0][0]} + {examplePi[1] * exampleB[1][0]} + {examplePi[2] * exampleB[2][0]} ={utility.blankSpace}
+                                {utility.roundTo((examplePi[0] * exampleB[0][0]) + (examplePi[1] * exampleB[1][0]) + (examplePi[2] * exampleB[2][0]), 10)}
+                            </div> :
+
+                            <div>
+                                = {examplePi[0] * exampleB[0][0]} + {examplePi[1] * exampleB[1][0]} + {examplePi[2] * exampleB[2][0]} + {examplePi[3] * exampleB[3][0]} ={utility.blankSpace}
+                                {utility.roundTo((examplePi[0] * exampleB[0][0]) + (examplePi[1] * exampleB[1][0]) + (examplePi[2] * exampleB[2][0]) + (examplePi[3] * exampleB[3][0]), 10)}
+                            </div>
+                        }
+                    </MathContent>
                 </ExampleExplanation>
+
+                <h4 className={classes.noUpperCase}>STEPS 1 ≤ t ≤ T-1</h4>
                 
+                <p>
+                    For the remaining time steps, the new alpha we calculate is dependent on the previous
+                    alphas and is defined as
+                </p>
             </Subsection>
         </div>
     );

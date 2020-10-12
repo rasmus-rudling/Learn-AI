@@ -65,7 +65,7 @@ export const runnerObservationsImages = [runnerO0, runnerO1, runnerO2, runnerO3,
 export const runnerObservationSequence = [0, 1, 3, 2, 4, 5];
 
 
-
+export const roundTo = (num, numberOfDecimals) => Math.round((num + Number.EPSILON) * (10 ** numberOfDecimals)) / (10 ** numberOfDecimals);
 
 export const lambda = (x) => <span style={{"color":"#E967E0"}}>λ<sub style={{"color":"#E967E0"}}>{x}</sub></span>;
 
