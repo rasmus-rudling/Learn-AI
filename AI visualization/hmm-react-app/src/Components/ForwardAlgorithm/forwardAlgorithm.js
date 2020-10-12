@@ -96,7 +96,7 @@ const ForwardAlgorithm = (props) => {
             setExampleB(utility.weatherBMatrix);
             setExampleStatesImages(utility.weatherStatesImages);
             setExampleObservationsImages(utility.weatherObservationsImages);
-            setExampleObservationSequence(utility.weatherObservationSequence)
+            setExampleObservationSequence(utility.weatherObservationSequence);
         } else {
             setExampleSubscript("R")
             setExamplePi(utility.runnerPiVector);
@@ -104,6 +104,7 @@ const ForwardAlgorithm = (props) => {
             setExampleB(utility.runnerBMatrix);
             setExampleStatesImages(utility.runnerStatesImages);
             setExampleObservationsImages(utility.runnerObservationsImages);
+            setExampleObservationSequence(utility.runnerObservationSequence);
         }
     }
 
@@ -124,7 +125,7 @@ const ForwardAlgorithm = (props) => {
             <HomeButton extraClass={classes.homeButton}/>
             <BackButton />
 
-            <h1>Forward Algorithm</h1>
+            <h1>Forward Algorithm / α-pass</h1>
 
             <ExampleButtons weatherExampleSelected={weatherExampleSelected} handleChangeActiveExample={handleChangeActiveExample} />
 
@@ -360,7 +361,7 @@ const ForwardAlgorithm = (props) => {
                 </p>
             </Subsection>
         
-            <Subsection header = "The Forward Algorithm / α-pass" maxHeight="2000px" hideDefault={false}>
+            <Subsection header = "The Forward Algorithm / α-pass" maxHeight="3000px" hideDefault={false}>
                 <p>
                     <i>Remember that <b>S</b> denotes the set of all possible states.</i>
                 </p>
@@ -374,7 +375,7 @@ const ForwardAlgorithm = (props) => {
                     which states we are at different time steps, only their total likelihood counts. Therefore,
                     the likelihood of observing a specific observation sequence is the sum of {utility.blankSpace} 
                     {utility.alpha_orange("t", "i")} ∀ {utility.S_black("i")} ∈ {utility.curlyLeft} {utility.S_black("0")}, {utility.blankSpace}  
-                    {utility.S_black("1")}, …, {utility.blankSpace} {utility.S_black("N-1")} {utility.curlyRight}. That is
+                    {utility.S_black("1")}, ..., {utility.blankSpace} {utility.S_black("N-1")} {utility.curlyRight}. That is
                 </p>
 
                 <MathContent>
@@ -409,7 +410,7 @@ const ForwardAlgorithm = (props) => {
                 </MathContent> 
 
                 <p>
-                    That is, {utility.alpha_orange("t", "i")} is the likelihood of observing a partial sequence of observables 
+                    That is, {utility.alpha_orange("t", "i")} is the likelihood of observing a partial sequence of observables{utility.blankSpace}
                     {utility.curlyLeft} {utility.O('0')}, {utility.O('1')}, …, {utility.O('t')} {utility.curlyRight} AND at time t, being in state {utility.S_black("i")}.
                 </p>
 
@@ -591,12 +592,148 @@ const ForwardAlgorithm = (props) => {
                     </MathContent>
                 </ExampleExplanation>
 
-                <h4 className={classes.noUpperCase}>STEPS 1 ≤ t ≤ T-1</h4>
+                <h4 className={classes.noUpperCase} style={{"marginTop":"70px"}}>STEPS 1 ≤ t ≤ T-1</h4>
                 
                 <p>
                     For the remaining time steps, the new alpha we calculate is dependent on the previous
                     alphas and is defined as
                 </p>
+
+                <MathContent extraStyle={{"margin":"25px 0 5px 0"}}>
+                    {utility.alpha_orange("t", "i")}{utility.blankSpace}=
+                    <div className={classes.leftBracket} 
+                        style={{
+                            "borderColor": "#2d2d2d", 
+                            "margin":"-21px 3px 10px 5px",
+                            "height":"70px",
+                            "width":"5px"
+                        }} 
+                    />
+                    <SumChar top="N−1" bottom="j=0"/> 
+                    {utility.alpha_orange("t-1", "j")}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                    {utility.a("j,i")}
+                    <div className={classes.rightBracket} 
+                        style={{
+                            "borderColor": "#2d2d2d", 
+                            "margin":"-21px 3px 10px 3px",
+                            "height":"70px",
+                            "width":"5px"
+                        }} 
+                    />
+                    {utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                    {utility.b_parenthesis("i", utility.O("t"))}{utility.blankSpace}=
+                    {/*  */}
+                    <div className={classes.leftBracket} 
+                        style={{
+                            "borderColor": "#2d2d2d", 
+                            "margin":"-21px 3px 10px 5px",
+                            "height":"70px",
+                            "width":"5px"
+                        }} 
+                    />
+                    <SumChar top="N−1" bottom="j=0"/> 
+                    {utility.alpha_orange("t-1", "j")}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                    𝑃({utility.S("t")} = {utility.S_black("i")}{utility.blankSpace}|{utility.blankSpace}{utility.S("t-1")} = {utility.S_black("j")} )
+                    <div className={classes.rightBracket} 
+                        style={{
+                            "borderColor": "#2d2d2d", 
+                            "margin":"-21px 3px 10px 3px",
+                            "height":"70px",
+                            "width":"5px"
+                        }} 
+                    />
+                    {utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                    𝑃({utility.O("t")}{utility.blankSpace}|{utility.blankSpace}{utility.S_black("i")})
+                </MathContent>
+
+                <p>
+                    Indeed the expression above is appalling, but let's try to narrow down what's really going
+                    on. First of we see that we sum over j from 0 to N-1. Remember that the cardinality of
+                    the set of states is N, that is, there are N number of possible states. Hence, the sum will
+                    consist of N terms. For each term, we are in state j, and the state j is representing the
+                    state we possibly came from, namely from time step t-1. {utility.alpha_orange("t-1", "j")} represents the probability
+                    of the HMM being in state j, given the partial observation sequence {utility.curlyLeft} {utility.O("0")},{utility.blankSpace}  
+                    {utility.O("1")}, ..., {utility.O("t-1")} {utility.curlyRight}. By
+                    multiplying {utility.alpha_orange("t-1", "j")} with the transition matrix {utility.a("i,j")}, the likelihood of transitioning from
+                    state j to state i, we get the probability of being in state i. And since we can come from
+                    all of the other states, including i itself, we sum over all previous states for this new
+                    possible state. But as we can see, the expression doesn't end there. Moreover, we are
+                    multiplying with 𝑃({utility.O("t")} | {utility.S("i")} ), that is, the probability of making a specific observation given
+                    that we are in a particular state. We do that because that's what we are really interested
+                    in. That is, the probability of making a certain observation. One could imagine that the
+                    complicated leftmost expression is just a prerequisite for us to get that final likelihood.
+                </p>
+
+                <p style={{"marginTop":"15px"}}>
+                    I hope the explanation didn't make you more confused than you were before, in either
+                    case, the expression makes more sense the more you're exposed to it.
+                </p>
+                
+                <ExampleExplanation
+                    header = {`Further explenation using the ${weatherExampleSelected ? "weather" : "runner"} example`} 
+                    maxHeight="865px" 
+                    hideDefault={false}
+                >
+                    <p>
+                        Let's calculate all of the {utility.alpha_orange("1", "i")}'s together. As a starting point, we have the following
+                    </p>
+                    
+                    <MathContent extraStyle={{"margin":"25px 0 5px 0"}}>
+                        {utility.alpha_orange("1", "i")}{utility.blankSpace}=
+                        <div className={classes.leftBracket} 
+                            style={{
+                                "borderColor": "#2d2d2d", 
+                                "margin":"-21px 3px 10px 5px",
+                                "height":"70px",
+                                "width":"5px"
+                            }} 
+                        />
+                        <SumChar top={exampleA.length-1} bottom="j=0"/> 
+                        {utility.alpha_orange("0", "j")}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                        𝑃({utility.S("1")} = {utility.S_black("i")}{utility.blankSpace}|{utility.blankSpace}{utility.S("0")} = {utility.S_black("j")} )
+                        <div className={classes.rightBracket} 
+                            style={{
+                                "borderColor": "#2d2d2d", 
+                                "margin":"-21px 3px 10px 3px",
+                                "height":"70px",
+                                "width":"5px"
+                            }} 
+                        />
+                        {utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                        𝑃({utility.O_black(exampleObservationSequence[1])}{utility.blankSpace}|{utility.blankSpace}{utility.S_black("i")})
+                    </MathContent>
+
+                    <p>Now let's do some calculations</p>
+                    
+                    <MathContent extraStyle={{"margin":"25px 0 5px 0"}}>
+                        {utility.alpha_orange("1", 0)}{utility.blankSpace}=
+                        <div className={classes.leftBracket} 
+                            style={{
+                                "borderColor": "#2d2d2d", 
+                                "margin":"-21px 3px 10px 5px",
+                                "height":"70px",
+                                "width":"5px"
+                            }} 
+                        />
+                        <SumChar top={exampleA.length-1} bottom="j=0"/> 
+                        {utility.alpha_orange("0", "j")}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                        𝑃({utility.S("1")} = {utility.S_black(0)}{utility.blankSpace}|{utility.blankSpace}{utility.S("0")} = {utility.S_black("j")} )
+                        <div className={classes.rightBracket} 
+                            style={{
+                                "borderColor": "#2d2d2d", 
+                                "margin":"-21px 3px 10px 3px",
+                                "height":"70px",
+                                "width":"5px"
+                            }} 
+                        />
+                        {utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                        𝑃({utility.O_black(exampleObservationSequence[1])}{utility.blankSpace}|{utility.blankSpace}{utility.S_black(0)})
+                        {utility.blankSpace}=
+                    </MathContent>
+
+                
+                </ExampleExplanation>
+
             </Subsection>
         </div>
     );
