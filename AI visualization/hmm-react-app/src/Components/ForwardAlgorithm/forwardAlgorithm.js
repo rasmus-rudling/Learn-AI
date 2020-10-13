@@ -24,6 +24,7 @@ const ForwardAlgorithm = (props) => {
     const [examplePi, setExamplePi] = useState(utility.weatherPiVector);
     const [exampleA, setExampleA] = useState(utility.weatherAMatrix);
     const [exampleB, setExampleB] = useState(utility.weatherBMatrix);
+    const [exampleAlphaVector, setExampleAlphaVector] = useState(utility.weatherAlphaVector)
     const [exampleStatesImages, setExampleStatesImages] = useState(utility.weatherStatesImages);
     const [exampleObservationsImages, setExampleObservationsImages] = useState(utility.weatherObservationsImages);
     const [exampleObservationSequence, setExampleObservationSequence] = useState(utility.weatherObservationSequence);
@@ -97,6 +98,7 @@ const ForwardAlgorithm = (props) => {
             setExampleStatesImages(utility.weatherStatesImages);
             setExampleObservationsImages(utility.weatherObservationsImages);
             setExampleObservationSequence(utility.weatherObservationSequence);
+            setExampleAlphaVector(utility.weatherAlphaVector);
         } else {
             setExampleSubscript("R")
             setExamplePi(utility.runnerPiVector);
@@ -105,18 +107,21 @@ const ForwardAlgorithm = (props) => {
             setExampleStatesImages(utility.runnerStatesImages);
             setExampleObservationsImages(utility.runnerObservationsImages);
             setExampleObservationSequence(utility.runnerObservationSequence);
+            setExampleAlphaVector(utility.runnerAlphaVector);
         }
     }
 
     useEffect(() => {
         setVectorsForExamples(false);
         changeObservationSequenceInText(false);
+        handleChangeActiveExample()
     }, []);
 
     const handleChangeActiveExample = () => {
         setVectorsForExamples(weatherExampleSelected);
         setWeatherExampleSelected(!weatherExampleSelected);
     }
+
     
     return (
         <div className={classes.ForwardAlgorithm}>
@@ -557,11 +562,11 @@ const ForwardAlgorithm = (props) => {
                     </MathContent>
 
                     <p>
-                        With these results we can now calculate the total likelihood of observing a{utility.blankSpace}
-                        {utility.imageInText(exampleObservationsImages[0])} at time {utility.blankSpace} step 0
+                        With these results we can now calculate the total likelihood of observing{utility.blankSpace}
+                        {utility.imageInText(exampleObservationsImages[0])} at time step 0
                     </p>
 
-                    <MathContent extraStyle={{"margin":"-10px 0 0px 0"}}>
+                    <MathContent extraStyle={{"margin":"5px 0 0px 0"}}>
                         𝑃({utility.O('0')} {utility.blankSpace} = {utility.blankSpace}{utility.imageInText(exampleObservationsImages[0])}) = 
                         {utility.blankSpace} {utility.alpha_orange("0", utility.S_black(0))}{utility.blankSpace} +{utility.blankSpace} 
                         {utility.alpha_orange("0", utility.S_black(1))}{utility.blankSpace} +{utility.blankSpace} 
@@ -729,6 +734,121 @@ const ForwardAlgorithm = (props) => {
                         {utility.blankSpace} {utility.multiply} {utility.blankSpace}
                         𝑃({utility.O_black(exampleObservationSequence[1])}{utility.blankSpace}|{utility.blankSpace}{utility.S_black(0)})
                         {utility.blankSpace}=
+                    </MathContent>
+                    
+                    {/* ALPHA-SUN(0) NUMBERS */}
+                    <MathContent extraStyle={{"margin":"25px 0 5px 0"}}>
+                        {utility.alpha_orange("1", 0)}{utility.blankSpace}=
+                        <div className={classes.leftBracket} 
+                            style={{
+                                "borderColor": "#2d2d2d", 
+                                "margin":"-3px 3px 10px 5px",
+                                "height":"30px",
+                                "width":"5px"
+                            }} 
+                        />
+                        {utility.alpha_orange("0", "0")}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                        𝑃({utility.S("1")} = {utility.S_black(0)}{utility.blankSpace}|{utility.blankSpace}{utility.S("0")} = {utility.S_black("0")} )
+                        
+                        + {utility.blankSpace}{utility.alpha_orange("0", "1")}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                        𝑃({utility.S("1")} = {utility.S_black(0)}{utility.blankSpace}|{utility.blankSpace}{utility.S("0")} = {utility.S_black("1")} )
+                    </MathContent>
+                    
+                    <MathContent extraStyle={{"margin":"-10px 0 5px 0"}}>
+                        
+                        + {utility.blankSpace}{utility.alpha_orange("0", "2")}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                        𝑃({utility.S("1")} = {utility.S_black(0)}{utility.blankSpace}|{utility.blankSpace}{utility.S("0")} = {utility.S_black("2")} )
+                        
+                        {!weatherExampleSelected ?
+                            <div>
+                                {utility.blankSpace}+ {utility.alpha_orange("0", "3")} {utility.multiply}{utility.blankSpace}
+                                𝑃({utility.S("1")} = {utility.S_black(0)}{utility.blankSpace}|{utility.blankSpace}{utility.S("0")} = {utility.S_black("3")} )
+                            </div>
+                        : null}
+                        <div className={classes.rightBracket} 
+                            style={{
+                                "borderColor": "#2d2d2d", 
+                                "margin":"-3px 3px 10px 3px",
+                                "height":"30px",
+                                "width":"5px"
+                            }} 
+                        />
+                        {utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                        𝑃({utility.O_black(exampleObservationSequence[1])}{utility.blankSpace}|{utility.blankSpace}{utility.S_black(0)})
+                        {utility.blankSpace}=
+                    </MathContent>
+                    
+                    {/* ALPHA-SUN(0) IMAGES */}
+                    <MathContent extraStyle={{"margin":"10px 0 5px 0"}}>
+                        ={utility.blankSpace}
+                        {utility.alpha_orange("1", utility.imageInText(exampleStatesImages[0]))}{utility.blankSpace}=
+                        <div className={classes.leftBracket} 
+                            style={{
+                                "borderColor": "#2d2d2d", 
+                                "margin":"-3px 3px 10px 5px",
+                                "height":"30px",
+                                "width":"5px"
+                            }} 
+                        />
+                        {utility.alpha_orange("0", utility.imageInText(exampleStatesImages[0]))}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                        𝑃({utility.S("1")} = {utility.imageInText(exampleStatesImages[0])}|{utility.blankSpace}{utility.S("0")} = {utility.imageInText(exampleStatesImages[0])} )
+                        +
+                    </MathContent>
+                    
+                    <MathContent extraStyle={{"margin":"-10px 0 5px 0"}}>
+                        + {utility.blankSpace}{utility.alpha_orange("0", utility.imageInText(exampleStatesImages[1]))}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                        𝑃({utility.S("1")} = {utility.imageInText(exampleStatesImages[0])}{utility.blankSpace}|{utility.blankSpace}{utility.S("0")} = {utility.imageInText(exampleStatesImages[1])} )
+                        +
+                    </MathContent>
+
+                    <MathContent extraStyle={{"margin":"5px 0 5px 0"}}>
+                        + {utility.blankSpace}{utility.alpha_orange("0", utility.imageInText(exampleStatesImages[2]))}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                        𝑃({utility.S("1")} = {utility.imageInText(exampleStatesImages[0])}{utility.blankSpace}|{utility.blankSpace}{utility.S("0")} = {utility.imageInText(exampleStatesImages[2])} )
+                            
+                        <div className={classes.rightBracket} 
+                            style={{
+                                "borderColor": "#2d2d2d", 
+                                "margin":"-3px 3px 10px 3px",
+                                "height":"30px",
+                                "width":"5px"
+                            }} 
+                        />
+                        {utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                        𝑃({utility.imageInText(exampleObservationsImages[exampleObservationSequence[1]])}{utility.blankSpace}|{utility.blankSpace}{utility.imageInText(exampleStatesImages[0])})
+                        {utility.blankSpace}
+                        =
+                    
+                    </MathContent>
+                
+                    <MathContent extraStyle={{"margin":"5px 0 5px 0"}}>
+                        = 
+                        <div className={classes.leftBracket} 
+                            style={{
+                                "borderColor": "#2d2d2d", 
+                                "margin":"-3px 3px 10px 5px",
+                                "height":"30px",
+                                "width":"5px"
+                            }} 
+                        />
+
+                        {exampleAlphaVector[0][0]} {utility.blankSpace} {utility.multiply} {utility.blankSpace} {exampleA[0][0]} + 
+                        {exampleAlphaVector[0][1]} {utility.blankSpace} {utility.multiply} {utility.blankSpace} {exampleA[1][0]} + 
+                        {exampleAlphaVector[0][2]} {utility.blankSpace} {utility.multiply} {utility.blankSpace} {exampleA[2][0]}
+                        <div className={classes.rightBracket} 
+                            style={{
+                                "borderColor": "#2d2d2d", 
+                                "margin":"-3px 3px 10px 3px",
+                                "height":"30px",
+                                "width":"5px"
+                            }} 
+                        />
+                        {utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                        {exampleB[0][exampleObservationSequence[1]]} =
+                        {utility.blankSpace}
+                        {utility.roundTo((exampleAlphaVector[0][0] * exampleA[0][0]) + (exampleAlphaVector[0][1] * exampleA[1][0]) + (exampleAlphaVector[0][2] * exampleA[1][0]), 5)}
+                        {utility.blankSpace} {utility.multiply} {utility.blankSpace}
+                        {exampleB[0][exampleObservationSequence[1]]} ={utility.blankSpace}
+                        {utility.roundTo(((exampleAlphaVector[0][0] * exampleA[0][0]) + (exampleAlphaVector[0][1] * exampleA[1][0]) + (exampleAlphaVector[0][2] * exampleA[1][0]))* exampleB[0][exampleObservationSequence[1]], 5)}
                     </MathContent>
 
                 

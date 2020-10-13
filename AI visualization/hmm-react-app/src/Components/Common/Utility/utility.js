@@ -149,3 +149,24 @@ export const imageInText = (image) => {
         </div>
     )
 }
+
+
+const forward_algorithm = (A, B, pi, o_seq) => {
+    let alpha_vector = [];
+    let numberOfStates = A.length;
+
+    // Calculate α0
+    const observation_0 = o_seq[0]
+    let alpha_0 = [];
+
+    for (let i = 0; i < numberOfStates; i++) {
+            alpha_0.push(pi[i] * B[i][observation_0]);
+    }
+
+    alpha_vector.push(alpha_0); 
+
+    return alpha_vector;
+}
+
+export const weatherAlphaVector = forward_algorithm(weatherAMatrix, weatherBMatrix, weatherPiVector, weatherObservationSequence);
+export const runnerAlphaVector = forward_algorithm(runnerAMatrix, runnerBMatrix, runnerPiVector, runnerObservationSequence);
