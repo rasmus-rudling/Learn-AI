@@ -21,7 +21,7 @@ const Subsection = (props) => {
         setPaddingForContent(paddingForContent === "0px" ? "20px" : "0px");
     }
 
-    let arrowClassList, headerPartClassList;
+    let arrowClassList, headerPartClassList, allSubClasses;
 
     if (props.hideDefault) {
         arrowClassList = [classes.showHideContentToggler, classes.applyRadiusBottomRight];
@@ -33,11 +33,17 @@ const Subsection = (props) => {
 
     if (exampleMode) {
         arrowClassList.push(classes.exampleModeHover)
-    }    
+    }
+
+    if (props.extraClass != undefined) {
+        allSubClasses = [classes.Subsection, props.extraClass];
+    } else {
+        allSubClasses = [classes.Subsection];
+    }
 
     return (
         <div 
-            className={classes.Subsection} 
+            className={allSubClasses.join(" ")} 
             style={exampleMode ? {"width":props.newWidth} : {}}
         >
             <div 

@@ -64,3 +64,13 @@ $bracketWidth: 7px;
     width: $bracketWidth;
     float: left;
 }
+
+.pseudoCode {
+    background-color: #287689 !important;
+}
+
+.pseudoCode p, .pseudoCode span {
+    font-size: 1.2rem;
+    color: #fff;
+    font-weight: 300;
+}

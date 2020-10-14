@@ -102,6 +102,11 @@ export const alpha_orange = (sub, inside) => {
 
     )
 }
+
+// --- PSEUDOCODE ---
+export const pseudo_variable = (variable) => <span style={{"color":"#2CEC93", "fontWeight":"600"}}>{variable}</span>;
+
+
 export const alpha_without_parenthesis = (x) => <span style={{"color":"#FFA500"}}>α<sub style={{"color":"#FFA500"}}>{x}</sub></span>;
 
 export const curlyLeft = <span>{"{"}</span>;
@@ -153,21 +158,59 @@ export const imageInText = (image) => {
 
 
 const forward_algorithm = (A, B, pi, o_seq) => {
-    let alpha_vector = [];
-    let numberOfStates = A.length;
+    const numberOfStates = A.length;
+    const numberOfTimeSteps = o_seq.length;
+    let alpha_vector = new Array(numberOfTimeSteps).fill([]);;
 
     // Calculate α0
     const observation_0 = o_seq[0]
-    let alpha_0 = [];
+    let alpha_0 = new Array(numberOfStates).fill(0);
 
     for (let i = 0; i < numberOfStates; i++) {
-            alpha_0.push(pi[i] * B[i][observation_0]);
+            alpha_0[i] = pi[i] * B[i][observation_0];
     }
 
-    alpha_vector.push(alpha_0); 
+    alpha_vector[0] = alpha_0; 
+
+    // Calculate α1, α2, …, αT-1
+    let observation_t, previous_alpha, alpha_t, sum;
+
+    for (let t = 1; t < numberOfTimeSteps; t++) {
+        observation_t = o_seq[t];
+        previous_alpha = alpha_vector[t-1];
+
+        alpha_t = new Array(numberOfStates).fill(0);
+
+        for (let i = 0; i < numberOfStates; i++) {
+            sum = 0
+
+            for (let j = 0; j < numberOfStates; j++) {
+                sum += previous_alpha[j] * A[j][i];
+            }
+
+            alpha_t[i] = sum * B[i][observation_t]
+        }
+        console.log(alpha_t);
+        alpha_vector[t] = alpha_t; 
+    }
 
     return alpha_vector;
 }
 
+const calculateTotalSumForEachAlpha = (alpha_vector) => {
+    let alpha_sums = new Array(alpha_vector.length).fill(0);
+
+    for (let t = 0; t < alpha_vector.length; t++) {
+        for (let stateIndex = 0; stateIndex < alpha_vector[t].length; stateIndex++) {
+            alpha_sums[t] += alpha_vector[t][stateIndex];
+        }
+    }
+
+    return alpha_sums;
+}
+
 export const weatherAlphaVector = forward_algorithm(weatherAMatrix, weatherBMatrix, weatherPiVector, weatherObservationSequence);
 export const runnerAlphaVector = forward_algorithm(runnerAMatrix, runnerBMatrix, runnerPiVector, runnerObservationSequence);
+
+export const weatherAlphaSums = calculateTotalSumForEachAlpha(weatherAlphaVector);
+export const runnerAlphaSums = calculateTotalSumForEachAlpha(runnerAlphaVector);
