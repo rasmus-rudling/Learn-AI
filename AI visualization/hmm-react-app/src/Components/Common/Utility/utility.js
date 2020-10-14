@@ -102,6 +102,7 @@ export const alpha_orange = (sub, inside) => {
 
     )
 }
+export const alpha_without_parenthesis = (x) => <span style={{"color":"#FFA500"}}>α<sub style={{"color":"#FFA500"}}>{x}</sub></span>;
 
 export const curlyLeft = <span>{"{"}</span>;
 export const curlyRight = <span>{"}"}</span>;

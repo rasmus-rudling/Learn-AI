@@ -17,6 +17,7 @@ import ImportantInfo from '../Common/ImportantInfo/importantInfo';
 import MathContent from '../Common/MathContent/mathContent';
 import SumChar from '../Common/SumChar/sumChar';
 import ExampleExplanation from '../Common/ExampleExplanation/exampleExplanation';
+import ExampleAlphaOne from './ExampleAlphaOne/exampleAlphaOne';
 
 const ForwardAlgorithm = (props) => {
     const [weatherExampleSelected, setWeatherExampleSelected] = useState(true);
@@ -366,7 +367,7 @@ const ForwardAlgorithm = (props) => {
                 </p>
             </Subsection>
         
-            <Subsection header = "The Forward Algorithm / α-pass" maxHeight="3000px" hideDefault={false}>
+            <Subsection header = "The Forward Algorithm / α-pass" maxHeight="4000px" hideDefault={false}>
                 <p>
                     <i>Remember that <b>S</b> denotes the set of all possible states.</i>
                 </p>
@@ -554,11 +555,9 @@ const ForwardAlgorithm = (props) => {
                     <MathContent extraStyle={{"margin":"-5px 0 -5px 0"}}>
                         <Vector 
                             vectorName={utility.alpha_orange("0", "i")} 
-                            vector={ weatherExampleSelected ? 
-                                [examplePi[0] * exampleB[0][0], examplePi[1] * exampleB[1][0], examplePi[2] * exampleB[2][0]] :
-                                [examplePi[0] * exampleB[0][0], examplePi[1] * exampleB[1][0], examplePi[2] * exampleB[2][0], examplePi[3] * exampleB[3][0]] 
-                            }
-                                themeColor="orange" />
+                            vector={exampleAlphaVector[0]}
+                            themeColor="orange"
+                        />
                     </MathContent>
 
                     <p>
@@ -676,7 +675,7 @@ const ForwardAlgorithm = (props) => {
                 
                 <ExampleExplanation
                     header = {`Further explenation using the ${weatherExampleSelected ? "weather" : "runner"} example`} 
-                    maxHeight="865px" 
+                    maxHeight="3000px" 
                     hideDefault={false}
                 >
                     <p>
@@ -708,7 +707,7 @@ const ForwardAlgorithm = (props) => {
                         𝑃({utility.O_black(exampleObservationSequence[1])}{utility.blankSpace}|{utility.blankSpace}{utility.S_black("i")})
                     </MathContent>
 
-                    <p>Now let's do some calculations</p>
+                    <p>First off, we calculate {utility.alpha_without_parenthesis(1)} for the first state</p>
                     
                     <MathContent extraStyle={{"margin":"25px 0 5px 0"}}>
                         {utility.alpha_orange("1", 0)}{utility.blankSpace}=
@@ -735,312 +734,74 @@ const ForwardAlgorithm = (props) => {
                         𝑃({utility.O_black(exampleObservationSequence[1])}{utility.blankSpace}|{utility.blankSpace}{utility.S_black(0)})
                         {utility.blankSpace}=
                     </MathContent>
-                    
-                    {/* ALPHA-SUN(0) NUMBERS */}
-                    <MathContent extraStyle={{"margin":"25px 0 5px 0"}}>
-                        {utility.alpha_orange("1", 0)}{utility.blankSpace}=
-                        <div className={classes.leftBracket} 
-                            style={{
-                                "borderColor": "#2d2d2d", 
-                                "margin":"-3px 3px 10px 5px",
-                                "height":"30px",
-                                "width":"5px"
-                            }} 
-                        />
-                        {utility.alpha_orange("0", "0")}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                        𝑃({utility.S("1")} = {utility.S_black(0)}{utility.blankSpace}|{utility.blankSpace}{utility.S("0")} = {utility.S_black("0")} )
-                        
-                        + {utility.blankSpace}{utility.alpha_orange("0", "1")}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                        𝑃({utility.S("1")} = {utility.S_black(0)}{utility.blankSpace}|{utility.blankSpace}{utility.S("0")} = {utility.S_black("1")} )
-                    </MathContent>
-                    
-                    <MathContent extraStyle={{"margin":"-10px 0 5px 0"}}>
-                        
-                        + {utility.blankSpace}{utility.alpha_orange("0", "2")}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                        𝑃({utility.S("1")} = {utility.S_black(0)}{utility.blankSpace}|{utility.blankSpace}{utility.S("0")} = {utility.S_black("2")} )
-                        
-                        {!weatherExampleSelected ?
-                            <div>
-                                {utility.blankSpace}+ {utility.alpha_orange("0", "3")} {utility.multiply}{utility.blankSpace}
-                                𝑃({utility.S("1")} = {utility.S_black(0)}{utility.blankSpace}|{utility.blankSpace}{utility.S("0")} = {utility.S_black("3")} )
-                            </div>
-                        : null}
-                        <div className={classes.rightBracket} 
-                            style={{
-                                "borderColor": "#2d2d2d", 
-                                "margin":"-3px 3px 10px 3px",
-                                "height":"30px",
-                                "width":"5px"
-                            }} 
-                        />
-                        {utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                        𝑃({utility.O_black(exampleObservationSequence[1])}{utility.blankSpace}|{utility.blankSpace}{utility.S_black(0)})
-                        {utility.blankSpace}=
-                    </MathContent>
-                    
-                    {/* ALPHA-SUN(0) IMAGES */}
-                    <MathContent extraStyle={{"margin":"5px 0 5px 0"}}>
-                        ={utility.blankSpace}
-                        {utility.alpha_orange("1", utility.imageInText(exampleStatesImages[0]))}{utility.blankSpace}=
-                        <div className={classes.leftBracket} 
-                            style={{
-                                "borderColor": "#2d2d2d", 
-                                "margin":"-3px 3px 10px 5px",
-                                "height":"30px",
-                                "width":"5px"
-                            }} 
-                        />
-                        {utility.alpha_orange("0", utility.imageInText(exampleStatesImages[0]))}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                        𝑃({utility.S("1")} = {utility.imageInText(exampleStatesImages[0])}|{utility.blankSpace}{utility.S("0")} = {utility.imageInText(exampleStatesImages[0])} )
-                        +
-                    </MathContent>
-                    
-                    {weatherExampleSelected ? <div>
-                        <MathContent extraStyle={{"margin":"-10px 0 5px 0"}}>
-                            + {utility.blankSpace}{utility.alpha_orange("0", utility.imageInText(exampleStatesImages[1]))}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                            𝑃({utility.S("1")} = {utility.imageInText(exampleStatesImages[0])}{utility.blankSpace}|{utility.blankSpace}{utility.S("0")} = {utility.imageInText(exampleStatesImages[1])} )
-                            +
-                        </MathContent>
 
-                        <MathContent extraStyle={{"margin":"5px 0 5px 0"}}>
-                            + {utility.blankSpace}{utility.alpha_orange("0", utility.imageInText(exampleStatesImages[2]))}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                            𝑃({utility.S("1")} = {utility.imageInText(exampleStatesImages[0])}{utility.blankSpace}|{utility.blankSpace}{utility.S("0")} = {utility.imageInText(exampleStatesImages[2])} )
-                                
-                            <div className={classes.rightBracket} 
-                                style={{
-                                    "borderColor": "#2d2d2d", 
-                                    "margin":"-3px 3px 10px 3px",
-                                    "height":"30px",
-                                    "width":"5px"
-                                }} 
+                    <ExampleAlphaOne 
+                        weatherExampleSelected = {weatherExampleSelected}
+                        stateIndex="0" 
+                        exampleA = {exampleA}
+                        exampleB = {exampleB}
+                        exampleObservationSequence = {exampleObservationSequence}
+                        exampleStatesImages = {exampleStatesImages}
+                        exampleObservationsImages = {exampleObservationsImages}
+                        exampleAlphaVector = {exampleAlphaVector}
+                    />
+
+                    <p>Secondly, we calculate {utility.alpha_without_parenthesis(1)} for the second state</p>
+
+                    <ExampleAlphaOne 
+                        weatherExampleSelected = {weatherExampleSelected}
+                        stateIndex="1" 
+                        exampleA = {exampleA}
+                        exampleB = {exampleB}
+                        exampleObservationSequence = {exampleObservationSequence}
+                        exampleStatesImages = {exampleStatesImages}
+                        exampleObservationsImages = {exampleObservationsImages}
+                        exampleAlphaVector = {exampleAlphaVector}
+                        marginAtTop = "10px"
+                    />
+
+                    {weatherExampleSelected ? 
+                        <p>Finally, we calculate {utility.alpha_without_parenthesis(1)} for the thrid state</p> :
+                        <p>Thirdly, we calculate {utility.alpha_without_parenthesis(1)} for the third state</p>
+                    }
+
+                    <ExampleAlphaOne 
+                        weatherExampleSelected = {weatherExampleSelected}
+                        stateIndex="2" 
+                        exampleA = {exampleA}
+                        exampleB = {exampleB}
+                        exampleObservationSequence = {exampleObservationSequence}
+                        exampleStatesImages = {exampleStatesImages}
+                        exampleObservationsImages = {exampleObservationsImages}
+                        exampleAlphaVector = {exampleAlphaVector}
+                    />
+
+                    {!weatherExampleSelected ? 
+                        <div>
+                            <p>Lastly, we calculate {utility.alpha_without_parenthesis(1)} for the fourth state</p>
+                            <ExampleAlphaOne 
+                                weatherExampleSelected = {weatherExampleSelected}
+                                stateIndex="3" 
+                                exampleA = {exampleA}
+                                exampleB = {exampleB}
+                                exampleObservationSequence = {exampleObservationSequence}
+                                exampleStatesImages = {exampleStatesImages}
+                                exampleObservationsImages = {exampleObservationsImages}
+                                exampleAlphaVector = {exampleAlphaVector}
                             />
-                            {utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                            𝑃({utility.imageInText(exampleObservationsImages[exampleObservationSequence[1]])}{utility.blankSpace}|{utility.blankSpace}{utility.imageInText(exampleStatesImages[0])})
-                            {utility.blankSpace}
-                            =
-                        
-                        </MathContent>
-                    </div> :
+                        </div> :
+                        null
+                    }
 
-                    <div>
-                        <MathContent extraStyle={{"margin":"-10px 0 5px 0"}}>
-                            + {utility.blankSpace}{utility.alpha_orange("0", utility.imageInText(exampleStatesImages[1]))}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                            𝑃({utility.S("1")} = {utility.imageInText(exampleStatesImages[0])}{utility.blankSpace}|{utility.blankSpace}{utility.S("0")} = {utility.imageInText(exampleStatesImages[1])} )
-                            +
-                        </MathContent>
+                    <p>At last, we now have all the desired likelihoods</p>
 
-                        <MathContent extraStyle={{"margin":"-10px 0 5px 0"}}>
-                            + {utility.blankSpace}{utility.alpha_orange("0", utility.imageInText(exampleStatesImages[2]))}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                            𝑃({utility.S("1")} = {utility.imageInText(exampleStatesImages[0])}{utility.blankSpace}|{utility.blankSpace}{utility.S("0")} = {utility.imageInText(exampleStatesImages[2])} )
-                            +
-                        </MathContent>
-
-                        <MathContent extraStyle={{"margin":"5px 0 5px 0"}}>
-                            + {utility.blankSpace}{utility.alpha_orange("0", utility.imageInText(exampleStatesImages[3]))}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                            𝑃({utility.S("1")} = {utility.imageInText(exampleStatesImages[0])}{utility.blankSpace}|{utility.blankSpace}{utility.S("0")} = {utility.imageInText(exampleStatesImages[3])} )
-                                
-                            <div className={classes.rightBracket} 
-                                style={{
-                                    "borderColor": "#2d2d2d", 
-                                    "margin":"-3px 3px 10px 3px",
-                                    "height":"30px",
-                                    "width":"5px"
-                                }} 
-                            />
-                            {utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                            𝑃({utility.imageInText(exampleObservationsImages[exampleObservationSequence[1]])}{utility.blankSpace}|{utility.blankSpace}{utility.imageInText(exampleStatesImages[0])})
-                            {utility.blankSpace}
-                            =
-                        
-                        </MathContent>
-                    </div>}
-                    
-                
-                    <MathContent extraStyle={{"margin":"5px 0 5px 0"}}>
-                        = 
-                        <div className={classes.leftBracket} 
-                            style={{
-                                "borderColor": "#2d2d2d", 
-                                "margin":"-3px 3px 10px 5px",
-                                "height":"30px",
-                                "width":"5px"
-                            }} 
+                    <MathContent extraStyle={{"margin":"-5px 0 -5px 0"}}>
+                        <Vector 
+                            vectorName={utility.alpha_orange("0", "i")} 
+                            vector={exampleAlphaVector[0]}
+                            themeColor="orange"
                         />
-
-                        {exampleAlphaVector[0][0]} {utility.blankSpace} {utility.multiply} {utility.blankSpace} {exampleA[0][0]} +{utility.blankSpace}
-                        {exampleAlphaVector[0][1]} {utility.blankSpace} {utility.multiply} {utility.blankSpace} {exampleA[1][0]} +{utility.blankSpace}
-                        {exampleAlphaVector[0][2]} {utility.blankSpace} {utility.multiply} {utility.blankSpace} {exampleA[2][0]}
-                        {!weatherExampleSelected ? <div>{utility.blankSpace}+{utility.blankSpace}{exampleAlphaVector[0][3]} {utility.multiply} {exampleA[3][0]}</div> : null}
-                        <div className={classes.rightBracket} 
-                            style={{
-                                "borderColor": "#2d2d2d", 
-                                "margin":"-3px 3px 10px 3px",
-                                "height":"30px",
-                                "width":"5px"
-                            }} 
-                        />
-                        {utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                        {exampleB[0][exampleObservationSequence[1]]} =
-                        {utility.blankSpace}
-                        {utility.roundTo((exampleAlphaVector[0][0] * exampleA[0][0]) + (exampleAlphaVector[0][1] * exampleA[1][0]) + (exampleAlphaVector[0][2] * exampleA[1][0]), 5)}
-                        {utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                        {exampleB[0][exampleObservationSequence[1]]} ={utility.blankSpace}
-                        {utility.roundTo(((exampleAlphaVector[0][0] * exampleA[0][0]) + (exampleAlphaVector[0][1] * exampleA[1][0]) + (exampleAlphaVector[0][2] * exampleA[1][0]))* exampleB[0][exampleObservationSequence[1]], 5)}
                     </MathContent>
-                    
-
-                    {/* ALPHA-CLOUD(1) NUMBERS */}
-                    <MathContent extraStyle={{"margin":"25px 0 5px 0"}}>
-                        {utility.alpha_orange("1", 1)}{utility.blankSpace}=
-                        <div className={classes.leftBracket} 
-                            style={{
-                                "borderColor": "#2d2d2d", 
-                                "margin":"-3px 3px 10px 5px",
-                                "height":"30px",
-                                "width":"5px"
-                            }} 
-                        />
-                        {utility.alpha_orange("0", "0")}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                        𝑃({utility.S("1")} = {utility.S_black(1)}{utility.blankSpace}|{utility.blankSpace}{utility.S("0")} = {utility.S_black("0")} )
-                        
-                        + {utility.blankSpace}{utility.alpha_orange("0", "1")}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                        𝑃({utility.S("1")} = {utility.S_black(1)}{utility.blankSpace}|{utility.blankSpace}{utility.S("0")} = {utility.S_black("1")} )
-                    </MathContent>
-                    
-                    <MathContent extraStyle={{"margin":"-10px 0 5px 0"}}>
-                        
-                        + {utility.blankSpace}{utility.alpha_orange("0", "2")}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                        𝑃({utility.S("1")} = {utility.S_black(1)}{utility.blankSpace}|{utility.blankSpace}{utility.S("0")} = {utility.S_black("2")} )
-                        
-                        {!weatherExampleSelected ?
-                            <div>
-                                {utility.blankSpace}+ {utility.alpha_orange("0", "3")} {utility.multiply}{utility.blankSpace}
-                                𝑃({utility.S("1")} = {utility.S_black(1)}{utility.blankSpace}|{utility.blankSpace}{utility.S("0")} = {utility.S_black("3")} )
-                            </div>
-                        : null}
-                        <div className={classes.rightBracket} 
-                            style={{
-                                "borderColor": "#2d2d2d", 
-                                "margin":"-3px 3px 10px 3px",
-                                "height":"30px",
-                                "width":"5px"
-                            }} 
-                        />
-                        {utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                        𝑃({utility.O_black(exampleObservationSequence[1])}{utility.blankSpace}|{utility.blankSpace}{utility.S_black(1)})
-                        {utility.blankSpace}=
-                    </MathContent>
-                    
-                    {/* ALPHA-CLOUD(1) IMAGES */}
-                    <MathContent extraStyle={{"margin":"5px 0 5px 0"}}>
-                        ={utility.blankSpace}
-                        {utility.alpha_orange("1", utility.imageInText(exampleStatesImages[1]))}{utility.blankSpace}=
-                        <div className={classes.leftBracket} 
-                            style={{
-                                "borderColor": "#2d2d2d", 
-                                "margin":"-3px 3px 10px 5px",
-                                "height":"30px",
-                                "width":"5px"
-                            }} 
-                        />
-                        {utility.alpha_orange("0", utility.imageInText(exampleStatesImages[0]))}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                        𝑃({utility.S("1")} = {utility.imageInText(exampleStatesImages[1])}|{utility.blankSpace}{utility.S("0")} = {utility.imageInText(exampleStatesImages[0])} )
-                        +
-                    </MathContent>
-                    
-                    {weatherExampleSelected ? <div>
-                        <MathContent extraStyle={{"margin":"-10px 0 5px 0"}}>
-                            + {utility.blankSpace}{utility.alpha_orange("0", utility.imageInText(exampleStatesImages[1]))}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                            𝑃({utility.S("1")} = {utility.imageInText(exampleStatesImages[1])}{utility.blankSpace}|{utility.blankSpace}{utility.S("0")} = {utility.imageInText(exampleStatesImages[1])} )
-                            +
-                        </MathContent>
-
-                        <MathContent extraStyle={{"margin":"5px 0 5px 0"}}>
-                            + {utility.blankSpace}{utility.alpha_orange("0", utility.imageInText(exampleStatesImages[2]))}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                            𝑃({utility.S("1")} = {utility.imageInText(exampleStatesImages[1])}{utility.blankSpace}|{utility.blankSpace}{utility.S("0")} = {utility.imageInText(exampleStatesImages[2])} )
-                                
-                            <div className={classes.rightBracket} 
-                                style={{
-                                    "borderColor": "#2d2d2d", 
-                                    "margin":"-3px 3px 10px 3px",
-                                    "height":"30px",
-                                    "width":"5px"
-                                }} 
-                            />
-                            {utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                            𝑃({utility.imageInText(exampleObservationsImages[exampleObservationSequence[1]])}{utility.blankSpace}|{utility.blankSpace}{utility.imageInText(exampleStatesImages[1])})
-                            {utility.blankSpace}
-                            =
-                        
-                        </MathContent>
-                    </div> :
-
-                    <div>
-                        <MathContent extraStyle={{"margin":"-10px 0 5px 0"}}>
-                            + {utility.blankSpace}{utility.alpha_orange("0", utility.imageInText(exampleStatesImages[1]))}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                            𝑃({utility.S("1")} = {utility.imageInText(exampleStatesImages[1])}{utility.blankSpace}|{utility.blankSpace}{utility.S("0")} = {utility.imageInText(exampleStatesImages[1])} )
-                            +
-                        </MathContent>
-
-                        <MathContent extraStyle={{"margin":"-10px 0 5px 0"}}>
-                            + {utility.blankSpace}{utility.alpha_orange("0", utility.imageInText(exampleStatesImages[2]))}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                            𝑃({utility.S("1")} = {utility.imageInText(exampleStatesImages[1])}{utility.blankSpace}|{utility.blankSpace}{utility.S("0")} = {utility.imageInText(exampleStatesImages[2])} )
-                            +
-                        </MathContent>
-
-                        <MathContent extraStyle={{"margin":"5px 0 5px 0"}}>
-                            + {utility.blankSpace}{utility.alpha_orange("0", utility.imageInText(exampleStatesImages[3]))}{utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                            𝑃({utility.S("1")} = {utility.imageInText(exampleStatesImages[1])}{utility.blankSpace}|{utility.blankSpace}{utility.S("0")} = {utility.imageInText(exampleStatesImages[3])} )
-                                
-                            <div className={classes.rightBracket} 
-                                style={{
-                                    "borderColor": "#2d2d2d", 
-                                    "margin":"-3px 3px 10px 3px",
-                                    "height":"30px",
-                                    "width":"5px"
-                                }} 
-                            />
-                            {utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                            𝑃({utility.imageInText(exampleObservationsImages[exampleObservationSequence[1]])}{utility.blankSpace}|{utility.blankSpace}{utility.imageInText(exampleStatesImages[1])})
-                            {utility.blankSpace}
-                            =
-                        
-                        </MathContent>
-                    </div>}
-                    
-                
-                    <MathContent extraStyle={{"margin":"5px 0 5px 0"}}>
-                        = 
-                        <div className={classes.leftBracket} 
-                            style={{
-                                "borderColor": "#2d2d2d", 
-                                "margin":"-3px 3px 10px 5px",
-                                "height":"30px",
-                                "width":"5px"
-                            }} 
-                        />
-
-                        {exampleAlphaVector[0][0]} {utility.blankSpace} {utility.multiply} {utility.blankSpace} {exampleA[0][1]} +{utility.blankSpace}
-                        {exampleAlphaVector[0][1]} {utility.blankSpace} {utility.multiply} {utility.blankSpace} {exampleA[1][1]} +{utility.blankSpace}
-                        {exampleAlphaVector[0][2]} {utility.blankSpace} {utility.multiply} {utility.blankSpace} {exampleA[2][1]}
-                        {!weatherExampleSelected ? <div>{utility.blankSpace}+{utility.blankSpace}{exampleAlphaVector[0][3]} {utility.multiply} {exampleA[3][1]}</div> : null}
-                        <div className={classes.rightBracket} 
-                            style={{
-                                "borderColor": "#2d2d2d", 
-                                "margin":"-3px 3px 10px 3px",
-                                "height":"30px",
-                                "width":"5px"
-                            }} 
-                        />
-                        {utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                        {exampleB[1][exampleObservationSequence[1]]} =
-                        {utility.blankSpace}
-                        {utility.roundTo((exampleAlphaVector[0][0] * exampleA[0][1]) + (exampleAlphaVector[0][1] * exampleA[1][1]) + (exampleAlphaVector[0][2] * exampleA[1][1]), 5)}
-                        {utility.blankSpace} {utility.multiply} {utility.blankSpace}
-                        {exampleB[1][exampleObservationSequence[1]]} ={utility.blankSpace}
-                        {utility.roundTo(((exampleAlphaVector[0][0] * exampleA[0][1]) + (exampleAlphaVector[0][1] * exampleA[1][1]) + (exampleAlphaVector[0][2] * exampleA[1][1])) * exampleB[1][exampleObservationSequence[1]], 5)}
-                    </MathContent>
-                
                 </ExampleExplanation>
 
             </Subsection>
