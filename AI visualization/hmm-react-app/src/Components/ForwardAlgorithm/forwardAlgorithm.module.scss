@@ -69,8 +69,12 @@ $bracketWidth: 7px;
     background-color: #287689 !important;
 }
 
-.pseudoCode p, .pseudoCode span {
+.pseudoCode p, .pseudoCode span, .pseudoCode div {
     font-size: 1.2rem;
     color: #fff;
-    font-weight: 300;
+    font-weight: 400;
+}
+
+.pseudoCode h2 {
+    font-size: 1.5rem;
 }

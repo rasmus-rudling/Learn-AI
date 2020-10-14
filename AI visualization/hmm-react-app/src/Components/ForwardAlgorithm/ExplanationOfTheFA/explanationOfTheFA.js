@@ -19,7 +19,10 @@ const ExplanationOfTheFA = (
         exampleAlphaVector, 
         exampleAlphaSums,
         exampleObservationSequence,
-        classes
+        classes,
+        exampleSubscript,
+        observationsSequenceInText,
+        observationsSequenceInImages
     }) => {
 
     return (
@@ -521,7 +524,7 @@ const ExplanationOfTheFA = (
             <MathContent extraStyle={{"margin":"15px 0 0px 0"}}>
                 𝑃( {utility.O("0:T-1")}{utility.blankSpace}|{utility.blankSpace}{utility.lambda("x")} ) ={utility.blankSpace}
                 <SumChar top="" bottom={<div>{utility.S_black("i")} ∈ <b>{utility.S_black()}</b></div>}/>
-                {utility.alpha_orange("t", "i")}
+                {utility.alpha_orange("T-1", "i")}
             </MathContent>
 
             <p>
@@ -529,6 +532,143 @@ const ExplanationOfTheFA = (
                 step, we only care about the likelihood of the HMM being in some state at the last time
                 step T-1.
             </p>
+
+            <ExampleExplanation 
+                header = {`Further explenation using the ${weatherExampleSelected ? "weather" : "runner"} example`} 
+                maxHeight="865px" 
+                hideDefault={true}
+            >
+                <p>
+                    The following are all of the alphas for the {weatherExampleSelected ? "weater" : "runner"} example
+                </p>
+
+                <MathContent extraStyle={{"margin":"10px 0 0px 0"}}>
+                    <Vector 
+                        vectorName={utility.alpha_orange(0, "i")} 
+                        vector={exampleAlphaVector[0].map(prob => utility.roundTo(prob, numberOfDecimalsToShow))}
+                        themeColor="orange"
+                    />
+                </MathContent>
+
+                <MathContent extraStyle={{"margin":"-5px 0 0px 0"}}>
+                    <Vector 
+                        vectorName={utility.alpha_orange(1, "i")} 
+                        vector={exampleAlphaVector[1].map(prob => utility.roundTo(prob, numberOfDecimalsToShow))}
+                        themeColor="orange"
+                    />
+                </MathContent>
+
+                <MathContent extraStyle={{"margin":"-5px 0 0px 0"}}>
+                    <Vector 
+                        vectorName={utility.alpha_orange(2, "i")} 
+                        vector={exampleAlphaVector[2].map(prob => utility.roundTo(prob, numberOfDecimalsToShow))}
+                        themeColor="orange"
+                    />
+                </MathContent>
+
+                <MathContent extraStyle={{"margin":"-5px 0 0px 0"}}>
+                    <Vector 
+                        vectorName={utility.alpha_orange(3, "i")} 
+                        vector={exampleAlphaVector[3].map(prob => utility.roundTo(prob, numberOfDecimalsToShow + 1))}
+                        themeColor="orange"
+                    />
+                </MathContent>
+
+                <MathContent extraStyle={{"margin":"-5px 0 0px 0"}}>
+                    <Vector 
+                        vectorName={utility.alpha_orange(4, "i")} 
+                        vector={exampleAlphaVector[4].map(prob => utility.roundTo(prob, numberOfDecimalsToShow + 1))}
+                        themeColor="orange"
+                    />
+                </MathContent>
+
+                {!weatherExampleSelected ? 
+                    <MathContent extraStyle={{"margin":"-5px 0 0px 0"}}>
+                        <Vector 
+                            vectorName={utility.alpha_orange(5, "i")} 
+                            vector={exampleAlphaVector[5].map(prob => utility.roundTo(prob, numberOfDecimalsToShow + 1))}
+                            themeColor="orange"
+                        />
+                    </MathContent>
+
+                : null}
+
+                <p>
+                    With the help of the last alpha vector {utility.alpha_orange(exampleObservationSequence.length-1, "i")}, we can calculate the desired likelihood 
+                </p>
+
+                <MathContent extraStyle={{"margin":"15px 0 0px 0"}}>
+                    𝑃( {utility.O(`0:${exampleObservationSequence.length-1}`)}{utility.blankSpace}|{utility.blankSpace}{utility.lambda(exampleSubscript)} ) ={utility.blankSpace}
+                    <SumChar top="" bottom={<div>{utility.S_black("i")} ∈ <b>{utility.S_black()}</b></div>}/>
+                    {utility.alpha_orange(exampleObservationSequence.length-1, "i")}{utility.blankSpace}={utility.blankSpace}
+                </MathContent>
+
+                <MathContent extraStyle={{"margin":"0px 0 0px 0"}}>
+                    {weatherExampleSelected ?
+                        <div>
+                            ={utility.blankSpace}{utility.alpha_orange(exampleObservationSequence.length-1, utility.S_black(0))} + 
+                            {utility.blankSpace}{utility.alpha_orange(exampleObservationSequence.length-1, utility.S_black(1))} + 
+                            {utility.blankSpace}{utility.alpha_orange(exampleObservationSequence.length-1, utility.S_black(2))} = 
+                        </div> :
+                        <div>
+                            ={utility.blankSpace}{utility.alpha_orange(exampleObservationSequence.length-1, utility.S_black(0))} + 
+                            {utility.blankSpace}{utility.alpha_orange(exampleObservationSequence.length-1, utility.S_black(1))} + 
+                            {utility.blankSpace}{utility.alpha_orange(exampleObservationSequence.length-1, utility.S_black(2))} + 
+                            {utility.blankSpace}{utility.alpha_orange(exampleObservationSequence.length-1, utility.S_black(3))} = 
+                        </div>
+                    }
+                </MathContent>
+
+                <MathContent extraStyle={{"margin":"0px 0 0px 0"}}>
+                    {weatherExampleSelected ?
+                        <div>
+                            ={utility.blankSpace}{utility.alpha_orange(exampleObservationSequence.length-1, utility.imageInText(exampleStatesImages[0]))} + 
+                            {utility.blankSpace}{utility.alpha_orange(exampleObservationSequence.length-1, utility.imageInText(exampleStatesImages[1]))} + 
+                            {utility.blankSpace}{utility.alpha_orange(exampleObservationSequence.length-1, utility.imageInText(exampleStatesImages[2]))} = 
+                        </div> :
+                        <div>
+                            ={utility.blankSpace}{utility.alpha_orange(exampleObservationSequence.length-1, utility.imageInText(exampleStatesImages[0]))} + 
+                            {utility.blankSpace}{utility.alpha_orange(exampleObservationSequence.length-1, utility.imageInText(exampleStatesImages[1]))} + 
+                            {utility.blankSpace}{utility.alpha_orange(exampleObservationSequence.length-1, utility.imageInText(exampleStatesImages[2]))} + 
+                            {utility.blankSpace}{utility.alpha_orange(exampleObservationSequence.length-1, utility.imageInText(exampleStatesImages[3]))} = 
+                        </div>
+                    }
+                </MathContent>
+
+                <MathContent extraStyle={{"margin":"0px 0 10px 0"}}>
+                {weatherExampleSelected ?
+                    <div>
+                        ={utility.blankSpace}{utility.roundTo(exampleAlphaVector[4][0], numberOfDecimalsToShow + 1)} +
+                        {utility.blankSpace}{utility.roundTo(exampleAlphaVector[4][1], numberOfDecimalsToShow + 1)} +
+                        {utility.blankSpace}{utility.roundTo(exampleAlphaVector[4][2], numberOfDecimalsToShow + 1)} ={utility.blankSpace}
+                    </div> :
+                    <div>
+                        ={utility.blankSpace}{utility.roundTo(exampleAlphaVector[5][0], numberOfDecimalsToShow + 1)} +
+                        {utility.blankSpace}{utility.roundTo(exampleAlphaVector[5][1], numberOfDecimalsToShow + 1)} +
+                        {utility.blankSpace}{utility.roundTo(exampleAlphaVector[5][2], numberOfDecimalsToShow + 1)} +
+                        {utility.blankSpace}{utility.roundTo(exampleAlphaVector[5][3], numberOfDecimalsToShow + 1)} ={utility.blankSpace}
+                    </div>
+                }
+                {weatherExampleSelected ? 
+                    utility.roundTo(exampleAlphaSums[4], numberOfDecimalsToShow + 1) : 
+                    utility.roundTo(exampleAlphaSums[5], numberOfDecimalsToShow + 1)
+                }
+                {utility.blankSpace}={utility.blankSpace}
+                {weatherExampleSelected ? 
+                    utility.roundTo(exampleAlphaSums[4], numberOfDecimalsToShow + 1) * 100 : 
+                    utility.roundTo(exampleAlphaSums[5], numberOfDecimalsToShow + 1) * 100
+                }%
+                </MathContent>
+
+                <p>
+                    Hence, there is a {weatherExampleSelected ? 
+                    utility.roundTo(exampleAlphaSums[4], numberOfDecimalsToShow + 1) * 100 : 
+                    utility.roundTo(exampleAlphaSums[5], numberOfDecimalsToShow + 1) * 100
+                }% chance that we observe the observation sequence {observationsSequenceInText} = {observationsSequenceInImages}
+                {utility.blankSpace}given our Hidden Markov Model {utility.lambda(exampleSubscript)}.
+                </p>
+
+            </ExampleExplanation>
         </>
     )
 

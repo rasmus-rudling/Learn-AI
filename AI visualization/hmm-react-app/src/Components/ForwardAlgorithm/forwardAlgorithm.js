@@ -14,12 +14,10 @@ import HomeButton from '../Common/HomeButton/homeButton';
 import ExampleButtons from '../Common/ExampleButtons/exampleButtons';
 import VisualMatrix from '../Common/VisualMatrix/visualMatrix';
 import ImportantInfo from '../Common/ImportantInfo/importantInfo';
-import MathContent from '../Common/MathContent/mathContent';
-import SumChar from '../Common/SumChar/sumChar';
-import ExampleExplanation from '../Common/ExampleExplanation/exampleExplanation';
-import ExampleAlphaOne from './ExampleAlphaOne/exampleAlphaOne';
 import ExplanationOfTheFA from './ExplanationOfTheFA/explanationOfTheFA';
 import MathematicalDerivation from './MathematicalDerivation/mathematicalDerivation';
+import FAPseudoCode from './FAPseudoCode/FAPseudoCode';
+import PlayAroundWithExamples from './PlayAroundWithExamples/playAroundWithExamples';
 
 const ForwardAlgorithm = (props) => {
     const [weatherExampleSelected, setWeatherExampleSelected] = useState(true);
@@ -231,22 +229,28 @@ const ForwardAlgorithm = (props) => {
                     exampleObservationSequence = {exampleObservationSequence}
                     numberOfDecimalsToShow = {numberOfDecimalsToShow}
                     classes = {classes}
+                    exampleSubscript = {exampleSubscript}
+                    observationsSequenceInText = {observationsSequenceInText}
+                    observationsSequenceInImages = {observationsSequenceInImages}
                 />
             </Subsection>
         
             <Subsection 
                 header = "Pseudo code for the forward algorithm / α-pass" 
-                maxHeight="4815px" 
-                hideDefault={false}
+                maxHeight="875px" 
+                hideDefault={true}
                 extraClass = {classes.pseudoCode}
             >
-                <p>
-                    <span style={{"color":"#FFA500", "fontWeight":"600"}}>Input:</span> The transition matrix {utility.pseudo_variable("A")}, 
-                    the observation matrix {utility.pseudo_variable("B")}, 
-                    the initial state distribution {utility.pseudo_variable("π")} and the observation 
-                    sequence {utility.pseudo_variable("o_seq")}. <br />
-                    <span style={{"color":"#FFA500", "fontWeight":"600"}}>Output:</span> A vector {utility.pseudo_variable("α_vector")} containing all the alphas.
-                </p>
+                <FAPseudoCode />
+            </Subsection>
+
+            <Subsection 
+                header = "Play around with examples" 
+                maxHeight="875px" 
+                hideDefault={false}
+                extraClass = {null}
+            >
+                <PlayAroundWithExamples />
             </Subsection>
         </div>
     );
