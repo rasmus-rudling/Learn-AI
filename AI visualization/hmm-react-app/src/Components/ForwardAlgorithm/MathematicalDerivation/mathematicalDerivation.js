@@ -5,8 +5,6 @@ import * as utility from '../../Common/Utility/utility';
 import MathContent from '../../Common/MathContent/mathContent';
 import SumChar from '../../Common/SumChar/sumChar';
 import ExampleExplanation from '../../Common/ExampleExplanation/exampleExplanation';
-import Vector from '../../Common/Vector/vector';
-import ExampleAlphaOne from '../ExampleAlphaOne/exampleAlphaOne';
 
 const MathematicalDerivation = (
     {   exampleSubscript,

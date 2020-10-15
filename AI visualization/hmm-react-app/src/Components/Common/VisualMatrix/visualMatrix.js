@@ -45,7 +45,7 @@ const VisualMatrix = (props) => {
                                             className={props.weatherExampleSelected ? classes.weatherCell : classes.runnerCell}
                                             key={String(rowIndex) + String(columnIndex)}
                                         >
-                                            <img src={element} alt="matrix image" />
+                                            <img src={element} alt="" />
                                         </div>)
                                 } else {
                                     return (

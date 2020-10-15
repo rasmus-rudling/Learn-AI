@@ -29,7 +29,7 @@ const FAPseudoCode = (props) => {
 
                 <div className={classes.codeRow}>
                     <div className={classes.codeRowNumber}>2</div>
-                    <div className={classes.codeRowContent, classes.commentRow} style={{"paddingLeft":"60px"}}>
+                    <div className={[classes.codeRowContent, classes.commentRow].join(" ")} style={{"paddingLeft":"60px"}}>
                         // Calculate α0
                     </div>
                 </div>
@@ -81,7 +81,7 @@ const FAPseudoCode = (props) => {
 
                 <div className={classes.codeRow}>
                     <div className={classes.codeRowNumber}>9</div>
-                    <div className={classes.codeRowContent, classes.commentRow} style={{"paddingLeft":"60px"}}>
+                    <div className={[classes.codeRowContent, classes.commentRow].join(" ")} style={{"paddingLeft":"60px"}}>
                         // Calculate α<sub>1</sub>, α<sub>2</sub>, ..., α<sub>T-1</sub>
                     </div>
                 </div>

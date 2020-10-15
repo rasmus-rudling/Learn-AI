@@ -35,7 +35,7 @@ const Subsection = (props) => {
         arrowClassList.push(classes.exampleModeHover)
     }
 
-    if (props.extraClass != undefined) {
+    if (props.extraClass !== undefined) {
         allSubClasses = [classes.Subsection, props.extraClass];
     } else {
         allSubClasses = [classes.Subsection];

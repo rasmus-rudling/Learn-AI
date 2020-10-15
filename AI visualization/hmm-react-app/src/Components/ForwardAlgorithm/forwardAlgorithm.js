@@ -34,7 +34,8 @@ const ForwardAlgorithm = (props) => {
     const [observationsSequenceInText, setObservationsSequenceInText] = useState(null);
     const [observationsSequenceInImages, setObservationsSequenceInImages] = useState(null);
     const [statesImagesInText, setStatesImagesInText] = useState(null);
-    const [numberOfDecimalsToShow, setNumberOfDecimalsToShow] = useState(4);
+    
+    const numberOfDecimalsToShow = 4;
 
 
     const changeObservationSequenceInText = (_weatherExampleSelected) => {
@@ -131,7 +132,7 @@ const ForwardAlgorithm = (props) => {
     
     return (
         <div className={classes.ForwardAlgorithm}>
-            <img src = {forwardAlgorithmBG} className={classes.backgroundImage}  />
+            <img src = {forwardAlgorithmBG} className={classes.backgroundImage} alt="" />
             
             <HomeButton extraClass={classes.homeButton}/>
             <BackButton />
@@ -250,7 +251,9 @@ const ForwardAlgorithm = (props) => {
                 hideDefault={false}
                 extraClass = {null}
             >
-                <PlayAroundWithExamples />
+                <PlayAroundWithExamples
+                    
+                />
             </Subsection>
         </div>
     );

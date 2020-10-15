@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import classes from './exampleAlphaOne.module.scss';
 import * as utility from '../../Common/Utility/utility';
 
@@ -9,7 +9,7 @@ const ExampleAlphaOne = (props) => {
 
     return (
         <div>
-            <MathContent extraStyle={props.marginAtTop != undefined ? {"margin":`${props.marginAtTop} 0 5px 0`} : {"margin":"25px 0 5px 0"}} >
+            <MathContent extraStyle={props.marginAtTop !== undefined ? {"margin":`${props.marginAtTop} 0 5px 0`} : {"margin":"25px 0 5px 0"}} >
                         {utility.alpha_orange("1", props.stateIndex)}{utility.blankSpace}=
                         <div className={classes.leftBracket} 
                             style={{
