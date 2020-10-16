@@ -4,6 +4,7 @@ import classes from './playAroundWithExamples.module.scss';
 import * as utility from '../../Common/Utility/utility';
 
 import ExampleType from './ExampleType/exampleType';
+import UserExampleInput from './UserExampleInput/userExampleInput';
 
 const PlayAroundWithExamples = (props) => {
     const [whatExampleToUse, setWhatExampleToUse] = useState("Runner example");
@@ -18,6 +19,18 @@ const PlayAroundWithExamples = (props) => {
 
     const exampleTypeSelectedHandler = (newExampleTypeToUse) => {
         setWhatExampleToUse(newExampleTypeToUse);
+    }
+
+    const changeSettingsHandler = (typeOfSettingToChange, newValue) => {
+        if (typeOfSettingToChange === "states") {
+            setNumberOfStates(newValue);
+        } else if (typeOfSettingToChange === "observations") {
+            setNumberOfPossibleObservations(newValue);
+        } else if (typeOfSettingToChange === "length of observation sequence") {
+            setLengthOfObservationSequence(newValue);
+        } else if (typeOfSettingToChange === "observation sequence") {
+            setObservationSequence(newValue);
+        }
     }
 
     return (
@@ -46,12 +59,49 @@ const PlayAroundWithExamples = (props) => {
 
                 <div className={classes.horizontalLine} />
 
-                <div className={classes.detailedSettings}>
-                    sadkjas
+                <div className={classes.exampleSettings}>
+                    <UserExampleInput 
+                        typeOfSetting="states"
+                        changeSettingsHandler = {changeSettingsHandler}
+                        minValue = "1"
+                        maxValue = "7"
+                        
+                    >
+                        States (<i>max 7</i>):
+                    </UserExampleInput>
+                    
+                    <UserExampleInput 
+                        typeOfSetting="observations"
+                        changeSettingsHandler = {changeSettingsHandler}
+                        minValue = "1"
+                        maxValue = "7"
+                    >
+                        Observations (<i>max 7</i>):
+                    </UserExampleInput>
+                    
+                    <UserExampleInput 
+                        typeOfSetting="length of observation sequence"
+                        changeSettingsHandler = {changeSettingsHandler}
+                        minValue = "1"
+                        maxValue = "7"
+                    >
+                        Length of observation sequence (<i>max 7</i>):
+                    </UserExampleInput>
+                    
+                    <UserExampleInput 
+                        typeOfSetting="observation sequence"
+                        changeSettingsHandler = {changeSettingsHandler}
+                        minValue = "0"
+                        maxValue = {numberOfPossibleObservations}
+                    >
+                        Observation sequence (<i>input = observation index</i>):
+                    </UserExampleInput>
                 </div>
 
-                <div className={classes.matrices}>
+                <div className={classes.horizontalLine} />
 
+                <div className={classes.matricesSettings}>
+                    asdasdad
                 </div>
                 
             </div>
