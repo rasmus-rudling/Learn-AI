@@ -1,0 +1,71 @@
+$lineThickness: 2px;
+$black: #2d2d2d;
+$bracketHeight: 30px;
+$bracketWidth: 7px;
+
+.setOrangeColor {
+    color: #FFA500 !important;
+}
+
+.VisualMatrix {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin: 10px 0;
+}
+
+
+.leftBracket {
+    border-top: $lineThickness solid $black;
+    border-left: $lineThickness solid $black;
+    border-bottom: $lineThickness solid $black;
+    height: $bracketHeight;
+    width: $bracketWidth;
+    float: left;
+}
+
+.rightBracket {
+    border-top: $lineThickness solid $black;
+    border-right: $lineThickness solid $black;
+    border-bottom: $lineThickness solid $black;
+    height: $bracketHeight;
+    width: $bracketWidth;
+    float: left;
+}
+
+.matrixContent {
+    display: table;
+    border-collapse: collapse;
+    border: 2px solid;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+.rowContainer {
+    border: 2px solid;
+    display: table-row;
+    flex-direction: row;
+}
+
+.rowContainer div {
+    display: table-cell;
+    border: 2px solid;
+    text-align: center;
+    vertical-align:middle;
+    width: 75px;
+    height: 40px;
+    box-sizing: border-box;
+    font-size: 1.3rem;
+}
+
+
+.probabilityInput {
+    outline: none;
+    border: none;
+    text-align: center;
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #FFA500;
+}

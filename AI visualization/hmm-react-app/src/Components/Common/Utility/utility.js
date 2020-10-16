@@ -214,3 +214,12 @@ export const runnerAlphaVector = forward_algorithm(runnerAMatrix, runnerBMatrix,
 
 export const weatherAlphaSums = calculateTotalSumForEachAlpha(weatherAlphaVector);
 export const runnerAlphaSums = calculateTotalSumForEachAlpha(runnerAlphaVector);
+
+
+export const replaceCharAt = (str, index, replacement) => {
+    return str.substr(0, index) + replacement + str.substr(index + replacement.length);
+}
+
+export const addCharAfter = (str, index, newChar) => {
+    return str.substr(0, index + 1) + newChar + str.substr(index + 1);
+}

@@ -9,9 +9,9 @@ const ExampleType = (props) => {
             <div>{props.exampleType}</div>
 
             <Checkbox 
-                ticked={props.thisExampleTypeSelected}
+                ticked={props.thisSettingIsSelected}
                 exampleType={props.exampleType}
-                exampleTypeSelectedHandler={props.exampleTypeSelectedHandler}
+                checkboxSelectedHandler={props.checkboxSelectedHandler}
             />
         </div>
     )

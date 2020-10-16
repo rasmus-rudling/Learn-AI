@@ -12,6 +12,7 @@ $checkboxWidthAndHeight: 17px;
     color: #FFA500;
     font-size: 26px;
     box-sizing: border-box;
+    user-select: none;
 }
 
 .checkBoxTicked:hover {
@@ -30,9 +31,10 @@ $checkboxWidthAndHeight: 17px;
     color: rgba(255, 166, 0, 0);
     font-size: 26px;
     box-sizing: border-box;
+    user-select: none;
 }
 
 .checkBoxNotTicked:hover {
     cursor: pointer;
-    color: rgba(255, 166, 0, 0.5);
+    color: rgba(255, 166, 0, 0.4);
 }

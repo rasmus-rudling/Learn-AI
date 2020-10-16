@@ -11,7 +11,7 @@ const CheckBox = (props) => {
                 <div 
                     className={classes.checkBoxNotTicked}
                     onClick = {() => {
-                        props.exampleTypeSelectedHandler(props.exampleType)
+                        props.checkboxSelectedHandler(props.exampleType)
                     }}
                 >
                     ×
