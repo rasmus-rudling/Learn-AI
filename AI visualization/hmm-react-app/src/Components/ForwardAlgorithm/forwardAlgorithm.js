@@ -247,7 +247,7 @@ const ForwardAlgorithm = (props) => {
 
             <Subsection 
                 header = "Play around with examples" 
-                maxHeight="875px" 
+                maxHeight="1000px" 
                 hideDefault={false}
                 extraClass = {null}
             >

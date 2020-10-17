@@ -61,7 +61,9 @@ const InputMatrix = (props) => {
                                             style={{"borderColor":borderColor}} 
                                             key={String(rowIndex) + String(columnIndex)}
                                         >
-                                            <form>
+                                            <form
+                                                onSubmit={e => e.preventDefault()}
+                                            >
                                                 <input 
                                                     type="text" 
                                                     className={classes.probabilityInput}
@@ -79,7 +81,10 @@ const InputMatrix = (props) => {
                                                         }
                                                         
                                                         newValue = newValue.substr(0, 7);
-                                                        props.changeMatrixValueHandler(rowIndex-1, columnIndex-1, newValue, props.matrixName)
+
+                                                        if (newValue.charAt(0) === "0") {
+                                                            props.changeMatrixValueHandler(rowIndex-1, columnIndex-1, newValue, props.matrixName)
+                                                        }
                                                     }}
 
                                                     onBlur = {e => {
@@ -95,7 +100,7 @@ const InputMatrix = (props) => {
 
                                                         if (inputValue == "0") {
                                                             props.changeMatrixValueHandler(rowIndex-1, columnIndex-1, "0.", props.matrixName)
-                                                        }
+                                                        } 
                                                     }}
                                                 />
                                             </form>

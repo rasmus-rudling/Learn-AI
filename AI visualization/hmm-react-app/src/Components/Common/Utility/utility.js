@@ -223,3 +223,16 @@ export const replaceCharAt = (str, index, replacement) => {
 export const addCharAfter = (str, index, newChar) => {
     return str.substr(0, index + 1) + newChar + str.substr(index + 1);
 }
+
+export const getSelectionRange = () => {
+    let sel;
+    if (window.getSelection) {
+        sel = window.getSelection();
+        if (sel.rangeCount) {
+            return sel.getRangeAt(0);
+        }
+    } else if (document.selection) {
+        return document.selection.createRange();
+    }
+    return null;
+}
