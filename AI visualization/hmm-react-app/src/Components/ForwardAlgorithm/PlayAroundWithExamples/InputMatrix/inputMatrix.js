@@ -73,16 +73,14 @@ const InputMatrix = (props) => {
                                                         let newValue = e.target.value;
                                                         newValue = newValue.replace(/[^0-9.]/g, '');
                                                         
-                                                        if (newValue.length === 1) {
+                                                        if (newValue.length <= 1) {
                                                             newValue = utility.replaceCharAt(newValue, 0, "0");
                                                             newValue = utility.addCharAfter(newValue, 0, ".");
-                                                        } else if (newValue.length < 1) {
-                                                            newValue = utility.replaceCharAt(newValue, 0, "0");
-                                                        }
+                                                        } 
                                                         
                                                         newValue = newValue.substr(0, 7);
 
-                                                        if (newValue.charAt(0) === "0") {
+                                                        if (newValue.charAt(0) === "0" && newValue.charAt(1) === ".") {
                                                             props.changeMatrixValueHandler(rowIndex-1, columnIndex-1, newValue, props.matrixName)
                                                         }
                                                     }}
