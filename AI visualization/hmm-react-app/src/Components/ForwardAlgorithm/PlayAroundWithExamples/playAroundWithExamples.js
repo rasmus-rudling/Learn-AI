@@ -67,15 +67,6 @@ const PlayAroundWithExamples = (props) => {
         setAssignProbabilitiesForUser(!assignProbabilitiesForUser);
     }
 
-    const changeSettingsHandler = (typeOfSettingToChange, newValue) => {
-        if (typeOfSettingToChange === "observations") {
-            setNumberOfPossibleObservations(newValue);
-        } else if (typeOfSettingToChange === "length of observation sequence") {
-            setLengthOfObservationSequence(newValue);
-        }
-        setWhatExampleToUse("Your own example");
-    }
-
     const changeObservationSequenceHandler = (typeOfSettingToChange, newValue) => {
         setWhatExampleToUse("Your own example");
         let timeStep = typeOfSettingToChange.slice(-1);
@@ -108,27 +99,26 @@ const PlayAroundWithExamples = (props) => {
         return content;
     }
 
-    const changeMatrixValueHandler = (rowIndex, columnIndex, newValue, typeOfMatrix) => {
+    const changeMatrixValueHandler = (i, j, newValue, typeOfMatrix) => {
         setWhatExampleToUse("Your own example");
         setAssignProbabilitiesForUser(false);
 
         if (typeOfMatrix === "A") {
             let copyOfOldAMatrix = utility.deepCopyFunction(exampleMatrixA);
-            
-            copyOfOldAMatrix[rowIndex][columnIndex] = newValue;
+            copyOfOldAMatrix[i][j] = newValue;
             setExampleMatrixA(copyOfOldAMatrix);
         } else if (typeOfMatrix === "B") {
-            let copyOfOldBMatrix = [...exampleMatrixB];
-
-            copyOfOldBMatrix[rowIndex][columnIndex] = newValue;
-
+            let copyOfOldBMatrix = utility.deepCopyFunction(exampleMatrixB);
+            copyOfOldBMatrix[i][j] = newValue;
             setExampleMatrixB(copyOfOldBMatrix);
         }
     }
 
     const changeNumberOfStatesHandler = (_typeOfSetting, numberOfNewStates) => {
         let newAMatrix = [];
-        let oldAMatrix = [...exampleMatrixA];
+        let newBMatrix = [];
+        let oldAMatrix = utility.deepCopyFunction(exampleMatrixA);
+        let oldBMatrix = utility.deepCopyFunction(exampleMatrixB);
         setWhatExampleToUse("Your own example");
 
         const numberOfOldStates = parseInt(numberOfStates);
@@ -136,29 +126,107 @@ const PlayAroundWithExamples = (props) => {
 
         for (let i = 0; i < _numberOfNewStates; i++) {
             newAMatrix.push(new Array(_numberOfNewStates).fill(0));
+            newBMatrix.push(new Array(numberOfPossibleObservations).fill(0));
         }
+
 
         let oldValue;
         if (numberOfOldStates === _numberOfNewStates) {
             newAMatrix = oldAMatrix;
+            newBMatrix = oldBMatrix;
+
         } else if (numberOfOldStates < _numberOfNewStates) {
-            for (let rowIndex = 0; rowIndex < numberOfOldStates; rowIndex++) {
-                for (let columnIndex = 0; columnIndex < numberOfOldStates; columnIndex++) {
-                    oldValue = oldAMatrix[rowIndex][columnIndex];
-                    newAMatrix[rowIndex][columnIndex] = oldValue;
+            for (let i = 0; i < numberOfOldStates; i++) {
+                for (let j = 0; j < numberOfOldStates; j++) {
+                    oldValue = oldAMatrix[i][j];
+                    newAMatrix[i][j] = oldValue;
+                }
+
+                for (let k = 0; k < numberOfPossibleObservations; k++) {
+                    oldValue = oldBMatrix[i][k];
+                    newBMatrix[i][k] = oldValue;
                 }
             }
         } else {
-            for (let rowIndex = 0; rowIndex < _numberOfNewStates; rowIndex++) {
-                for (let columnIndex = 0; columnIndex < _numberOfNewStates; columnIndex++) {
-                    newAMatrix[rowIndex][columnIndex] = oldAMatrix[rowIndex][columnIndex];
+            for (let i = 0; i < _numberOfNewStates; i++) {
+                for (let j = 0; j < _numberOfNewStates; j++) {
+                    newAMatrix[i][j] = oldAMatrix[i][j];
+                }
+
+                for (let k = 0; k < numberOfPossibleObservations; k++) {
+                    oldValue = oldBMatrix[i][k];
+                    newBMatrix[i][k] = oldValue;
                 }
             }
         }
 
-
         setNumberOfStates(_numberOfNewStates);
         setExampleMatrixA(newAMatrix);
+        setExampleMatrixB(newBMatrix);
+    }
+
+    const changeNumberOfObservationsHandler = (_typeOfSetting, numberOfNewObservations) => {
+        let newBMatrix = [];
+        let oldBMatrix = utility.deepCopyFunction(exampleMatrixB);
+        setWhatExampleToUse("Your own example");
+
+        const numberOfOldObservations = parseInt(numberOfPossibleObservations);
+        const _numberOfNewObservations = parseInt(numberOfNewObservations);
+
+        for (let i = 0; i < numberOfStates; i++) {
+            newBMatrix.push(new Array(_numberOfNewObservations).fill(0));
+        }
+
+        let oldValue;
+        if (numberOfOldObservations === _numberOfNewObservations) {
+            newBMatrix = oldBMatrix;
+
+        } else if (numberOfOldObservations < _numberOfNewObservations) {
+            for (let i = 0; i < numberOfStates; i++) {
+                for (let k = 0; k < numberOfOldObservations; k++) {
+                    oldValue = oldBMatrix[i][k];
+                    newBMatrix[i][k] = oldValue;
+                }
+            }
+        } else {
+            for (let i = 0; i < numberOfStates; i++) {
+                for (let k = 0; k < _numberOfNewObservations; k++) {
+                    oldValue = oldBMatrix[i][k];
+                    newBMatrix[i][k] = oldValue;
+                }
+            }
+        }
+
+        setNumberOfPossibleObservations(_numberOfNewObservations);
+        setExampleMatrixB(newBMatrix);
+    }
+
+    const changeLengthOfObservationSequenceHandler = (_typeOfSetting, newLengthOfObservationSequence) => {
+        setWhatExampleToUse("Your own example");
+
+        let oldObservationSequence = utility.deepCopyFunction(observationSequence);
+        let newObservationSequence = new Array(newLengthOfObservationSequence).fill(0);
+        
+        const oldLengthOfObservationSequence = parseInt(lengthOfObservationSequence);
+        
+        let oldValue;
+
+        if (oldLengthOfObservationSequence === newLengthOfObservationSequence) {
+            newObservationSequence = oldObservationSequence;
+        } else if (oldLengthOfObservationSequence < newLengthOfObservationSequence) {
+            for (let i = 0; i < oldLengthOfObservationSequence; i++) {
+                oldValue = oldObservationSequence[i];
+                newObservationSequence[i] = oldValue;
+            }
+        } else {
+            for (let i = 0; i < newLengthOfObservationSequence; i++) {
+                oldValue = oldObservationSequence[i];
+                newObservationSequence[i] = oldValue;
+            }
+        }
+
+        setObservationSequence(newObservationSequence);
+        setLengthOfObservationSequence(newLengthOfObservationSequence);
     }
 
     return (
@@ -204,7 +272,7 @@ const PlayAroundWithExamples = (props) => {
                         <div>Observations (<i>max 7</i>):</div>
                         <UserExampleInput 
                             typeOfSetting="observations"
-                            changeSettingsHandler = {changeSettingsHandler}
+                            changeSettingsHandler = {changeNumberOfObservationsHandler}
                             minValue = "1"
                             maxValue = "7"
                             value = {numberOfPossibleObservations}
@@ -215,7 +283,7 @@ const PlayAroundWithExamples = (props) => {
                         <div>Length of observation sequence (<i>max 7</i>):</div>
                         <UserExampleInput 
                             typeOfSetting="length of observation sequence"
-                            changeSettingsHandler = {changeSettingsHandler}
+                            changeSettingsHandler = {changeLengthOfObservationSequenceHandler}
                             minValue = "1"
                             maxValue = "7"
                             value = {lengthOfObservationSequence}
@@ -243,6 +311,15 @@ const PlayAroundWithExamples = (props) => {
                         numberOfRows = {numberOfStates}
                         matrix = {exampleMatrixA}
                         themeColor = "red"
+                        changeMatrixValueHandler={changeMatrixValueHandler}
+                    />
+
+                    <InputMatrix 
+                        matrixName = "B"
+                        numberOfColumns = {numberOfPossibleObservations}
+                        numberOfRows = {numberOfStates}
+                        matrix = {exampleMatrixB}
+                        themeColor = "blue"
                         changeMatrixValueHandler={changeMatrixValueHandler}
                     />
                 </div>
