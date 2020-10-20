@@ -71,24 +71,45 @@ const InputMatrix = (props) => {
 
                                                     onChange={e => {
                                                         let newValue = e.target.value;
-                                                        newValue = newValue.replace(/[^0-9.]/g, '');
+                                                        let oldValue = String(element);
+
+                                                        let oldValueWasEmpty = oldValue.length === 0;
                                                         
-                                                        if (newValue.length <= 1) {
-                                                            newValue = utility.replaceCharAt(newValue, 0, "0");
-                                                            newValue = utility.addCharAfter(newValue, 0, ".");
-                                                        } 
+                                                        let newValue1 = newValue.substr(0, 2).replace(/[^0-9.]/g, '');
+                                                        let newValue2 = newValue.substr(2, newValue.length).replace(/[^0-9]/g, '');
+                                                        
+                                                        newValue = newValue1 + newValue2;
                                                         
                                                         newValue = newValue.substr(0, 7);
 
-                                                        if (newValue.charAt(0) === "0" && newValue.charAt(1) === ".") {
+                                                        if (oldValue.charAt(0) === "0" && oldValue.charAt(1) === "." && newValue.length === 1 && oldValue.length == 2 && newValue.charAt(0) === "0") {
+                                                            // console.log("R1")
+                                                            props.changeMatrixValueHandler(rowIndex-1, columnIndex-1, "", props.matrixName);
+                                                        } else if (oldValueWasEmpty && newValue.charAt(0) === "0") {
+                                                            // console.log("R2")
+                                                            props.changeMatrixValueHandler(rowIndex-1, columnIndex-1, "0.", props.matrixName);
+                                                        } else if (newValue.charAt(0) === "0" && newValue.charAt(1) === ".") {
+                                                            // console.log("R3")
                                                             props.changeMatrixValueHandler(rowIndex-1, columnIndex-1, newValue, props.matrixName)
+                                                        } else if (newValue.charAt(0) === "1" && newValue.length == 1) {
+                                                            // console.log("R4")
+                                                            props.changeMatrixValueHandler(rowIndex-1, columnIndex-1, newValue, props.matrixName)
+                                                        } else if (oldValue.charAt(0) === "1" && newValue.charAt(0) === "") {
+                                                            // console.log("R5")
+                                                            props.changeMatrixValueHandler(rowIndex-1, columnIndex-1, newValue, props.matrixName)
+                                                        } else if (newValue.length == 1) {
+                                                            // console.log("R6")
+                                                            props.changeMatrixValueHandler(rowIndex-1, columnIndex-1, "0." + newValue, props.matrixName)
+                                                        } else if (newValue.length === 0) {
+                                                            // console.log("R7")
+                                                            props.changeMatrixValueHandler(rowIndex-1, columnIndex-1, "", props.matrixName)
                                                         }
                                                     }}
 
                                                     onBlur = {e => {
                                                         let inputValue = e.target.value;
 
-                                                        if (inputValue == "0.") {
+                                                        if (inputValue == "" || parseFloat(inputValue) === 0) {
                                                             props.changeMatrixValueHandler(rowIndex-1, columnIndex-1, "0", props.matrixName)
                                                         }
                                                     }}

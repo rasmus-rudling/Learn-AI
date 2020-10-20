@@ -7,6 +7,7 @@ import ExampleType from './ExampleType/exampleType';
 import ExampleTypeModification from './ExampleTypeModification/exampleTypeModification';
 import UserExampleInput from './UserExampleInput/userExampleInput';
 import InputMatrix from './InputMatrix/inputMatrix';
+import InputVector from './InputVector/inputVector';
 
 const PlayAroundWithExamples = (props) => {
     const [whatExampleToUse, setWhatExampleToUse] = useState("Runner example");
@@ -114,38 +115,50 @@ const PlayAroundWithExamples = (props) => {
         }
     }
 
-    const changeNumberOfStatesHandler = (_typeOfSetting, numberOfNewStates) => {
-        let newAMatrix = [];
-        let newBMatrix = [];
-        let oldAMatrix = utility.deepCopyFunction(exampleMatrixA);
-        let oldBMatrix = utility.deepCopyFunction(exampleMatrixB);
+    const changeVectorValueHandler = (i, newValue, typeOfMatrix) => {
         setWhatExampleToUse("Your own example");
+        setAssignProbabilitiesForUser(false);
 
+        if (typeOfMatrix  == "pi") {
+            let copyOfOldPiVector = utility.deepCopyFunction(exampleVectorPi);
+            copyOfOldPiVector[i] = newValue;
+            setExampleVectorPi(copyOfOldPiVector);
+        }
+    }
+
+    const changeNumberOfStatesHandler = (_typeOfSetting, numberOfNewStates) => {
         const numberOfOldStates = parseInt(numberOfStates);
         const _numberOfNewStates = parseInt(numberOfNewStates);
+        
+        let newAMatrix = [];
+        let newBMatrix = [];
+        let newPiVector = new Array(_numberOfNewStates).fill(0);
+
+        let oldAMatrix = utility.deepCopyFunction(exampleMatrixA);
+        let oldBMatrix = utility.deepCopyFunction(exampleMatrixB);
+        let oldPiVector = utility.deepCopyFunction(exampleVectorPi);
 
         for (let i = 0; i < _numberOfNewStates; i++) {
             newAMatrix.push(new Array(_numberOfNewStates).fill(0));
             newBMatrix.push(new Array(numberOfPossibleObservations).fill(0));
         }
 
-
-        let oldValue;
         if (numberOfOldStates === _numberOfNewStates) {
             newAMatrix = oldAMatrix;
             newBMatrix = oldBMatrix;
+            newPiVector = oldPiVector;
 
         } else if (numberOfOldStates < _numberOfNewStates) {
             for (let i = 0; i < numberOfOldStates; i++) {
                 for (let j = 0; j < numberOfOldStates; j++) {
-                    oldValue = oldAMatrix[i][j];
-                    newAMatrix[i][j] = oldValue;
+                    newAMatrix[i][j] = oldAMatrix[i][j];
                 }
 
                 for (let k = 0; k < numberOfPossibleObservations; k++) {
-                    oldValue = oldBMatrix[i][k];
-                    newBMatrix[i][k] = oldValue;
+                    newBMatrix[i][k] = oldBMatrix[i][k];
                 }
+
+                newPiVector[i] = oldPiVector[i];
             }
         } else {
             for (let i = 0; i < _numberOfNewStates; i++) {
@@ -154,21 +167,24 @@ const PlayAroundWithExamples = (props) => {
                 }
 
                 for (let k = 0; k < numberOfPossibleObservations; k++) {
-                    oldValue = oldBMatrix[i][k];
-                    newBMatrix[i][k] = oldValue;
+                    newBMatrix[i][k] = oldBMatrix[i][k]
                 }
+
+                newPiVector[i] = oldPiVector[i];
             }
         }
 
         setNumberOfStates(_numberOfNewStates);
         setExampleMatrixA(newAMatrix);
         setExampleMatrixB(newBMatrix);
+        setExampleVectorPi(newPiVector);
+        setAssignProbabilitiesForUser(false);
+        setWhatExampleToUse("Your own example");
     }
 
     const changeNumberOfObservationsHandler = (_typeOfSetting, numberOfNewObservations) => {
         let newBMatrix = [];
         let oldBMatrix = utility.deepCopyFunction(exampleMatrixB);
-        setWhatExampleToUse("Your own example");
 
         const numberOfOldObservations = parseInt(numberOfPossibleObservations);
         const _numberOfNewObservations = parseInt(numberOfNewObservations);
@@ -199,11 +215,11 @@ const PlayAroundWithExamples = (props) => {
 
         setNumberOfPossibleObservations(_numberOfNewObservations);
         setExampleMatrixB(newBMatrix);
+        setAssignProbabilitiesForUser(false);
+        setWhatExampleToUse("Your own example");
     }
 
     const changeLengthOfObservationSequenceHandler = (_typeOfSetting, newLengthOfObservationSequence) => {
-        setWhatExampleToUse("Your own example");
-
         let oldObservationSequence = utility.deepCopyFunction(observationSequence);
         let newObservationSequence = new Array(newLengthOfObservationSequence).fill(0);
         
@@ -227,6 +243,7 @@ const PlayAroundWithExamples = (props) => {
 
         setObservationSequence(newObservationSequence);
         setLengthOfObservationSequence(newLengthOfObservationSequence);
+        setWhatExampleToUse("Your own example");
     }
 
     return (
@@ -321,6 +338,14 @@ const PlayAroundWithExamples = (props) => {
                         matrix = {exampleMatrixB}
                         themeColor = "blue"
                         changeMatrixValueHandler={changeMatrixValueHandler}
+                    />
+
+                    <InputVector 
+                        vectorName = "pi"
+                        numberOfColumns = {numberOfStates}
+                        vector = {exampleVectorPi}
+                        themeColor = "green"
+                        changeVectorValueHandler={changeVectorValueHandler}
                     />
                 </div>
             </div>
