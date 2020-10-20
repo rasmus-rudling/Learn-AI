@@ -4,11 +4,12 @@ import classes from './inputVector.module.scss';
 import * as utility from '../../../Common/Utility/utility';
 
 const InputVector = (props) => {
-    let borderColor, _vectorName;
+    let borderColor, _vectorName, fontSize, marginToUse;
 
     const greenColor = "#6EC668";
     const redColor = "#E95252";
     const blueColor = "#43AFCA";
+    const orangeColor = "#FFA500";
     
     if (props.themeColor === "green") {
         borderColor = greenColor;
@@ -16,32 +17,36 @@ const InputVector = (props) => {
         borderColor = redColor;
     } else if (props.themeColor === "blue") {
         borderColor = blueColor;
+    } else if (props.themeColor === "orange") {
+        borderColor = orangeColor;
     }
 
     if (props.vectorName === "pi") {
         _vectorName = "π";
-    } else {
-        _vectorName = props.vectorName;
+        fontSize = "2rem";
+        marginToUse = "-10px 0 3px 0";
+    } else if (props.vectorName.substr(0, 5) === "alpha") {
+        let alphaIndex = props.vectorName.substr(-1);
+        _vectorName = utility.alpha_orange(alphaIndex);
+        fontSize = "1.5rem";
+        marginToUse = "0px 0 -3px 0";
     }
 
-    // let firstMatrixRow = [<span style={{"color":borderColor, "fontSize":"1.7rem"}}>{_vectorName}</span>];
     let firstMatrixRow = [];
 
     for (let i = 0; i < props.numberOfColumns; i++) {
-        if (props.vectorName === "A" || props.vectorName === "pi") {
+        if (props.vectorName.substr(0, 5) === "alpha" || props.vectorName === "pi") {
             firstMatrixRow.push(<span>S<sub><b className={classes.setOrangeColor}>{i}</b></sub></span>)
-        } else if (props.vectorName === "B") {
-            firstMatrixRow.push(<span>O<sub><b className={classes.setOrangeColor}>{i}</b></sub></span>)
-        }
+        } 
     }
 
     let _matrix = [firstMatrixRow, props.vector];
 
     
     return (
-        <div className={classes.vectorContainer}>
+        <div className={props.vectorName === "pi" ? classes.vectorContainer : null}>
             <div className={classes.VisualMatrix} >
-                <div style={{"color":borderColor, "fontSize":"2rem", "margin":"-10px 0 3px 0"}}>{_vectorName}</div>
+                <div style={{"color":borderColor, "fontSize":fontSize, "margin":marginToUse}}>{_vectorName}</div>
 
                 <div className={classes.matrixContent} style={{"borderColor":borderColor}}>
                     {_matrix.map((matrixRow, rowIndex) => {
@@ -69,6 +74,7 @@ const InputVector = (props) => {
                                                         type="text" 
                                                         className={classes.probabilityInput}
                                                         value={element}
+                                                        style={props.vectorName === "pi" ? {"color": "#FFA500", "fontWeight":"bold"} : null}
 
                                                         onChange={e => {
                                                             let newValue = e.target.value;

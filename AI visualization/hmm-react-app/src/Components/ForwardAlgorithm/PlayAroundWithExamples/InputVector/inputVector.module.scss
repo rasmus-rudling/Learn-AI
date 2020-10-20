@@ -5,7 +5,7 @@ $bracketWidth: 7px;
 
 .vectorContainer {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .setOrangeColor {
@@ -15,7 +15,7 @@ $bracketWidth: 7px;
 .VisualMatrix {
     display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: center;
     flex-direction: column;
     margin: 10px 0;
 }
@@ -73,7 +73,5 @@ $bracketWidth: 7px;
     box-sizing: border-box;
     width: 100%;
     font-size: 1rem;
-    font-weight: bold;
-    color: #FFA500;
     padding: 10px 0;
 }

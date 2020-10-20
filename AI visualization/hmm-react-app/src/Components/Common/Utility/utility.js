@@ -157,7 +157,7 @@ export const imageInText = (image) => {
 }
 
 
-const forward_algorithm = (A, B, pi, o_seq) => {
+export const forward_algorithm = (A, B, pi, o_seq) => {
     const numberOfStates = A.length;
     const numberOfTimeSteps = o_seq.length;
     let alpha_vector = new Array(numberOfTimeSteps).fill([]);;

@@ -27,6 +27,9 @@ const PlayAroundWithExamples = (props) => {
     const [bMatrixFullyRowStochastic, setBMatrixFullyRowStochastic] = useState(true);
     const [piVectorFullyRowStochastic, setPiVectorFullyRowStochastic] = useState(true);
 
+    const [exampleVectorAlpha, setExampleVectorAlpha] = useState(utility.runnerAlphaVector);
+    const [alphaToShow, setAlphaToShow] = useState(0);
+
     const exampleTypeSelectedHandler = (newExampleTypeToUse) => {
         setWhatExampleToUse(newExampleTypeToUse);
 
@@ -35,6 +38,8 @@ const PlayAroundWithExamples = (props) => {
             setExampleMatrixA(utility.deepCopyFunction(utility.runnerAMatrix));
             setExampleMatrixB(utility.deepCopyFunction(utility.runnerBMatrix));
             setExampleVectorPi(utility.deepCopyFunction(utility.runnerPiVector));
+            setExampleVectorAlpha(utility.runnerAlphaVector);
+
             setNumberOfStates(utility.runnerAMatrix.length);
             setNumberOfPossibleObservations(utility.runnerBMatrix[0].length);
             setLengthOfObservationSequence(utility.runnerObservationSequence.length);
@@ -43,11 +48,18 @@ const PlayAroundWithExamples = (props) => {
             checkMatrixRowStochasticHandler("A", utility.runnerAMatrix);
             checkMatrixRowStochasticHandler("B", utility.runnerBMatrix);
             checkVectorRowStochasticHandler("pi", utility.runnerPiVector);
+
+            if (alphaToShow > utility.runnerObservationSequence.length - 1) {
+                setAlphaToShow(utility.runnerObservationSequence.length - 1);
+            }
+
         } else if (newExampleTypeToUse == "Weather example") {
             setAssignProbabilitiesForUser(true);
             setExampleMatrixA(utility.deepCopyFunction(utility.weatherAMatrix));
             setExampleMatrixB(utility.deepCopyFunction(utility.weatherBMatrix));
             setExampleVectorPi(utility.deepCopyFunction(utility.weatherPiVector));
+            setExampleVectorAlpha(utility.weatherAlphaVector);
+
             setNumberOfStates(utility.weatherAMatrix.length);
             setNumberOfPossibleObservations(utility.weatherBMatrix[0].length);
             setLengthOfObservationSequence(utility.weatherObservationSequence.length);
@@ -56,6 +68,10 @@ const PlayAroundWithExamples = (props) => {
             checkMatrixRowStochasticHandler("A", utility.weatherAMatrix);
             checkMatrixRowStochasticHandler("B", utility.weatherBMatrix);
             checkVectorRowStochasticHandler("pi", utility.weatherPiVector);
+
+            if (alphaToShow > utility.weatherObservationSequence.length - 1) {
+                setAlphaToShow(utility.weatherObservationSequence.length - 1);
+            }
         } else if (newExampleTypeToUse == "Your own example") {
             setAssignProbabilitiesForUser(false);
 
@@ -104,6 +120,9 @@ const PlayAroundWithExamples = (props) => {
 
         copyOfObservationSequence[timeStep] = newValue;
 
+        let newAlphaVector = utility.forward_algorithm(exampleMatrixA, exampleMatrixB, exampleVectorPi, copyOfObservationSequence);
+        setExampleVectorAlpha(newAlphaVector);
+
         setObservationSequence(copyOfObservationSequence);
     }
 
@@ -137,10 +156,16 @@ const PlayAroundWithExamples = (props) => {
             let copyOfOldAMatrix = utility.deepCopyFunction(exampleMatrixA);
             copyOfOldAMatrix[i][j] = newValue;
             
+            let newAlphaVector = utility.forward_algorithm(copyOfOldAMatrix, exampleMatrixB, exampleVectorPi, observationSequence);
+            setExampleVectorAlpha(newAlphaVector);
+
             setExampleMatrixA(copyOfOldAMatrix);
         } else if (typeOfMatrix === "B") {
             let copyOfOldBMatrix = utility.deepCopyFunction(exampleMatrixB);
             copyOfOldBMatrix[i][j] = newValue;
+
+            let newAlphaVector = utility.forward_algorithm(exampleMatrixA, copyOfOldBMatrix, exampleVectorPi, observationSequence);
+            setExampleVectorAlpha(newAlphaVector);
 
             setExampleMatrixB(copyOfOldBMatrix);
         }
@@ -154,6 +179,9 @@ const PlayAroundWithExamples = (props) => {
             let copyOfOldPiVector = utility.deepCopyFunction(exampleVectorPi);
             copyOfOldPiVector[i] = newValue;
             
+            let newAlphaVector = utility.forward_algorithm(exampleMatrixA, exampleMatrixB, copyOfOldPiVector, observationSequence);
+            setExampleVectorAlpha(newAlphaVector);
+
             setExampleVectorPi(copyOfOldPiVector);
         }
     }
@@ -258,6 +286,9 @@ const PlayAroundWithExamples = (props) => {
         checkMatrixRowStochasticHandler("A", newAMatrix);
         checkMatrixRowStochasticHandler("B", newBMatrix);
         checkVectorRowStochasticHandler("pi", newPiVector);
+
+        let newAlphaVector = utility.forward_algorithm(newAMatrix, newBMatrix, newPiVector, observationSequence);
+        setExampleVectorAlpha(newAlphaVector);
     }
 
     const changeNumberOfObservationsHandler = (_typeOfSetting, numberOfNewObservations) => {
@@ -295,8 +326,11 @@ const PlayAroundWithExamples = (props) => {
         setExampleMatrixB(newBMatrix);
         setAssignProbabilitiesForUser(false);
         setWhatExampleToUse("Your own example");
-        
+
         checkMatrixRowStochasticHandler("B", newBMatrix);
+
+        let newAlphaVector = utility.forward_algorithm(exampleMatrixA, newBMatrix, exampleVectorPi, observationSequence);
+        setExampleVectorAlpha(newAlphaVector);
     }
 
     const changeLengthOfObservationSequenceHandler = (_typeOfSetting, newLengthOfObservationSequence) => {
@@ -324,6 +358,9 @@ const PlayAroundWithExamples = (props) => {
         setObservationSequence(newObservationSequence);
         setLengthOfObservationSequence(newLengthOfObservationSequence);
         setWhatExampleToUse("Your own example");
+
+        let newAlphaVector = utility.forward_algorithm(exampleMatrixA, exampleMatrixB, exampleVectorPi, newObservationSequence);
+        setExampleVectorAlpha(newAlphaVector);
     }
 
     let aMatrixMessageClass, aMatrixMessage,
@@ -477,6 +514,37 @@ const PlayAroundWithExamples = (props) => {
 
             <div className={classes.alphaVisualizer}>
 
+                <div 
+                    className={classes.iterButton} 
+                    style={{"marginRight":"20px"}}
+                    onClick = {() => {
+                        if (alphaToShow > 0) {
+                            setAlphaToShow(alphaToShow - 1)
+                        } 
+                    }}
+                >
+                    &laquo; Previous
+                </div>
+                <InputVector 
+                    vectorName = {`alpha_${alphaToShow}`}
+                    numberOfColumns = {numberOfStates}
+                    vector = {exampleVectorAlpha[alphaToShow].map(val => utility.roundTo(val, 6))}
+                    themeColor = "orange"
+                    changeVectorValueHandler={() => console.log()}
+                    checkVectorRowStochasticHandler = {() => console.log()}
+                />
+                <div 
+                    className={classes.iterButton} 
+                    style={{"marginLeft":"20px"}}
+                    onClick = {() => {
+                        if (alphaToShow < exampleVectorAlpha.length - 1) {
+                            setAlphaToShow(alphaToShow + 1)
+                        } 
+                    }}
+                    
+                >
+                    Next &raquo;
+                </div>
             </div>
         </>
     )
