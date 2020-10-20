@@ -18,14 +18,29 @@
     align-items: center;
 }
 
-.alphaVisualizer {
-
+.greenMessage, .redMessage {
+    margin: -5px 0 15px 0;
 }
 
-.exampleSettings {
-
+.greenMessage span, .greenMessage i {
+    // color: #6EC668;
 }
 
-.matricesSettings {
+.redMessage span, .redMessage i {
+    // color: #E95252;
+}
 
+.greenMessage img, .redMessage img {
+    width: 14px;
+    transition: .2s;
+}
+
+.greenMessage img {
+    transform: rotate(0);
+    filter: invert(81%) sepia(9%) saturate(2428%) hue-rotate(64deg) brightness(90%) contrast(77%);
+}
+
+.redMessage img {
+    transform: rotate(180deg);
+    filter: invert(44%) sepia(77%) saturate(2091%) hue-rotate(328deg) brightness(94%) contrast(94%);
 }

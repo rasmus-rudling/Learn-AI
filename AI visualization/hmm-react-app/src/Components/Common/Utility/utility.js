@@ -255,4 +255,72 @@ export const deepCopyFunction = (inObject) => {
     }
   
     return outObject
-  }
+}
+
+
+export const matrixIsRowStochastic = inputMatrix => {
+    let numberOfRows = inputMatrix.length;
+    let numberOfColumns = inputMatrix[0].length;
+    let rowSum, addToSum;
+    let fullyRowStochastic = true;
+    let rowStochastic = false;
+    let totalSum = 0;
+
+    for (let i = 0; i < numberOfRows; i++) {
+        rowSum = 0;
+
+        for (let j = 0; j < numberOfColumns; j++) {
+            addToSum = inputMatrix[i][j] === "" ? 0 : parseFloat(inputMatrix[i][j]);
+            rowSum += addToSum;
+            totalSum += addToSum;
+        }
+
+        console.log(rowSum)
+
+
+        if (rowSum === 0) {
+            rowStochastic = true;
+            fullyRowStochastic = false;
+        } else if (rowSum < 0.99999 || rowSum > 1.000000001) {
+            return -1;
+        }
+    }
+
+    if (totalSum === 0) {
+        return -1;
+    } if (rowStochastic) {
+        return 0;
+    } else if (fullyRowStochastic) {
+        return 1;
+    } else {
+        return -1;
+    }
+}
+
+export const vectorIsRowStochastic = inputVector => {
+    let numberOfColumns = inputVector.length;
+    let rowSum = 0;
+    let fullyRowStochastic = true;
+    let rowStochastic = false;
+    let addToSum;
+
+    for (let i = 0; i < numberOfColumns; i++) {
+        addToSum = inputVector[i] === "" ? 0 : parseFloat(inputVector[i]);
+        rowSum += addToSum;
+    }
+
+    if (rowSum === 0) {
+        rowStochastic = true;
+        fullyRowStochastic = false;
+    } else if (rowSum !== 1) {
+        return -1;
+    }
+
+    if (rowStochastic) {
+        return 0;
+    } else if (fullyRowStochastic) {
+        return 1;
+    } else {
+        return -1;
+    }
+}

@@ -112,6 +112,8 @@ const InputMatrix = (props) => {
                                                         if (inputValue == "" || parseFloat(inputValue) === 0) {
                                                             props.changeMatrixValueHandler(rowIndex-1, columnIndex-1, "0", props.matrixName)
                                                         }
+
+                                                        props.checkMatrixRowStochasticHandler(props.matrixName);
                                                     }}
 
                                                     onFocus = {e => {
@@ -120,6 +122,12 @@ const InputMatrix = (props) => {
                                                         if (inputValue == "0") {
                                                             props.changeMatrixValueHandler(rowIndex-1, columnIndex-1, "0.", props.matrixName)
                                                         } 
+                                                    }}
+
+                                                    onKeyDown={e => {
+                                                        if (e.key === "Enter" || e.key === "NumpadEnter") {
+                                                            props.checkMatrixRowStochasticHandler(props.matrixName);
+                                                        }
                                                     }}
                                                 />
                                             </form>

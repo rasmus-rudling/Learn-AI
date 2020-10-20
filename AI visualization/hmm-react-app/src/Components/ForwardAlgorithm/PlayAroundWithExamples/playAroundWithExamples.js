@@ -1,7 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import classes from './playAroundWithExamples.module.scss';
 
 import * as utility from '../../Common/Utility/utility';
+
+import thumb from '../../../Resources/Icons/thumb.svg';
 
 import ExampleType from './ExampleType/exampleType';
 import ExampleTypeModification from './ExampleTypeModification/exampleTypeModification';
@@ -20,6 +22,11 @@ const PlayAroundWithExamples = (props) => {
     const [observationSequence, setObservationSequence] = useState(utility.deepCopyFunction(utility.runnerObservationSequence));
     const [assignProbabilitiesForUser, setAssignProbabilitiesForUser] = useState(true);
 
+    const [aMatrixFullyRowStochastic, setAMatrixFullyRowStochastic] = useState(false);
+    const [aMatrixRowStochastic, setAMatrixRowStochastic] = useState(true);
+    const [bMatrixFullyRowStochastic, setBMatrixFullyRowStochastic] = useState(true);
+    const [piVectorFullyRowStochastic, setPiVectorFullyRowStochastic] = useState(true);
+
     const exampleTypeSelectedHandler = (newExampleTypeToUse) => {
         setWhatExampleToUse(newExampleTypeToUse);
 
@@ -32,6 +39,10 @@ const PlayAroundWithExamples = (props) => {
             setNumberOfPossibleObservations(utility.runnerBMatrix[0].length);
             setLengthOfObservationSequence(utility.runnerObservationSequence.length);
             setObservationSequence(utility.deepCopyFunction(utility.runnerObservationSequence));
+
+            checkMatrixRowStochasticHandler("A", utility.runnerAMatrix);
+            checkMatrixRowStochasticHandler("B", utility.runnerBMatrix);
+            checkVectorRowStochasticHandler("pi", utility.runnerPiVector);
         } else if (newExampleTypeToUse == "Weather example") {
             setAssignProbabilitiesForUser(true);
             setExampleMatrixA(utility.deepCopyFunction(utility.weatherAMatrix));
@@ -41,11 +52,16 @@ const PlayAroundWithExamples = (props) => {
             setNumberOfPossibleObservations(utility.weatherBMatrix[0].length);
             setLengthOfObservationSequence(utility.weatherObservationSequence.length);
             setObservationSequence(utility.deepCopyFunction(utility.weatherObservationSequence));
+
+            checkMatrixRowStochasticHandler("A", utility.weatherAMatrix);
+            checkMatrixRowStochasticHandler("B", utility.weatherBMatrix);
+            checkVectorRowStochasticHandler("pi", utility.weatherPiVector);
         } else if (newExampleTypeToUse == "Your own example") {
             setAssignProbabilitiesForUser(false);
 
             let copyOfOldAMatrix = utility.deepCopyFunction(exampleMatrixA);
             let copyOfOldBMatrix = utility.deepCopyFunction(exampleMatrixB);
+            let copyOfOldPiVector = utility.deepCopyFunction(exampleVectorPi);
             
             for (let i = 0; i < numberOfStates; i++) {
                 for (let j = 0; j < numberOfStates; j++) {
@@ -58,14 +74,27 @@ const PlayAroundWithExamples = (props) => {
                     copyOfOldBMatrix[j][k] = 0;
                 }
             }
+
+            for (let i = 0; i < numberOfStates; i++) {
+                copyOfOldPiVector[i] = 0;
+            }
                 
             setExampleMatrixA(copyOfOldAMatrix);
             setExampleMatrixB(copyOfOldBMatrix);
+            setExampleVectorPi(copyOfOldPiVector);
+
+            checkMatrixRowStochasticHandler("A", copyOfOldAMatrix);
+            checkMatrixRowStochasticHandler("B", copyOfOldBMatrix);
+            checkVectorRowStochasticHandler("pi", copyOfOldPiVector);
         }
     }
 
     const assignProbabilitiesHandler = () => {
         setAssignProbabilitiesForUser(!assignProbabilitiesForUser);
+
+        checkMatrixRowStochasticHandler("A");
+        checkMatrixRowStochasticHandler("B");
+        checkVectorRowStochasticHandler("pi");
     }
 
     const changeObservationSequenceHandler = (typeOfSettingToChange, newValue) => {
@@ -107,10 +136,12 @@ const PlayAroundWithExamples = (props) => {
         if (typeOfMatrix === "A") {
             let copyOfOldAMatrix = utility.deepCopyFunction(exampleMatrixA);
             copyOfOldAMatrix[i][j] = newValue;
+            
             setExampleMatrixA(copyOfOldAMatrix);
         } else if (typeOfMatrix === "B") {
             let copyOfOldBMatrix = utility.deepCopyFunction(exampleMatrixB);
             copyOfOldBMatrix[i][j] = newValue;
+
             setExampleMatrixB(copyOfOldBMatrix);
         }
     }
@@ -119,10 +150,53 @@ const PlayAroundWithExamples = (props) => {
         setWhatExampleToUse("Your own example");
         setAssignProbabilitiesForUser(false);
 
-        if (typeOfMatrix  == "pi") {
+        if (typeOfMatrix  === "pi") {
             let copyOfOldPiVector = utility.deepCopyFunction(exampleVectorPi);
             copyOfOldPiVector[i] = newValue;
+            
             setExampleVectorPi(copyOfOldPiVector);
+        }
+    }
+
+    const checkVectorRowStochasticHandler = (typeOfVector, vectorToCheck) => {
+        let newVectorIsFullyRowStochastic, newVector;
+
+        if (typeOfVector === "pi") {
+            if (vectorToCheck !== undefined) {
+                newVector = vectorToCheck;
+            } else {
+                newVector = exampleVectorPi;
+            }
+            
+            newVectorIsFullyRowStochastic = utility.vectorIsRowStochastic(newVector) === 1;
+            
+            setPiVectorFullyRowStochastic(newVectorIsFullyRowStochastic);
+        }
+    }
+
+    const checkMatrixRowStochasticHandler = (typeOfMatrix, matrixToCheck) => {
+        let newMatrixIsFullyRowStochastic, newMatrixIsRowStochastic, newMatrix;
+
+        if (typeOfMatrix === "A") {
+            if (matrixToCheck !== undefined) {
+                newMatrix = matrixToCheck;
+            } else {
+                newMatrix = exampleMatrixA;
+            }
+            
+            newMatrixIsFullyRowStochastic = utility.matrixIsRowStochastic(newMatrix) === 1;
+            newMatrixIsRowStochastic = utility.matrixIsRowStochastic(newMatrix) === 0;
+
+            setAMatrixFullyRowStochastic(newMatrixIsFullyRowStochastic);
+            setAMatrixRowStochastic(newMatrixIsRowStochastic);
+        } else if (typeOfMatrix === "B") {
+            if (matrixToCheck !== undefined) {
+                newMatrix = matrixToCheck;
+            } else {
+                newMatrix = exampleMatrixB;
+            }
+            newMatrixIsFullyRowStochastic = utility.matrixIsRowStochastic(newMatrix) === 1;
+            setBMatrixFullyRowStochastic(newMatrixIsFullyRowStochastic);
         }
     }
 
@@ -180,6 +254,10 @@ const PlayAroundWithExamples = (props) => {
         setExampleVectorPi(newPiVector);
         setAssignProbabilitiesForUser(false);
         setWhatExampleToUse("Your own example");
+
+        checkMatrixRowStochasticHandler("A", newAMatrix);
+        checkMatrixRowStochasticHandler("B", newBMatrix);
+        checkVectorRowStochasticHandler("pi", newPiVector);
     }
 
     const changeNumberOfObservationsHandler = (_typeOfSetting, numberOfNewObservations) => {
@@ -217,6 +295,8 @@ const PlayAroundWithExamples = (props) => {
         setExampleMatrixB(newBMatrix);
         setAssignProbabilitiesForUser(false);
         setWhatExampleToUse("Your own example");
+        
+        checkMatrixRowStochasticHandler("B", newBMatrix);
     }
 
     const changeLengthOfObservationSequenceHandler = (_typeOfSetting, newLengthOfObservationSequence) => {
@@ -244,6 +324,37 @@ const PlayAroundWithExamples = (props) => {
         setObservationSequence(newObservationSequence);
         setLengthOfObservationSequence(newLengthOfObservationSequence);
         setWhatExampleToUse("Your own example");
+    }
+
+    let aMatrixMessageClass, aMatrixMessage,
+        bMatrixMessageClass, bMatrixMessage,
+        piVectorMessageClass, piVectorMessage;
+
+    if (aMatrixRowStochastic) {
+        aMatrixMessageClass = classes.greenMessage;
+        aMatrixMessage = <span><i>The transition matrix A is row stochastic (except for the non-emitting state row(s))!</i></span>;
+    } else if (aMatrixFullyRowStochastic) {
+        aMatrixMessageClass = classes.greenMessage;
+        aMatrixMessage = <span>The transition matrix A is row stochastic!</span>;
+    } else {
+        aMatrixMessageClass = classes.redMessage;
+        aMatrixMessage = <span>The transition matrix A is not row stochastic!</span>;
+    }
+
+    if (bMatrixFullyRowStochastic) {
+        bMatrixMessageClass = classes.greenMessage;
+        bMatrixMessage = <span><i>The emission matrix B is row stochastic!</i></span>;
+    } else {
+        bMatrixMessageClass = classes.redMessage;
+        bMatrixMessage = <span>The emission matrix B is not row stochastic!</span>;
+    }
+
+    if (piVectorFullyRowStochastic) {
+        piVectorMessageClass = classes.greenMessage;
+        piVectorMessage = <span>The initial state distribution π is row stochastic!</span>;
+    } else {
+        piVectorMessageClass = classes.redMessage;
+        piVectorMessage = <span>The initial state distribution π is not row stochastic!</span>;
     }
 
     return (
@@ -329,7 +440,12 @@ const PlayAroundWithExamples = (props) => {
                         matrix = {exampleMatrixA}
                         themeColor = "red"
                         changeMatrixValueHandler={changeMatrixValueHandler}
+                        checkMatrixRowStochasticHandler = {checkMatrixRowStochasticHandler}
                     />
+
+                    <p className={aMatrixMessageClass}>
+                        {aMatrixMessage} <img src={thumb} /> 
+                    </p>
 
                     <InputMatrix 
                         matrixName = "B"
@@ -338,7 +454,12 @@ const PlayAroundWithExamples = (props) => {
                         matrix = {exampleMatrixB}
                         themeColor = "blue"
                         changeMatrixValueHandler={changeMatrixValueHandler}
+                        checkMatrixRowStochasticHandler = {checkMatrixRowStochasticHandler}
                     />
+
+                    <p className={bMatrixMessageClass}>
+                        {bMatrixMessage} <img src={thumb} />
+                    </p>
 
                     <InputVector 
                         vectorName = "pi"
@@ -346,7 +467,11 @@ const PlayAroundWithExamples = (props) => {
                         vector = {exampleVectorPi}
                         themeColor = "green"
                         changeVectorValueHandler={changeVectorValueHandler}
+                        checkVectorRowStochasticHandler = {checkVectorRowStochasticHandler}
                     />
+                    <p className={piVectorMessageClass}>
+                        {piVectorMessage} <img src={thumb} />
+                    </p>
                 </div>
             </div>
 

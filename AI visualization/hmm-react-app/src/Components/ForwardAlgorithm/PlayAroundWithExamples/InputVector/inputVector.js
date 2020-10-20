@@ -113,6 +113,8 @@ const InputVector = (props) => {
                                                             if (inputValue == "" || parseFloat(inputValue) === 0) {
                                                                 props.changeVectorValueHandler(columnIndex, "0", props.vectorName)
                                                             }
+
+                                                            props.checkVectorRowStochasticHandler(props.vectorName);
                                                         }}
 
                                                         onFocus = {e => {
@@ -121,6 +123,12 @@ const InputVector = (props) => {
                                                             if (inputValue == "0") {
                                                                 props.changeVectorValueHandler(columnIndex, "0.", props.vectorName)
                                                             } 
+                                                        }}
+
+                                                        onKeyDown={e => {
+                                                            if (e.key === "Enter" || e.key === "NumpadEnter") {
+                                                                props.checkVectorRowStochasticHandler(props.vectorName);
+                                                            }
                                                         }}
                                                     />
                                                 </form>
