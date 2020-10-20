@@ -156,6 +156,45 @@ export const imageInText = (image) => {
     )
 }
 
+export const getRandomInInterval = (min, max) => {
+    return Math.random() * (max - min) + min;
+}
+
+export const randomInitialization = (numberOfStates, numberOfObservations) => {
+    let pi = new Array(numberOfStates).fill(0);
+    let A = [];
+    let B = [];
+    let roundNr = 5;
+
+    let uniformStateProb = 1 / numberOfStates;
+    let uniformObservationProb = 1 / numberOfObservations;
+
+    let randomThreshold = 0.03;
+
+    for (let i = 0; i < numberOfStates; i++) {
+        if (i < numberOfStates - 1) {
+            pi[i] = roundTo(uniformStateProb + getRandomInInterval(-randomThreshold, randomThreshold), roundNr);
+        }
+
+        A.push(new Array(numberOfStates).fill(0));
+        for (let j = 0; j < numberOfStates-1; j++) {
+            A[i].push(roundTo(uniformStateProb + getRandomInInterval(-randomThreshold, randomThreshold), roundNr));
+        }
+        A[i][A[i].length] = 1 - A[i].reduce((accumulator, currentValue) => accumulator + currentValue);
+
+        B.push(new Array(numberOfStates).fill(0));
+        for (let j = 0; j < numberOfObservations - 1; j++) {
+            B[i].push(roundTo(uniformObservationProb + getRandomInInterval(-randomThreshold, randomThreshold), roundNr));
+        }
+        B[i][B[i].length] = 1 - B[i].reduce((accumulator, currentValue) => accumulator + currentValue);
+    }
+
+    pi[pi.length - 1] = roundTo(1 - pi.reduce((accumulator, currentValue) => accumulator + currentValue), roundNr);
+    let lambda = [A, B, pi];
+
+    return lambda;
+}
+
 
 export const forward_algorithm = (A, B, pi, o_seq) => {
     const numberOfStates = A.length;
@@ -274,14 +313,11 @@ export const matrixIsRowStochastic = inputMatrix => {
             rowSum += addToSum;
             totalSum += addToSum;
         }
-
         console.log(rowSum)
-
-
         if (rowSum === 0) {
             rowStochastic = true;
             fullyRowStochastic = false;
-        } else if (rowSum < 0.99999 || rowSum > 1.000000001) {
+        } else if (rowSum < 0.999 || rowSum > 1.001) {
             return -1;
         }
     }

@@ -106,11 +106,26 @@ const PlayAroundWithExamples = (props) => {
     }
 
     const assignProbabilitiesHandler = () => {
-        setAssignProbabilitiesForUser(!assignProbabilitiesForUser);
+        
+        
+        if (!assignProbabilitiesForUser) {
+            let randomLambda = utility.randomInitialization(numberOfStates, numberOfPossibleObservations);
 
-        checkMatrixRowStochasticHandler("A");
-        checkMatrixRowStochasticHandler("B");
-        checkVectorRowStochasticHandler("pi");
+            let newA = randomLambda[0];
+            let newB = randomLambda[1];
+            let newPi = randomLambda[2];
+
+            console.log(newA);
+            setExampleMatrixA(newA);
+            setExampleMatrixB(newB);
+            setExampleVectorPi(newPi);
+
+            checkMatrixRowStochasticHandler("A", newA);
+            checkMatrixRowStochasticHandler("B", newB);
+            checkVectorRowStochasticHandler("pi", newPi);
+        }
+        
+        setAssignProbabilitiesForUser(!assignProbabilitiesForUser);
     }
 
     const changeObservationSequenceHandler = (typeOfSettingToChange, newValue) => {
