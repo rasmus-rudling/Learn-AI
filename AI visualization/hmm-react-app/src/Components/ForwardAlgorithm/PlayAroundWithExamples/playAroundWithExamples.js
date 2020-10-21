@@ -106,8 +106,6 @@ const PlayAroundWithExamples = (props) => {
     }
 
     const assignProbabilitiesHandler = () => {
-        
-        
         if (!assignProbabilitiesForUser) {
             let randomLambda = utility.randomInitialization(numberOfStates, numberOfPossibleObservations);
 
@@ -115,7 +113,9 @@ const PlayAroundWithExamples = (props) => {
             let newB = randomLambda[1];
             let newPi = randomLambda[2];
 
-            console.log(newA);
+            let newAlphaVector = utility.forward_algorithm(newA, newB, newPi, observationSequence);
+            setExampleVectorAlpha(newAlphaVector);
+
             setExampleMatrixA(newA);
             setExampleMatrixB(newB);
             setExampleVectorPi(newPi);
@@ -123,6 +123,7 @@ const PlayAroundWithExamples = (props) => {
             checkMatrixRowStochasticHandler("A", newA);
             checkMatrixRowStochasticHandler("B", newB);
             checkVectorRowStochasticHandler("pi", newPi);
+            
         }
         
         setAssignProbabilitiesForUser(!assignProbabilitiesForUser);
@@ -153,7 +154,7 @@ const PlayAroundWithExamples = (props) => {
                         typeOfSetting={`observation sequence ${i}`}
                         changeSettingsHandler = {changeObservationSequenceHandler}
                         minValue = "0"
-                        maxValue = {numberOfPossibleObservations}
+                        maxValue = {numberOfPossibleObservations - 1}
                         value = {observationSequence[i]}
                     />
                     {i !== lengthOfObservationSequence - 1 ? <span style={{"userSelect":"none"}}>{utility.blankSpace},</span> : null}
@@ -409,6 +410,8 @@ const PlayAroundWithExamples = (props) => {
         piVectorMessage = <span>The initial state distribution π is not row stochastic!</span>;
     }
 
+    let alphaVectorCorrect = (aMatrixFullyRowStochastic || aMatrixRowStochastic) && bMatrixFullyRowStochastic && piVectorFullyRowStochastic;
+
     return (
         <>
             <div className={classes.settings}>
@@ -442,7 +445,7 @@ const PlayAroundWithExamples = (props) => {
                         <UserExampleInput 
                             typeOfSetting="states"
                             changeSettingsHandler = {changeNumberOfStatesHandler}
-                            minValue = "1"
+                            minValue = "2"
                             maxValue = "7"
                             value = {numberOfStates}
                         />
@@ -453,19 +456,19 @@ const PlayAroundWithExamples = (props) => {
                         <UserExampleInput 
                             typeOfSetting="observations"
                             changeSettingsHandler = {changeNumberOfObservationsHandler}
-                            minValue = "1"
+                            minValue = "2"
                             maxValue = "7"
                             value = {numberOfPossibleObservations}
                         />
                     </div>
                     
                     <div className={classes.UserExampleInputContainer}>
-                        <div>Length of observation sequence (<i>max 7</i>):</div>
+                        <div>Length of observation sequence (<i>max 9</i>):</div>
                         <UserExampleInput 
                             typeOfSetting="length of observation sequence"
                             changeSettingsHandler = {changeLengthOfObservationSequenceHandler}
                             minValue = "1"
-                            maxValue = "7"
+                            maxValue = "9"
                             value = {lengthOfObservationSequence}
                         />
                     </div>
@@ -520,6 +523,7 @@ const PlayAroundWithExamples = (props) => {
                         themeColor = "green"
                         changeVectorValueHandler={changeVectorValueHandler}
                         checkVectorRowStochasticHandler = {checkVectorRowStochasticHandler}
+                        vectorStochastic = {piVectorFullyRowStochastic}
                     />
                     <p className={piVectorMessageClass}>
                         {piVectorMessage} <img src={thumb} />
@@ -531,7 +535,7 @@ const PlayAroundWithExamples = (props) => {
 
                 <div 
                     className={classes.iterButton} 
-                    style={{"marginRight":"20px"}}
+                    style={{"marginRight":"10px"}}
                     onClick = {() => {
                         if (alphaToShow > 0) {
                             setAlphaToShow(alphaToShow - 1)
@@ -543,14 +547,23 @@ const PlayAroundWithExamples = (props) => {
                 <InputVector 
                     vectorName = {`alpha_${alphaToShow}`}
                     numberOfColumns = {numberOfStates}
-                    vector = {exampleVectorAlpha[alphaToShow].map(val => utility.roundTo(val, 6))}
+                    // vector = {exampleVectorAlpha[alphaToShow].map(val => utility.roundTo(val, 6))}
+                    vector = {exampleVectorAlpha[alphaToShow].map(val => {
+                        if (val > 0.0001 || val === 0) {
+                            return utility.roundTo(val, 5);
+                        } else {
+                            return val.toExponential(1);
+                        }
+                    })}
+                    
                     themeColor = "orange"
                     changeVectorValueHandler={() => console.log()}
                     checkVectorRowStochasticHandler = {() => console.log()}
+                    vectorStochastic = {alphaVectorCorrect}
                 />
                 <div 
                     className={classes.iterButton} 
-                    style={{"marginLeft":"20px"}}
+                    style={{"marginLeft":"10px"}}
                     onClick = {() => {
                         if (alphaToShow < exampleVectorAlpha.length - 1) {
                             setAlphaToShow(alphaToShow + 1)

@@ -51,28 +51,41 @@ const InputVector = (props) => {
                 <div className={classes.matrixContent} style={{"borderColor":borderColor}}>
                     {_matrix.map((matrixRow, rowIndex) => {
                         return (
-                            <div className={classes.rowContainer} key={String(rowIndex)}>
+                            <div 
+                                className={classes.rowContainer} 
+                                key={String(rowIndex)}
+                            >
                                 {matrixRow.map((element, columnIndex) => {
                                     if (rowIndex === 0) {
                                         return (
                                             <div 
-                                                style={{"borderColor":borderColor}} 
+                                                style={props.vectorName.substr(0, 5) === "alpha" ? 
+                                                    {"borderColor":borderColor, "width":"85px"} : 
+                                                    {"borderColor":borderColor}
+                                                } 
                                                 key={String(rowIndex) + String(columnIndex)}
+                                                
                                             >
                                                 {element}
                                             </div>)
                                     } else {
                                         return (
                                             <div 
-                                                style={{"borderColor":borderColor}} 
+                                                style={props.vectorName.substr(0, 5) === "alpha" ? 
+                                                    {"borderColor":borderColor, "width":"85px"} : 
+                                                    {"borderColor":borderColor}
+                                                } 
                                                 key={String(rowIndex) + String(columnIndex)}
                                             >
                                                 <form
                                                     onSubmit={e => e.preventDefault()}
                                                 >
                                                     <input 
-                                                        type="text" 
-                                                        className={classes.probabilityInput}
+                                                        type="text"
+                                                        className={props.vectorStochastic ? 
+                                                            classes.probabilityInput : 
+                                                            [classes.probabilityInput, classes.rowWarning].join(" ")
+                                                        }
                                                         value={element}
                                                         style={props.vectorName === "pi" ? {"color": "#FFA500", "fontWeight":"bold"} : null}
 

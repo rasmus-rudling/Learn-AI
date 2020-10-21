@@ -141,7 +141,7 @@ const ForwardAlgorithm = (props) => {
 
             <ExampleButtons weatherExampleSelected={weatherExampleSelected} handleChangeActiveExample={handleChangeActiveExample} />
 
-            <Subsection header = "About the Forward Algorithm" maxHeight="140px" hideDefault={true}>
+            <Subsection header = "About the Forward Algorithm" maxHeight="140px" hideDefault={false}>
                 <p>
                     The algoritm is used to solve problems in the category <b>evaluation/filtering</b>. That is, if we want to compute the
                     likelihood 𝑃( {utility.O("0:T-1")} | {utility.lambda("x")} ) = 𝑃( {utility.O("x")} | {utility.lambda("x")} ) = 𝑃( {utility.curlyLeft} {utility.O("0")}, {utility.O("1")}, ..., {utility.O("T-1")}
@@ -247,13 +247,11 @@ const ForwardAlgorithm = (props) => {
 
             <Subsection 
                 header = "Play around with examples" 
-                maxHeight="2000px" 
-                hideDefault={false}
+                maxHeight="1460px" 
+                hideDefault={true}
                 extraClass = {null}
             >
-                <PlayAroundWithExamples
-                    
-                />
+                <PlayAroundWithExamples />
             </Subsection>
         </div>
     );

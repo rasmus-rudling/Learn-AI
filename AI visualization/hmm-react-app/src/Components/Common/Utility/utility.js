@@ -170,6 +170,7 @@ export const randomInitialization = (numberOfStates, numberOfObservations) => {
     let uniformObservationProb = 1 / numberOfObservations;
 
     let randomThreshold = 0.03;
+    let lastIndex;
 
     for (let i = 0; i < numberOfStates; i++) {
         if (i < numberOfStates - 1) {
@@ -178,18 +179,23 @@ export const randomInitialization = (numberOfStates, numberOfObservations) => {
 
         A.push(new Array(numberOfStates).fill(0));
         for (let j = 0; j < numberOfStates-1; j++) {
-            A[i].push(roundTo(uniformStateProb + getRandomInInterval(-randomThreshold, randomThreshold), roundNr));
+            A[i][j] = roundTo(uniformStateProb + getRandomInInterval(-randomThreshold, randomThreshold), roundNr);
         }
-        A[i][A[i].length] = 1 - A[i].reduce((accumulator, currentValue) => accumulator + currentValue);
 
-        B.push(new Array(numberOfStates).fill(0));
+        lastIndex = A[i].length - 1;
+        A[i][lastIndex] = roundTo(1 - A[i].reduce((accumulator, currentValue) => accumulator + currentValue), roundNr);
+
+        B.push(new Array(numberOfObservations).fill(0));
         for (let j = 0; j < numberOfObservations - 1; j++) {
-            B[i].push(roundTo(uniformObservationProb + getRandomInInterval(-randomThreshold, randomThreshold), roundNr));
+            B[i][j] = roundTo(uniformObservationProb + getRandomInInterval(-randomThreshold, randomThreshold), roundNr);
         }
-        B[i][B[i].length] = 1 - B[i].reduce((accumulator, currentValue) => accumulator + currentValue);
+
+        lastIndex = B[i].length - 1;
+        B[i][lastIndex] = roundTo(1 - B[i].reduce((accumulator, currentValue) => accumulator + currentValue), roundNr);
     }
 
-    pi[pi.length - 1] = roundTo(1 - pi.reduce((accumulator, currentValue) => accumulator + currentValue), roundNr);
+    lastIndex = pi.length - 1;
+    pi[lastIndex] = roundTo(1 - pi.reduce((accumulator, currentValue) => accumulator + currentValue), roundNr);
     let lambda = [A, B, pi];
 
     return lambda;
@@ -232,6 +238,7 @@ export const forward_algorithm = (A, B, pi, o_seq) => {
         alpha_vector[t] = alpha_t; 
     }
 
+    console.log(alpha_vector);
     return alpha_vector;
 }
 
@@ -313,11 +320,10 @@ export const matrixIsRowStochastic = inputMatrix => {
             rowSum += addToSum;
             totalSum += addToSum;
         }
-        console.log(rowSum)
         if (rowSum === 0) {
             rowStochastic = true;
             fullyRowStochastic = false;
-        } else if (rowSum < 0.999 || rowSum > 1.001) {
+        } else if (rowSum < 0.99999999 || rowSum > 1.00000001) {
             return -1;
         }
     }
@@ -348,7 +354,7 @@ export const vectorIsRowStochastic = inputVector => {
     if (rowSum === 0) {
         rowStochastic = true;
         fullyRowStochastic = false;
-    } else if (rowSum !== 1) {
+    } else if (rowSum < 0.99999999 || rowSum > 1.00000001) {
         return -1;
     }
 
@@ -360,3 +366,7 @@ export const vectorIsRowStochastic = inputVector => {
         return -1;
     }
 }
+
+export const generateNum = v => {
+    return Math.pow(10, Math.floor(v).toString().length - 1);
+  }
