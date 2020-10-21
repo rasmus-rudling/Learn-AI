@@ -217,7 +217,7 @@ const ForwardAlgorithm = (props) => {
                 />
             </Subsection>
 
-            <Subsection header = "The Forward Algorithm / α-pass" maxHeight="4815px" hideDefault={true}>
+            <Subsection header = "The Forward Algorithm / α-pass" maxHeight="5610px" hideDefault={true}>
                 <ExplanationOfTheFA 
                     weatherExampleSelected = {weatherExampleSelected}
                     exampleA = {exampleA}
