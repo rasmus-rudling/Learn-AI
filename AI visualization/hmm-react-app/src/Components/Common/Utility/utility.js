@@ -238,7 +238,6 @@ export const forward_algorithm = (A, B, pi, o_seq) => {
         alpha_vector[t] = alpha_t; 
     }
 
-    console.log(alpha_vector);
     return alpha_vector;
 }
 
@@ -308,9 +307,9 @@ export const matrixIsRowStochastic = inputMatrix => {
     let numberOfRows = inputMatrix.length;
     let numberOfColumns = inputMatrix[0].length;
     let rowSum, addToSum;
-    let fullyRowStochastic = true;
-    let rowStochastic = false;
     let totalSum = 0;
+    let numberOfZeroRows = 0;
+    let stochasticDict = {};
 
     for (let i = 0; i < numberOfRows; i++) {
         rowSum = 0;
@@ -318,24 +317,32 @@ export const matrixIsRowStochastic = inputMatrix => {
         for (let j = 0; j < numberOfColumns; j++) {
             addToSum = inputMatrix[i][j] === "" ? 0 : parseFloat(inputMatrix[i][j]);
             rowSum += addToSum;
-            totalSum += addToSum;
         }
+
         if (rowSum === 0) {
-            rowStochastic = true;
-            fullyRowStochastic = false;
+            stochasticDict[i] = 0;
         } else if (rowSum < 0.99999999 || rowSum > 1.00000001) {
-            return -1;
+            stochasticDict[i] = -1;
+        } else {
+            stochasticDict[i] = 1;
         }
     }
 
-    if (totalSum === 0) {
-        return -1;
-    } if (rowStochastic) {
-        return 0;
-    } else if (fullyRowStochastic) {
-        return 1;
+
+    for (let rowIndex in stochasticDict) {
+        totalSum += stochasticDict[rowIndex]
+
+        if (stochasticDict[rowIndex] === 0) {
+            numberOfZeroRows += 1;
+        }
+    }
+
+    if (totalSum === 0 || totalSum !== (numberOfRows - numberOfZeroRows)) {
+        return [-1, stochasticDict];
+    } else if (numberOfZeroRows > 0) {
+        return [0, stochasticDict];
     } else {
-        return -1;
+        return [1, stochasticDict];
     }
 }
 

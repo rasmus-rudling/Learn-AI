@@ -30,6 +30,9 @@ const PlayAroundWithExamples = (props) => {
     const [exampleVectorAlpha, setExampleVectorAlpha] = useState(utility.runnerAlphaVector);
     const [alphaToShow, setAlphaToShow] = useState(0);
 
+    const [stochasticRowsInA, setStochasticRowsInA] = useState({0: 1, 1:1, 3:1, 4:0});
+    const [stochasticRowsInB, setStochasticRowsInB] = useState({0: 1, 1:1, 3:1, 4:1});
+
     const exampleTypeSelectedHandler = (newExampleTypeToUse) => {
         setWhatExampleToUse(newExampleTypeToUse);
 
@@ -171,18 +174,16 @@ const PlayAroundWithExamples = (props) => {
         if (typeOfMatrix === "A") {
             let copyOfOldAMatrix = utility.deepCopyFunction(exampleMatrixA);
             copyOfOldAMatrix[i][j] = newValue;
-            
             let newAlphaVector = utility.forward_algorithm(copyOfOldAMatrix, exampleMatrixB, exampleVectorPi, observationSequence);
+            
             setExampleVectorAlpha(newAlphaVector);
-
             setExampleMatrixA(copyOfOldAMatrix);
         } else if (typeOfMatrix === "B") {
             let copyOfOldBMatrix = utility.deepCopyFunction(exampleMatrixB);
             copyOfOldBMatrix[i][j] = newValue;
-
             let newAlphaVector = utility.forward_algorithm(exampleMatrixA, copyOfOldBMatrix, exampleVectorPi, observationSequence);
+            
             setExampleVectorAlpha(newAlphaVector);
-
             setExampleMatrixB(copyOfOldBMatrix);
         }
     }
@@ -219,7 +220,7 @@ const PlayAroundWithExamples = (props) => {
     }
 
     const checkMatrixRowStochasticHandler = (typeOfMatrix, matrixToCheck) => {
-        let newMatrixIsFullyRowStochastic, newMatrixIsRowStochastic, newMatrix;
+        let newMatrixIsFullyRowStochastic, newMatrixIsRowStochastic, newMatrix, rowStochasticResult;
 
         if (typeOfMatrix === "A") {
             if (matrixToCheck !== undefined) {
@@ -227,10 +228,13 @@ const PlayAroundWithExamples = (props) => {
             } else {
                 newMatrix = exampleMatrixA;
             }
-            
-            newMatrixIsFullyRowStochastic = utility.matrixIsRowStochastic(newMatrix) === 1;
-            newMatrixIsRowStochastic = utility.matrixIsRowStochastic(newMatrix) === 0;
+            rowStochasticResult = utility.matrixIsRowStochastic(newMatrix);
+            newMatrixIsFullyRowStochastic = rowStochasticResult[0] === 1;
+            newMatrixIsRowStochastic = rowStochasticResult[0] === 0;
 
+            console.log(rowStochasticResult[0])
+
+            setStochasticRowsInA(rowStochasticResult[1]);
             setAMatrixFullyRowStochastic(newMatrixIsFullyRowStochastic);
             setAMatrixRowStochastic(newMatrixIsRowStochastic);
         } else if (typeOfMatrix === "B") {
@@ -239,7 +243,12 @@ const PlayAroundWithExamples = (props) => {
             } else {
                 newMatrix = exampleMatrixB;
             }
-            newMatrixIsFullyRowStochastic = utility.matrixIsRowStochastic(newMatrix) === 1;
+
+            rowStochasticResult = utility.matrixIsRowStochastic(newMatrix);
+            newMatrixIsFullyRowStochastic = rowStochasticResult[0] === 1;
+            newMatrixIsRowStochastic = rowStochasticResult[0] === 0;
+
+            setStochasticRowsInB(rowStochasticResult[1]);
             setBMatrixFullyRowStochastic(newMatrixIsFullyRowStochastic);
         }
     }
@@ -496,6 +505,7 @@ const PlayAroundWithExamples = (props) => {
                         themeColor = "red"
                         changeMatrixValueHandler={changeMatrixValueHandler}
                         checkMatrixRowStochasticHandler = {checkMatrixRowStochasticHandler}
+                        stochasticRows={stochasticRowsInA}
                     />
 
                     <p className={aMatrixMessageClass}>
@@ -510,6 +520,7 @@ const PlayAroundWithExamples = (props) => {
                         themeColor = "blue"
                         changeMatrixValueHandler={changeMatrixValueHandler}
                         checkMatrixRowStochasticHandler = {checkMatrixRowStochasticHandler}
+                        stochasticRows={stochasticRowsInB}
                     />
 
                     <p className={bMatrixMessageClass}>

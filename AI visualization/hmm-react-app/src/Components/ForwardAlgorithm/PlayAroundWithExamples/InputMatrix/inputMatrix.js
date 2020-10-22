@@ -66,7 +66,10 @@ const InputMatrix = (props) => {
                                             >
                                                 <input 
                                                     type="text" 
-                                                    className={classes.probabilityInput}
+                                                    className={props.stochasticRows[rowIndex-1] !== -1 ? 
+                                                        classes.probabilityInput : 
+                                                        [classes.probabilityInput, classes.rowWarning].join(" ")
+                                                    }
                                                     value={element}
 
                                                     onChange={e => {
