@@ -39,7 +39,7 @@ const InputMatrix = (props) => {
     }
     
     _matrixCopy = [firstMatrixRow, ..._matrixCopy];
-
+    console.log(props.stochasticRows)
     return (
         <div className={classes.VisualMatrix} >
             <div className={classes.matrixContent} style={{"borderColor":borderColor}}>
@@ -66,7 +66,7 @@ const InputMatrix = (props) => {
                                             >
                                                 <input 
                                                     type="text" 
-                                                    className={props.stochasticRows[rowIndex-1] !== -1 ? 
+                                                    className={props.stochasticRows[rowIndex-1] === 1 ? 
                                                         classes.probabilityInput : 
                                                         [classes.probabilityInput, classes.rowWarning].join(" ")
                                                     }

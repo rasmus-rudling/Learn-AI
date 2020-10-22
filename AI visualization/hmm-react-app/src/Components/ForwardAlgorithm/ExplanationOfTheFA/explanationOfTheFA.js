@@ -100,7 +100,7 @@ const ExplanationOfTheFA = (
             </p>
 
             <ExampleExplanation
-                header = {`Further explenation using the ${weatherExampleSelected ? "weather" : "runner"} example`} 
+                header = {`Further explanation using the ${weatherExampleSelected ? "weather" : "runner"} example`} 
                 maxHeight="915px" 
                 hideDefault={true}
             >
@@ -338,7 +338,7 @@ const ExplanationOfTheFA = (
             </p>
             
             <ExampleExplanation
-                header = {`Further explenation using the ${weatherExampleSelected ? "weather" : "runner"} example`} 
+                header = {`Further explanation using the ${weatherExampleSelected ? "weather" : "runner"} example`} 
                 maxHeight="1880px" 
                 hideDefault={true}
             >
@@ -534,7 +534,7 @@ const ExplanationOfTheFA = (
             </p>
 
             <ExampleExplanation 
-                header = {`Further explenation using the ${weatherExampleSelected ? "weather" : "runner"} example`} 
+                header = {`Further explanation using the ${weatherExampleSelected ? "weather" : "runner"} example`} 
                 maxHeight="915px" 
                 hideDefault={true}
             >

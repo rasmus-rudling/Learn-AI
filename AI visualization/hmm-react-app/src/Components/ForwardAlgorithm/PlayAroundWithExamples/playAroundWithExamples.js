@@ -12,6 +12,9 @@ import InputMatrix from './InputMatrix/inputMatrix';
 import InputVector from './InputVector/inputVector';
 
 const PlayAroundWithExamples = (props) => {
+    const initADict = {0:1, 1:1, 2:1, 3:0};
+    const initBDict = {0:1, 1:1, 2:1, 3:1};
+
     const [whatExampleToUse, setWhatExampleToUse] = useState("Runner example");
     const [exampleMatrixA, setExampleMatrixA] = useState(utility.deepCopyFunction(utility.runnerAMatrix));
     const [exampleMatrixB, setExampleMatrixB] = useState(utility.deepCopyFunction(utility.runnerBMatrix));
@@ -30,8 +33,8 @@ const PlayAroundWithExamples = (props) => {
     const [exampleVectorAlpha, setExampleVectorAlpha] = useState(utility.runnerAlphaVector);
     const [alphaToShow, setAlphaToShow] = useState(0);
 
-    const [stochasticRowsInA, setStochasticRowsInA] = useState({0: 1, 1:1, 3:1, 4:0});
-    const [stochasticRowsInB, setStochasticRowsInB] = useState({0: 1, 1:1, 3:1, 4:1});
+    const [stochasticRowsInA, setStochasticRowsInA] = useState(initADict);
+    const [stochasticRowsInB, setStochasticRowsInB] = useState(initBDict);
 
     const exampleTypeSelectedHandler = (newExampleTypeToUse) => {
         setWhatExampleToUse(newExampleTypeToUse);
@@ -231,8 +234,6 @@ const PlayAroundWithExamples = (props) => {
             rowStochasticResult = utility.matrixIsRowStochastic(newMatrix);
             newMatrixIsFullyRowStochastic = rowStochasticResult[0] === 1;
             newMatrixIsRowStochastic = rowStochasticResult[0] === 0;
-
-            console.log(rowStochasticResult[0])
 
             setStochasticRowsInA(rowStochasticResult[1]);
             setAMatrixFullyRowStochastic(newMatrixIsFullyRowStochastic);

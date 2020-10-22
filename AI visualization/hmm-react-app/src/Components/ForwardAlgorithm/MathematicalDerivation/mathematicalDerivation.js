@@ -114,7 +114,7 @@ const MathematicalDerivation = (
             </p>
 
             <ExampleExplanation 
-                header = {`Further explenation using the ${weatherExampleSelected ? "weather" : "runner"} example`} 
+                header = {`Further explanation using the ${weatherExampleSelected ? "weather" : "runner"} example`} 
                 maxHeight="440px" 
                 hideDefault={true}
             >
