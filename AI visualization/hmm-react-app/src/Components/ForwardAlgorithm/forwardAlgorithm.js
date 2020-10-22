@@ -141,7 +141,7 @@ const ForwardAlgorithm = (props) => {
 
             <ExampleButtons weatherExampleSelected={weatherExampleSelected} handleChangeActiveExample={handleChangeActiveExample} />
 
-            <Subsection header = "About the Forward Algorithm" maxHeight="140px" hideDefault={false}>
+            <Subsection header = "About the Forward Algorithm" maxHeight="190px" hideDefault={false}>
                 <p>
                     The algoritm is used to solve problems in the category <b>evaluation/filtering</b>. That is, if we want to compute the
                     likelihood 𝑃( {utility.O("0:T-1")} | {utility.lambda("x")} ) = 𝑃( {utility.O("x")} | {utility.lambda("x")} ) = 𝑃( {utility.curlyLeft} {utility.O("0")}, {utility.O("1")}, ..., {utility.O("T-1")}
@@ -149,7 +149,7 @@ const ForwardAlgorithm = (props) => {
                 </p>
             </Subsection>
 
-            <Subsection header = "Given information" maxHeight="1160px" hideDefault={true}>
+            <Subsection header = "Given information" maxHeight="1210px" hideDefault={true}>
                 <p>
                     In order to perform the forward algorithm, we first need to know what model we should
                     use to make the evaluation. The currently selected example is the weather example and
@@ -199,14 +199,14 @@ const ForwardAlgorithm = (props) => {
                 </div>
             </Subsection>
 
-            <Subsection header = "Information to find" maxHeight="140px" hideDefault={true}>
+            <Subsection header = "Information to find" maxHeight="190px" hideDefault={true}>
                 The goal of this algorithm is to find out what the likelihood is of observing a certain observation sequence, also called
                 the emission sequence. That is, we want to calculate 𝑃( {utility.O(`0:${exampleObservationSequence.length - 1}`)} | {utility.lambda(exampleSubscript)} ) = 
                 <br/> 𝑃( <span className={classes.oInText}>O</span> | {utility.lambda(exampleSubscript)} ) = 𝑃( {observationsSequenceInText} | {utility.lambda(exampleSubscript)} ) = 
                 𝑃( {observationsSequenceInImages} | {utility.lambda(exampleSubscript)} ).
             </Subsection>
             
-            <Subsection header = "Mathematical derivation" maxHeight={"1475px"} hideDefault={true}>
+            <Subsection header = "Mathematical derivation" maxHeight={"1525px"} hideDefault={true}>
                 <MathematicalDerivation 
                     exampleSubscript = {exampleSubscript}
                     weatherExampleSelected = {weatherExampleSelected}
@@ -217,7 +217,7 @@ const ForwardAlgorithm = (props) => {
                 />
             </Subsection>
 
-            <Subsection header = "The Forward Algorithm / α-pass" maxHeight="5610px" hideDefault={true}>
+            <Subsection header = "The Forward Algorithm / α-pass" maxHeight="5660px" hideDefault={true}>
                 <ExplanationOfTheFA 
                     weatherExampleSelected = {weatherExampleSelected}
                     exampleA = {exampleA}
@@ -238,7 +238,7 @@ const ForwardAlgorithm = (props) => {
         
             <Subsection 
                 header = "Pseudo code for the forward algorithm / α-pass" 
-                maxHeight="875px" 
+                maxHeight="925px" 
                 hideDefault={true}
                 extraClass = {classes.pseudoCode}
             >
@@ -247,7 +247,7 @@ const ForwardAlgorithm = (props) => {
 
             <Subsection 
                 header = "Play around with examples" 
-                maxHeight="1460px" 
+                maxHeight="1510px" 
                 hideDefault={true}
                 extraClass = {null}
             >
