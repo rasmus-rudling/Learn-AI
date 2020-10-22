@@ -130,6 +130,7 @@ const PlayAroundWithExamples = (props) => {
             checkMatrixRowStochasticHandler("B", newB);
             checkVectorRowStochasticHandler("pi", newPi);
             
+            setWhatExampleToUse("Your own example");
         }
         
         setAssignProbabilitiesForUser(!assignProbabilitiesForUser);
