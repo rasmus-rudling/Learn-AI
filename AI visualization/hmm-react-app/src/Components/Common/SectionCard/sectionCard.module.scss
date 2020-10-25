@@ -1,0 +1,21 @@
+.SectionCard {
+    border-radius: 20px;
+    border: 4px solid #6EC668;
+    width: 275px;
+    height: 125px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 40px;
+    transition: .2s;
+    user-select: none;
+}
+
+.SectionCard:hover {
+    transform: scale(1.03);
+    cursor: pointer;
+}

@@ -1,0 +1,28 @@
+.codeContainer {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.codeRow {
+    display: flex;
+    margin-top: 5px;
+}
+
+.codeRowNumber {
+    color: #B0B5B6 !important;
+    text-align: right;
+    width: 20px;
+}
+
+.codeRowContent {
+    padding-left: 10px;
+}
+
+.commentRow {
+    color: #B0B5B6 !important;
+}
+
+.commentRow sub {
+    color: #B0B5B6 !important;
+}

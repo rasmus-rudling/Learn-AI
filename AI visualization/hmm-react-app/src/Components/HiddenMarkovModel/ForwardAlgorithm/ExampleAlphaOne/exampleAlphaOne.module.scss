@@ -1,0 +1,22 @@
+$lineThickness: 2px;
+$black: #2d2d2d;
+$bracketHeight: 30px;
+$bracketWidth: 7px;
+
+.leftBracket {
+    border-top: $lineThickness solid $black;
+    border-left: $lineThickness solid $black;
+    border-bottom: $lineThickness solid $black;
+    height: $bracketHeight;
+    width: $bracketWidth;
+    float: left;
+}
+
+.rightBracket {
+    border-top: $lineThickness solid $black;
+    border-right: $lineThickness solid $black;
+    border-bottom: $lineThickness solid $black;
+    height: $bracketHeight;
+    width: $bracketWidth;
+    float: left;
+}
