@@ -74,11 +74,12 @@ export const pi_alone = () => <span style={{"color":"#6EC668"}}>π</span>;
 export const pi_parenthesis = (inside) => <span style={{"color":"#6EC668"}}>π(<span style={{"color":"#2d2d2d"}}>{inside}</span>)</span>;
 
 export const A = (x) => <span style={{"color":"#E95252"}}>A<sub style={{"color":"#E95252"}}>{x}</sub></span>;
+export const A_alone = () => <span style={{"color":"#E95252"}}>A</span>;
 export const a = (x) => <span style={{"color":"#E95252"}}>a<sub style={{"color":"#E95252"}}>{x}</sub></span>;
 export const a_alone = () => <span style={{"color":"#E95252"}}>a</span>;
 
 export const B = (x) => <span style={{"color":"#43AFCA"}}>B<sub style={{"color":"#43AFCA"}}>{x}</sub></span>;
-
+export const B_alone = () => <span style={{"color":"#43AFCA"}}>B</span>;
 export const b = (x) => <span style={{"color":"#43AFCA"}}>b<sub style={{"color":"#43AFCA"}}>{x}</sub></span>;
 export const b_alone = () => <span style={{"color":"#43AFCA"}}>b</span>;
 export const b_parenthesis = (sub, inside) => <span style={{"color":"#43AFCA"}}>b<sub style={{"color":"#43AFCA"}}>{sub}</sub>({inside})</span>;

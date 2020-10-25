@@ -1,0 +1,18 @@
+.Theory {
+    margin-bottom: 50px;
+}
+
+.backgroundImage {
+    height: 100px;
+    width: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 5;
+    user-select: none;
+}
+
+.homeButton {
+    margin: -70px auto 0 auto;
+    position: relative;
+    z-index: 10;
+}

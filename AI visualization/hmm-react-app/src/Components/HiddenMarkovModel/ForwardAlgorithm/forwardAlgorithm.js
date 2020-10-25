@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classes from './forwardAlgorithm.module.scss';
 
-import forwardAlgorithmBG from '../../../Resources/Images/Backgrounds/bg2.png';
+import forwardAlgorithmBackgroundImage from '../../../Resources/Images/Backgrounds/bg2.png';
 
 import * as utility from '../../Common/Utility/utility';
 
@@ -124,7 +124,7 @@ const ForwardAlgorithm = (props) => {
     
     return (
         <div className={classes.ForwardAlgorithm}>
-            <img src = {forwardAlgorithmBG} className={classes.backgroundImage} alt="" />
+            <img src = {forwardAlgorithmBackgroundImage} className={classes.backgroundImage} alt="" />
             
             <HomeButton extraClass={classes.homeButton}/>
             <BackButton />
