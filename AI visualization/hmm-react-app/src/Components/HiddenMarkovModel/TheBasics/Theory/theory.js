@@ -12,6 +12,7 @@ import Subsection from '../../../Common/Subsection/subsection';
 import HomeButton from '../../../Common/HomeButton/homeButton';
 import MathContent from '../../../Common/MathContent/mathContent';
 import ExtraInfo from '../../../Common/ExtraInfo/extraInfo';
+import GreenListItem from '../../../Common/GreenListItem/greenListItem';
 
 
 const Theory = () => {
@@ -86,7 +87,14 @@ const Theory = () => {
                 maxHeight="1000px" 
                 hideDefault={false}
             >
-
+                <ul className={classes.listStyle}>
+                    <GreenListItem title="Background info">
+                        The abbreviation HMM stands for Hidden Markov Model. The word 
+                        hidden is used because the states are hidden. We make observations that will help us
+                        calculate the probability of being in a certain state at a certain time step. There are
+                        other types of Markov Models as well, but these are not covered on this page.
+                    </GreenListItem>
+                </ul>
 
             </Subsection>
         </div>

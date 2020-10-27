@@ -121,6 +121,11 @@ const ForwardAlgorithm = (props) => {
         setVectorsForExamples(weatherExampleSelected);
         setWeatherExampleSelected(!weatherExampleSelected);
     }
+
+    useEffect(() => {
+        setVectorsForExamples(false);
+        changeObservationSequenceInText(false);
+    }, []);
     
     return (
         <div className={classes.ForwardAlgorithm}>
@@ -185,7 +190,7 @@ const ForwardAlgorithm = (props) => {
                 
                 <div>
                     Besides knowing the {utility.lambda(exampleSubscript)}, we need to know what observations is made. In this example,
-                    the made observations are {utility.O(exampleSubscript)} =  {observationsSequenceInText} = {observationsSequenceInImages}. 
+                    the made observations are {utility.O(exampleSubscript)} = {observationsSequenceInText} = {observationsSequenceInImages}. 
                     Also, remember that the states at every time step is hidden. That is, we can't observe the states {statesImagesInText}. 
                     However, we can calculate the probabilities of being in them. 
                 </div>

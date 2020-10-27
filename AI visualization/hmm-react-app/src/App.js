@@ -22,7 +22,6 @@ import ViterbiAlgorithm from './Components/HiddenMarkovModel/ViterbiAlgorithm/vi
 import BaumWelchAlgorithm from './Components/HiddenMarkovModel/BaumWelchAlgorithm/baumWelchAlgorithm';
 import AdvancedTopics from './Components/HiddenMarkovModel/AdvancedTopics/advancedTopics';
 
-
 const App = () => {
   return (
     <Router>

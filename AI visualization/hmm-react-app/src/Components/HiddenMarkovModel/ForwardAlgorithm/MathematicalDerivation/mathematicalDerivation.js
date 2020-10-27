@@ -124,14 +124,14 @@ const MathematicalDerivation = (
                 <MathContent>
                     <span>𝑃( {utility.O(`0:${exampleObservationSequence.length - 1}`)} | {utility.lambda(exampleSubscript)} ) = </span>
                     <SumChar top="" bottom={<div>{utility.S_alone()} ∈ {utility.S_black(exampleA.length)} ({utility.S_alone()})</div>}/>
-                    <span>( {utility.pi_alone()}{utility.brackets(0, "red", "green")} {utility.multiply} {utility.blankSpace} </span>
+                    <span>( {utility.pi_alone()}{utility.brackets(0, "red", "green")} {utility.multiply}{utility.blankSpace}</span>
                     { utility.a_alone()}{utility.brackets(0, "red", "red")}{utility.brackets(1, "red", "red")}  {utility.blankSpace}  {utility.multiply}  {utility.blankSpace}  
                     { utility.a_alone()}{utility.brackets(1, "red", "red")}{utility.brackets(2, "red", "red")}  {utility.blankSpace}  {utility.multiply}  {utility.blankSpace}  
                     { utility.a_alone()}{utility.brackets(2, "red", "red")}{utility.brackets(3, "red", "red")}  {utility.blankSpace}  {utility.multiply}  {utility.blankSpace}  
                     { utility.a_alone()}{utility.brackets(3, "red", "red")}{utility.brackets(4, "red", "red")}  {utility.blankSpace}  {utility.multiply}  {utility.blankSpace}  
                 </MathContent> 
 
-                <MathContent extraStyle = {{"marginTop":"-10px"}}> 
+                <MathContent extraStyle = {{"marginTop":"0px"}}> 
                     {utility.multiply}  {utility.blankSpace}  {utility.b_alone()}{utility.brackets(0, "red", "blue")}{utility.brackets(0, "blue", "blue")}  {utility.blankSpace}  {utility.multiply}  {utility.blankSpace}  
                     {utility.b_alone()}{utility.brackets(1, "red", "blue")}{utility.brackets(1, "blue", "blue")}  {utility.blankSpace}  {utility.multiply}  {utility.blankSpace}   
                     {utility.b_alone()}{utility.brackets(2, "red", "blue")}{utility.brackets(2, "blue", "blue")}  {utility.blankSpace}  {utility.multiply}  {utility.blankSpace}   
@@ -142,14 +142,14 @@ const MathematicalDerivation = (
                 <MathContent>
                     =
                     <SumChar top="" bottom={<div>{utility.S_alone()} ∈ {utility.S_black(exampleA.length)} ({utility.S_alone()})</div>}/>
-                    <span>( {utility.pi_alone()}{utility.brackets(0, "red", "green")} {utility.multiply} {utility.blankSpace} </span>
+                    <span>( {utility.pi_alone()}{utility.brackets(0, "red", "green")} {utility.multiply}{utility.blankSpace}</span>
                     { utility.a_alone()}{utility.brackets(0, "red", "red")}{utility.brackets(1, "red", "red")}  {utility.blankSpace}  {utility.multiply}  {utility.blankSpace}  
                     { utility.a_alone()}{utility.brackets(1, "red", "red")}{utility.brackets(2, "red", "red")}  {utility.blankSpace}  {utility.multiply}  {utility.blankSpace}  
                     { utility.a_alone()}{utility.brackets(2, "red", "red")}{utility.brackets(3, "red", "red")}  {utility.blankSpace}  {utility.multiply}  {utility.blankSpace}  
                     { utility.a_alone()}{utility.brackets(3, "red", "red")}{utility.brackets(4, "red", "red")}  {utility.blankSpace}  {utility.multiply}  {utility.blankSpace}  
                 </MathContent> 
 
-                <MathContent extraStyle = {{"marginTop":"-10px"}}> 
+                <MathContent extraStyle = {{"marginTop":"0px"}}> 
                     {utility.multiply}  {utility.blankSpace}  {utility.b_alone()}{utility.brackets(0, "red", "blue")}{utility.brackets(exampleObservationSequence[0], "black", "blue")}  {utility.blankSpace}  {utility.multiply}  {utility.blankSpace}  
                     {utility.b_alone()}{utility.brackets(1, "red", "blue")}{utility.brackets(exampleObservationSequence[1], "black", "blue")}  {utility.blankSpace}  {utility.multiply}  {utility.blankSpace}   
                     {utility.b_alone()}{utility.brackets(2, "red", "blue")}{utility.brackets(exampleObservationSequence[2], "black", "blue")}  {utility.blankSpace}  {utility.multiply}  {utility.blankSpace}   
@@ -160,14 +160,14 @@ const MathematicalDerivation = (
                 <MathContent>
                     =
                     <SumChar top="" bottom={<div>{utility.S_alone()} ∈ {utility.S_black(exampleA.length)} ({utility.S_alone()})</div>}/>
-                    <span>( {utility.pi_alone()}{utility.brackets(0, "red", "green")} {utility.multiply} {utility.blankSpace} </span>
+                    <span>( {utility.pi_alone()}{utility.brackets(0, "red", "green")} {utility.multiply}{utility.blankSpace}</span>
                     { utility.a_alone()}{utility.brackets(0, "red", "red")}{utility.brackets(1, "red", "red")}  {utility.blankSpace}  {utility.multiply}  {utility.blankSpace}  
                     { utility.a_alone()}{utility.brackets(1, "red", "red")}{utility.brackets(2, "red", "red")}  {utility.blankSpace}  {utility.multiply}  {utility.blankSpace}  
                     { utility.a_alone()}{utility.brackets(2, "red", "red")}{utility.brackets(3, "red", "red")}  {utility.blankSpace}  {utility.multiply}  {utility.blankSpace}  
                     { utility.a_alone()}{utility.brackets(3, "red", "red")}{utility.brackets(4, "red", "red")}  {utility.blankSpace}  {utility.multiply}  {utility.blankSpace}  
                 </MathContent> 
 
-                <MathContent extraStyle = {{"marginTop":"-10px"}}> 
+                <MathContent extraStyle = {{"marginTop":"0px"}}> 
 {utility.multiply}  {utility.blankSpace}    {utility.b_alone()}{utility.brackets(0, "red", "blue")}{utility.brackets(utility.imageInText(exampleObservationsImages[0]), "black", "blue")}  {utility.blankSpace}  {utility.multiply}  {utility.blankSpace}  
                     {utility.b_alone()}{utility.brackets(1, "red", "blue")}{utility.brackets(utility.imageInText(exampleObservationsImages[1]), "black", "blue")}  {utility.blankSpace}  {utility.multiply}  {utility.blankSpace}   
                     {utility.b_alone()}{utility.brackets(2, "red", "blue")}{utility.brackets(utility.imageInText(exampleObservationsImages[2]), "black", "blue")}  {utility.blankSpace}  {utility.multiply}  {utility.blankSpace}   

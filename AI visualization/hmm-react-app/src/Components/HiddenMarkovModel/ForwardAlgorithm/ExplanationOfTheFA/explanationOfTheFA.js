@@ -68,7 +68,7 @@ const ExplanationOfTheFA = (
                 {utility.lambda("x")} ) ∀ t ∈  {utility.blankSpace} {utility.curlyLeft} 0, 1, ..., T-1 {utility.curlyRight} {utility.blankSpace}  = 
             </MathContent>
 
-            <MathContent extraStyle = {{"marginTop":"-5px", "marginBottom":"10px"}}>
+            <MathContent extraStyle = {{"marginTop":"5px", "marginBottom":"10px"}}>
                 = {utility.blankSpace} {utility.curlyLeft} <i>implicitly taking</i> {utility.blankSpace} {utility.lambda("x")} {utility.blankSpace} <i> into account </i> {utility.curlyRight} {utility.blankSpace} = {utility.blankSpace}  
                 𝑃({utility.O('0:T-1')} {utility.blankSpace} ⋂ {utility.blankSpace}  
                 {utility.S("t")} = {utility.S_black("i")} ) ∀ t ∈ {utility.blankSpace} {utility.curlyLeft} 0, 1, ..., T-1 {utility.curlyRight}
@@ -79,7 +79,7 @@ const ExplanationOfTheFA = (
                 {utility.curlyLeft} {utility.O('0')}, {utility.O('1')}, …, {utility.O('t')} {utility.curlyRight} AND at time t, being in state {utility.S_black("i")}.
             </p>
 
-            <h4>The first time step</h4>
+            <h4 style={{"marginTop":"15px"}}>The first time step</h4>
 
             <p>
                 The forward algorithm uses previous alphas to calculate the current alpha. Therefore,{utility.blankSpace}
@@ -240,7 +240,7 @@ const ExplanationOfTheFA = (
                     {!weatherExampleSelected ? <span> + {utility.alpha_orange("0", utility.imageInText(exampleStatesImages[3]))}{utility.blankSpace} </span> : null} =
                 </MathContent>
 
-                <MathContent extraStyle={{"margin":"0px 0 5px 0"}}>
+                <MathContent extraStyle={{"margin":"5px 0 5px 0"}}>
                     {weatherExampleSelected ? 
                         <div>
                             = {examplePi[0] * exampleB[0][0]} + {examplePi[1] * exampleB[1][0]} + {examplePi[2] * exampleB[2][0]} ={utility.blankSpace}
@@ -260,7 +260,7 @@ const ExplanationOfTheFA = (
                 </p>
             </ExampleExplanation>
 
-            <h4 className={classes.noUpperCase} style={{"marginTop":"70px"}}>STEPS 1 ≤ t ≤ T-1</h4>
+            <h4 className={classes.noUpperCase} style={{"marginTop":"60px"}}>STEPS 1 ≤ t ≤ T-1</h4>
             
             <p>
                 For the remaining time steps, the new alpha we calculate is dependent on the previous
@@ -508,7 +508,7 @@ const ExplanationOfTheFA = (
                 </p>
             </ExampleExplanation>
             
-            <h4 style={{"marginTop":"70px"}}>THE FINAL RESULTS</h4>
+            <h4 style={{"marginTop":"60px"}}>THE FINAL RESULTS</h4>
             
             <p>
                 If you've been reading carefully, you should already know how to calculate the final
