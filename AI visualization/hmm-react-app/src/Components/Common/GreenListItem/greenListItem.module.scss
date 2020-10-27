@@ -10,3 +10,7 @@
     left: -5px;
     top: -1px;
 }
+
+.listItemStyle:not(:first-child) {
+    margin-top: 10px;
+}

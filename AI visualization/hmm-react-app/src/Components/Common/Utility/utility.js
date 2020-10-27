@@ -88,6 +88,7 @@ export const t = (x) => <span style={{"color":"#2d2d2d"}}>t<sub style={{"color":
 
 export const O = (x) => <span style={{"color":"#43AFCA"}}>O<sub style={{"color":"#43AFCA"}}>{x}</sub></span>;
 export const O_black = (x) => <span style={{"color":"#2d2d2d"}}>O<sub style={{"color":"#2d2d2d"}}>{x}</sub></span>;
+export const O_alone = () => <span><b style={{"color":"#43AFCA"}}>O</b></span>;
 
 export const S = (x) => <span style={{"color":"#E95252"}}>S<sub style={{"color":"#E95252"}}>{x}</sub></span>;
 export const S_alone = () => <span><b style={{"color":"#E95252"}}>S</b></span>;
@@ -110,8 +111,8 @@ export const pseudo_variable = (variable) => <span style={{"color":"#2CEC93", "f
 
 export const alpha_without_parenthesis = (x) => <span style={{"color":"#FFA500"}}>α<sub style={{"color":"#FFA500"}}>{x}</sub></span>;
 
-export const curlyLeft = <span>{"{"}</span>;
-export const curlyRight = <span>{"}"}</span>;
+export const curlyLeft = <span style={{"display":"inlineBlock", "marginRight":"-6px"}}>&#123;</span>;
+export const curlyRight = <span style={{"display":"inlineBlock", "marginRight":"-6px"}}>&#125;</span>;
 export const multiply = <span style={{"fontWeight":"300"}}>×</span>
 export const blankSpace = <span>&nbsp;</span>
 

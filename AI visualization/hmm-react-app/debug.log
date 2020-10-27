@@ -12,3 +12,4 @@
 [1021/115333.650:ERROR:process_info.cc(329)] VirtualQueryEx: Åtkomst nekad. (0x5)
 [1021/115333.650:ERROR:process_info.cc(556)] ReadMemoryInfo failed
 [1021/115333.650:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: Ett försök gjordes att använda en befintlig process. (0xc000010a)
+[1027/205412.646:ERROR:directory_reader_win.cc(43)] FindFirstFile: Det går inte att hitta sökvägen. (0x3)
