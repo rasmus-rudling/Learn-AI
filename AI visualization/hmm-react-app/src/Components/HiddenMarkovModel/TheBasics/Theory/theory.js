@@ -13,6 +13,7 @@ import HomeButton from '../../../Common/HomeButton/homeButton';
 import MathContent from '../../../Common/MathContent/mathContent';
 import ExtraInfo from '../../../Common/ExtraInfo/extraInfo';
 import GreenListItem from '../../../Common/GreenListItem/greenListItem';
+import Matrix from '../../../Common/Matrix/matrix';
 
 
 const Theory = () => {
@@ -84,8 +85,8 @@ const Theory = () => {
 
             <Subsection 
                 header = "Definitions" 
-                maxHeight="2000px" 
-                hideDefault={false}
+                maxHeight="1665px" 
+                hideDefault={true}
             >
                 <ul className={classes.listStyle}>
                     <GreenListItem title="Background info">
@@ -109,7 +110,7 @@ const Theory = () => {
                         As mentioned above, states in HMM are hidden. That is, we can't for sure know
                         what state is present in the current time step. Depending on which source you're
                         reading, states are called different things. Some of them, if not all, are: <i>hidden states</i>, 
-                        <i>states</i> and <i>emitters</i>. On this page, we will use the notation <i>states</i>. There are many
+                        {utility.blankSpace}<i>states</i> and <i>emitters</i>. On this page, we will use the notation <i>states</i>. There are many
                         different ways to mathematically notate a certain state. On this site, we declare a state
                         at a certain time step t to be denoted S<sub>t</sub>. 
                     </GreenListItem>
@@ -117,7 +118,7 @@ const Theory = () => {
                     <GreenListItem title="Observations">
                         As with states, observations have different names depending on which 
                         source you're getting your information from. Some of them, if not all, are: <i>outputs</i>, 
-                        <i>emissions</i>, <i>observations</i> and <i>visible states</i>. On this site, we use the word <i>observation</i>,
+                        {utility.blankSpace}<i>emissions</i>, <i>observations</i> and <i>visible states</i>. On this site, we use the word <i>observation</i>,
                         and we denote an observation at time step <i>t</i> as O<sub>t</sub>.
                     </GreenListItem>
 
@@ -154,12 +155,81 @@ const Theory = () => {
                     </GreenListItem>
 
                     <GreenListItem title="Row-stochastic">
-                        Row-stochastic  By using the word row-stochastic we mean that every row in the
+                        By using the word row-stochastic we mean that every row in the
                         current matrix sums up to one. Similarly, the elements in a stochastic vector sums up 
                         to one. Let's define the following two matrices:
+
+                        <Matrix 
+                            matrixName={<span>x<sub>i,j</sub></span>} 
+                            matrix= {[
+                                [0.3, 0.35, 0.53],
+                                [0.43, 0.12, 0.31],
+                                [0.12, 0.48, 0.37]
+                            ]}
+                            themeColor="black" 
+                        />
+
+                        <Matrix 
+                            matrixName={<span>y<sub>i,j</sub></span>} 
+                            matrix= {[
+                                [0.3, 0.3, 0.4],
+                                [0.25, 0.25, 0.50],
+                                [0.1, 0.1, 0.8]
+                            ]}
+                            themeColor="black" 
+                        />
+
+                        Are these two matrices row-stochastic? Let's find out!
+
+                        <MathContent>
+                            <span>x<sub>0,0</sub> + x<sub>0,1</sub> + x<sub>0,2</sub> =</span> 
+                            0.3 + 0.35 + 0.53 = 1.18
+                        </MathContent>
+                        <MathContent>
+                            <span>x<sub>1,0</sub> + x<sub>1,1</sub> + x<sub>1,2</sub> =</span> 
+                            0.43 + 0.12 + 0.31 = 0.86
+                        </MathContent>
+                        <MathContent>
+                            <span>x<sub>2,0</sub> + x<sub>2,1</sub> + x<sub>2,2</sub> =</span> 
+                            0.12 + 0.48 + 0.37 = 0.97
+                        </MathContent>
+
+                        <MathContent>
+                            <span>y<sub>0,0</sub> + y<sub>0,1</sub> + y<sub>0,2</sub> =</span> 
+                            0.3 + 0.3 + 0.4 = 1
+                        </MathContent>
+                        <MathContent>
+                            <span>y<sub>1,0</sub> + y<sub>1,1</sub> + y<sub>1,2</sub> =</span> 
+                            0.25 + 0.25 + 0.5 = 1
+                        </MathContent>
+                        <MathContent extraStyle={{"marginBottom":"10px"}}>
+                            <span>y<sub>2,0</sub> + y<sub>2,1</sub> + y<sub>2,2</sub> =</span> 
+                            0.1 + 0.1 + 0.8 = 1
+                        </MathContent>
+
+                        As we can see, the matrix <span>x<sub>i,j</sub></span> is row-stochastic while <span>y<sub>i,j</sub></span> is not.
                     </GreenListItem>
                 </ul>
+            </Subsection>
+        
+            <Subsection 
+                header = "HMM Parameters" 
+                maxHeight="2000px" 
+                hideDefault={false}
+            >
+                <ul className={classes.listStyle}>
+                    <GreenListItem title="Initial state distribution">
+                        The initial state distribution, which is sometimes called
+                        initial state probabilities, is a vector containing probabilities of being in a certain state
+                        at the initial time step t<sub>0</sub>. The initial state distribution is denoted π and the vector is
+                        defined as [ {utility.blankSpace}{utility.pi(0)} {utility.blankSpace} {utility.pi(0)} • • • {utility.blankSpace} {utility.pi(<div style={{"display":"inline", "color":"#6EC668"}}><b style={{"color":"#6EC668"}}>N</b>-1</div>)}], 
+                        where <b>N</b> is the number of states. The initial state
+                        distribution vector is always row-stochastic. Let's make an example:
 
+                    </GreenListItem>
+
+
+                </ul>
             </Subsection>
         </div>
     )
