@@ -87,7 +87,6 @@ const Theory = () => {
 
             <Subsection 
                 header = "Definitions" 
-                maxHeight="1665px" 
                 hideDefault={true}
             >
                 <ul className={classes.listStyle}>
@@ -209,14 +208,13 @@ const Theory = () => {
                             0.1 + 0.1 + 0.8 = 1
                         </MathContent>
 
-                        As we can see, the matrix <span>x<sub>i,j</sub></span> is row-stochastic while <span>y<sub>i,j</sub></span> is not.
+                        As we can see, the matrix y<sub>i,j</sub> is row-stochastic while x<sub>i,j</sub> is not.
                     </GreenListItem>
                 </ul>
             </Subsection>
         
             <Subsection 
                 header = "HMM Parameters" 
-                maxHeight="2000px" 
                 hideDefault={false}
             >
                 <ul className={classes.listStyle}>
@@ -253,7 +251,7 @@ const Theory = () => {
                         </MathContent>
 
                         <ImportantInfo extraStyle={{"width":"100%"}}>
-                            The initial state distribution {utility.blankSpace}{utility.pi_alone()}is stochastic.
+                            The initial state distribution {utility.pi_alone()} is stochastic.
                         </ImportantInfo>
                     </GreenListItem>
 
@@ -300,6 +298,7 @@ const Theory = () => {
                                 [0.43, 0.12, 0.45],
                                 [0.14, 0.48, 0.38]
                             ]}
+                            useImages = {false}
                             horizontalImages={[utility.S_black(0), utility.S_black(1), utility.S_black(2)]}
                             themeColor="red"
                             verticalImages={[utility.S_black(0), utility.S_black(1), utility.S_black(2)]}

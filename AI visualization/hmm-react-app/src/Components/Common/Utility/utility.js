@@ -106,9 +106,12 @@ export const alpha_without_parenthesis = (x) => <mark className="orange">α<sub 
 // --- PSEUDOCODE ---
 export const pseudo_variable = (variable) => <span style={{"color":"#2CEC93", "fontWeight":"600"}}>{variable}</span>;
 
+
+
+
 export const curlyLeft = <mark className="black">&#123;</mark>;
 export const curlyRight = <mark className="black">&#125;</mark>;
-export const multiply = <mark className="black">×</mark>
+export const multiply = <span>×</span>
 export const blankSpace = <mark className="black">&nbsp;</mark>
 
 export const brackets = (content, contentColor, bracketColor) => {
