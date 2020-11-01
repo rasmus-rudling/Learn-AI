@@ -484,7 +484,7 @@ const PlayAroundWithExamples = (props) => {
                         />
                     </div>
                     
-                    <div>Observation sequence (<i>input = observation index</i>):</div>
+                    <p>Observation sequence (<i>input = observation index</i>):</p>
                     <div className={classes.UserExampleInputContainer}>
                         {observationSequenceToFill()}
                     </div>

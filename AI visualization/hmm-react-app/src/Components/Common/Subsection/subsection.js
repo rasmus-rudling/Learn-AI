@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import classes from './subsection.module.scss';
 import downArrow from '../../../Resources/Icons/down-arrow.svg';
 
@@ -8,8 +8,15 @@ const Subsection = (props) => {
     const arrowElement = useRef(null);
     const arrowContainerElement = useRef(null);
     const headerPartElement = useRef(null);
-    const [maxHeight, setMaxHeight] = useState(props.hideDefault ? "0px" : props.maxHeight);
-    const [paddingForContent, setPaddingForContent] = useState(props.hideDefault ? "0px" : "20px");
+    const elementContainer = useRef(null);
+
+    const [contentHeight, setContentHeight] = useState("auto");
+    const [hideContent, setHideContent] = useState(false);
+    const [arrowClassList, setArrowClassList] = useState([classes.showHideContentToggler, classes.applyRadiusBottomRight]);
+    const [headerPartClassList, setHeaderPartClassList] = useState([classes.headerPart, classes.applyRadiusBottomLeft]);
+    const [maxHeight, setMaxHeight] = useState(hideContent ? "0px" : contentHeight);
+    const [paddingForContent, setPaddingForContent] = useState(hideContent ? "0px" : "20px");
+    const [allSubClasses, setAllSubClasses] = useState([classes.Subsection]);
 
     const exampleMode = props.newWidth !== undefined;
 
@@ -17,38 +24,66 @@ const Subsection = (props) => {
         arrowElement.current.classList.toggle(classes.rotateArrow);
         arrowContainerElement.current.classList.toggle(classes.applyRadiusBottomRight);
         headerPartElement.current.classList.toggle(classes.applyRadiusBottomLeft);
-        setMaxHeight(maxHeight === "0px" ? props.maxHeight : "0px");
+        setMaxHeight(maxHeight === "0px" ? contentHeight : "0px");
         setPaddingForContent(paddingForContent === "0px" ? "20px" : "0px");
     }
 
-    let arrowClassList, headerPartClassList, allSubClasses;
+    useEffect(() => {
+        let elementHeight = contentPartElement.current.offsetHeight;
+        setContentHeight(elementHeight);
 
-    if (props.hideDefault) {
-        arrowClassList = [classes.showHideContentToggler, classes.applyRadiusBottomRight];
-        headerPartClassList = [classes.headerPart, classes.applyRadiusBottomLeft];
-    } else {
-        arrowClassList = [classes.showHideContentToggler];
-        headerPartClassList = [classes.headerPart];
-    }
+        if (window.innerWidth <= 850) {
+            setHideContent(false);
+            setMaxHeight(elementHeight);
+            setPaddingForContent("20px");
+            
+        } else {
+            setHideContent(props.hideDefault);
+            setMaxHeight("0px");
+            setPaddingForContent("0px");
+            
+        }
 
-    if (exampleMode) {
-        arrowClassList.push(classes.exampleModeHover)
-    }
+        if (!hideContent) {
+            setArrowClassList([classes.showHideContentToggler, classes.applyRadiusBottomRight]);
+            setHeaderPartClassList([classes.headerPart, classes.applyRadiusBottomLeft]);
+        } else {
+            setArrowClassList([classes.showHideContentToggler]);
+            setHeaderPartClassList([classes.headerPart]);
+        }
 
-    if (props.extraClass !== undefined) {
-        allSubClasses = [classes.Subsection, props.extraClass];
-    } else {
-        allSubClasses = [classes.Subsection];
-    }
+        if (exampleMode) {
+            setArrowClassList([...arrowClassList, classes.exampleModeHover]);
+        }
+    
+        if (props.extraClass !== undefined) {
+            setAllSubClasses([classes.Subsection, props.extraClass]);
+        } else {
+            setAllSubClasses([classes.Subsection]);
+        }
+
+        setTimeout(() => { 
+            contentPartElement.current.style.opacity = 1;
+            elementContainer.current.style.backgroundColor = "#fff";
+
+            if (!props.hideDefault) {
+                arrowContainerElement.current.classList.toggle(classes.applyRadiusBottomRight);
+                headerPartElement.current.classList.toggle(classes.applyRadiusBottomLeft);
+                setMaxHeight(elementHeight);
+                setPaddingForContent("20px");
+            }
+        }, 750);
+    }, [])
 
     return (
         <div 
             className={allSubClasses.join(" ")} 
             style={exampleMode ? {"width":props.newWidth} : {}}
+            ref = {elementContainer}
         >
             <div 
                 className={classes.headerContainer}
-                style={exampleMode ? {"gridTemplateColumns": "92% 8%", "borderRadius":"10px"} : {}}
+                style={exampleMode ? {"gridTemplateColumns": (window.innerWidth < 850 ? "100% 0%" : "92% 8%"), "borderRadius":"10px"} : {}}
             >
                 <div 
                     className={headerPartClassList.join(" ")} 
@@ -63,6 +98,7 @@ const Subsection = (props) => {
                     className={arrowClassList.join(" ")}
                     ref={arrowContainerElement}
                     onClick = {() => toggleContent()}
+                    style = {window.innerWidth < 850 ? {"display":"none"} : null}
                 >
                     <img src = {downArrow} alt="arrow" ref={arrowElement} className={props.hideDefault ? classes.rotateArrow : ""}/>
                 </div>
@@ -78,7 +114,8 @@ const Subsection = (props) => {
                     : 
                     {"maxHeight": maxHeight, 
                     "paddingTop": paddingForContent, 
-                    "paddingBottom": paddingForContent}} 
+                    "paddingBottom": paddingForContent}
+                } 
                 className={classes.contentPart} 
                 ref={contentPartElement}
             >

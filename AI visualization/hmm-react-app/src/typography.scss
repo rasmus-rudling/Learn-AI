@@ -1,6 +1,13 @@
+$redColor: #E95252;
+$greenColor: #6EC668;
+$blueColor: #43AFCA;
+$blackColor: #2d2d2d;
+$pinkColor: #E967E0;
+$orangeColor: #FFA500;
+
 * {
     font-family: 'Roboto', sans-serif;
-    color: #2d2d2d;
+    color: $blackColor;
     padding: 0;
     margin: 0;
 }
@@ -11,7 +18,7 @@ body {
 
 p, div {
     line-height: 1.75rem;
-    color: #2d2d2d;
+    color: $blackColor;
 }
 
 h1,
@@ -32,7 +39,7 @@ h4 {
 }
 
 h1 {
-    color: #2d2d2d;
+    color: $blackColor;
 }
 
 h2 {
@@ -41,4 +48,34 @@ h2 {
 
 sup, sub {
     line-height: 0;
+}
+
+mark.red {
+    color:$redColor;
+    background: none;
+}
+
+mark.green {
+    color:$greenColor;
+    background: none;
+}
+
+mark.blue {
+    color:$blueColor;
+    background: none;
+}
+
+mark.black {
+    color:$blackColor;
+    background: none;
+}
+
+mark.pink {
+    color: $pinkColor;
+    background: none;
+}
+
+mark.orange {
+    color: $orangeColor;
+    background: none;
 }

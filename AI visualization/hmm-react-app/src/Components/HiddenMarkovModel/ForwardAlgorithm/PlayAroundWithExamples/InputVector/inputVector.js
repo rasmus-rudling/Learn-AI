@@ -27,9 +27,9 @@ const InputVector = (props) => {
         marginToUse = "-10px 0 3px 0";
     } else if (props.vectorName.substr(0, 5) === "alpha") {
         let alphaIndex = props.vectorName.substr(-1);
-        _vectorName = utility.alpha_orange(alphaIndex);
+        _vectorName = utility.alpha_without_parenthesis(alphaIndex);
         fontSize = "1.5rem";
-        marginToUse = "0px 0 -3px 0";
+        marginToUse = "0 0 3px 0";
     }
 
     let firstMatrixRow = [];

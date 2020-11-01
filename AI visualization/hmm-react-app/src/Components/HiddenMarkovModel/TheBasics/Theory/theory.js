@@ -14,7 +14,9 @@ import MathContent from '../../../Common/MathContent/mathContent';
 import ExtraInfo from '../../../Common/ExtraInfo/extraInfo';
 import GreenListItem from '../../../Common/GreenListItem/greenListItem';
 import Matrix from '../../../Common/Matrix/matrix';
-
+import Vector from '../../../Common/Vector/vector';
+import ImportantInfo from '../../../Common/ImportantInfo/importantInfo';
+import VisualMatrix from '../../../Common/VisualMatrix/visualMatrix';
 
 const Theory = () => {
     return (
@@ -225,10 +227,85 @@ const Theory = () => {
                         defined as [ {utility.blankSpace}{utility.pi(0)} {utility.blankSpace} {utility.pi(0)} • • • {utility.blankSpace} {utility.pi(<div style={{"display":"inline", "color":"#6EC668"}}><b style={{"color":"#6EC668"}}>N</b>-1</div>)}], 
                         where <b>N</b> is the number of states. The initial state
                         distribution vector is always row-stochastic. Let's make an example:
+                        
+                        <MathContent extraStyle={{"margin":"0 0 0 0"}}>
+                            <Vector vectorName={utility.pi("i")} vector={[0.42, 0.12, 0.46]} themeColor="green" />
+                        </MathContent>
 
+                        The initial state distribution given above should be interpreted in the following way: the
+                        probability of being in state S<sub>0</sub> at time t<sub>0</sub> is 0.42, the probability of being in state 
+                        S<sub>1</sub> at
+                        time t<sub>0</sub> is 0.12 and the probability of being in state S<sub>2</sub> at time t<sub>0</sub> is 0.46.
+                        We can also
+                        see that the vector is stochastic because 0.42 + 0.12 + 0.46 = 1.0. If we want, we can
+                        also write the probabilities with the following notation:
+                        
+                        <MathContent extraStyle={{"margin":"0 0 0 0"}}>
+                            {utility.pi("0")} = 0.42
+                        </MathContent>
+
+                        <MathContent extraStyle={{"margin":"0 0 0 0"}}>
+                            {utility.pi("1")} = 0.12
+                        </MathContent>
+
+                        <MathContent extraStyle={{"margin":"0 0 0 0"}}>
+                            {utility.pi("2")} = 0.46
+                        </MathContent>
+
+                        <ImportantInfo extraStyle={{"width":"100%"}}>
+                            The initial state distribution {utility.blankSpace}{utility.pi_alone()}is stochastic.
+                        </ImportantInfo>
                     </GreenListItem>
 
+                    <GreenListItem title="Transition matrix">
+                        The transition matrix {utility.A_alone()}, or {utility.a("i,j")}, is used to store probabilities when
+                        traveling between different states. E.g. if {utility.A_alone()}{utility.brackets("0", "black", "red")}{utility.brackets("2", "black", "red")}
+                        = 0.37, the probability of traveling
+                        from S<sub>0</sub> to S<sub>2</sub> between any given time steps is 0.37. As seen above we can express the
+                        transition matrix as:
+                        
+                        <MathContent extraStyle={{"margin":"5px 0"}}>
+                            {utility.a("i,j")}{utility.blankSpace}={utility.blankSpace}{utility.A_alone()}{utility.brackets("i", "black", "red")}{utility.brackets("j", "black", "red")} =
+                            𝑃({utility.S("t")}{utility.blankSpace}={utility.blankSpace}{utility.S_black("j")}{utility.blankSpace}|
+                            {utility.blankSpace}{utility.S("t-1")}{utility.blankSpace}={utility.blankSpace}{utility.S_black("i")})
+                        </MathContent>
 
+                        This reads as <i>"the value positioned at the ith row and at the jth column in the
+                        transition matrix {utility.A_alone()} is the probability that we are in state number j <b>given</b> that we
+                        were in state number i in the previous time step"</i>.
+
+                        <ImportantInfo extraStyle={{"width":"100%"}}>
+                            The initial state distribution {utility.A_alone()} is stochastic.
+                        </ImportantInfo>
+
+                        Let's look at an example:
+
+                        <Matrix 
+                            matrixName={utility.a("i,j")} 
+                            matrix= {[
+                                [0.22, 0.41, 0.37],
+                                [0.43, 0.12, 0.45],
+                                [0.14, 0.48, 0.38]
+                            ]}
+                            themeColor="red"
+                        />
+
+                        By just looking at the matrix we can see that there are three number of possible states.
+                        The following figure is a clarification of the same transition matrix:
+
+                        <VisualMatrix 
+                            matrixName={utility.A_alone()}
+                            matrix={[
+                                [0.22, 0.41, 0.37],
+                                [0.43, 0.12, 0.45],
+                                [0.14, 0.48, 0.38]
+                            ]}
+                            horizontalImages={[utility.S_black(0), utility.S_black(1), utility.S_black(2)]}
+                            themeColor="red"
+                            verticalImages={[utility.S_black(0), utility.S_black(1), utility.S_black(2)]}
+                            weatherExampleSelected = {false}
+                        />
+                    </GreenListItem>
                 </ul>
             </Subsection>
         </div>

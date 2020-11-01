@@ -64,86 +64,60 @@ export const runnerStatesImages = [runnerS0, runnerS1, runnerS2, runnerS3];
 export const runnerObservationsImages = [runnerO0, runnerO1, runnerO2, runnerO3, runnerO4, runnerO5];
 export const runnerObservationSequence = [0, 1, 3, 2, 4, 5];
 
-
 export const roundTo = (num, numberOfDecimals) => Math.round((num + Number.EPSILON) * (10 ** numberOfDecimals)) / (10 ** numberOfDecimals);
 
-export const lambda = (x) => <span style={{"color":"#E967E0"}}>λ<sub style={{"color":"#E967E0"}}>{x}</sub></span>;
+let redColor = '#E95252';
+let greenColor = '#6EC668';
+let blueColor = '#43AFCA';
+let blackColor = '#2d2d2d';
+let pinkColor = '#E967E0';
+let orangeColor = '#FFA500';
 
-export const pi = (x) => <span style={{"color":"#6EC668"}}>π<sub style={{"color":"#6EC668"}}>{x}</sub></span>;
-export const pi_alone = () => <span style={{"color":"#6EC668"}}>π</span>;
-export const pi_parenthesis = (inside) => <span style={{"color":"#6EC668"}}>π(<span style={{"color":"#2d2d2d"}}>{inside}</span>)</span>;
+export const lambda = (x) => <mark className="pink">λ<sub style={{"color":pinkColor}}>{x}</sub></mark>;
 
-export const A = (x) => <span style={{"color":"#E95252"}}>A<sub style={{"color":"#E95252"}}>{x}</sub></span>;
-export const A_alone = () => <span style={{"color":"#E95252"}}>A</span>;
-export const a = (x) => <span style={{"color":"#E95252"}}>a<sub style={{"color":"#E95252"}}>{x}</sub></span>;
-export const a_alone = () => <span style={{"color":"#E95252"}}>a</span>;
+export const pi = (x) => <mark className="green">π<sub style={{"color":greenColor}}>{x}</sub></mark>;
+export const pi_alone = (x) => <mark className="green">π</mark>;
+export const pi_parenthesis = (inside) => <mark className="green">π(<span style={{"color":greenColor}}>{inside}</span>)</mark>;
 
-export const B = (x) => <span style={{"color":"#43AFCA"}}>B<sub style={{"color":"#43AFCA"}}>{x}</sub></span>;
-export const B_alone = () => <span style={{"color":"#43AFCA"}}>B</span>;
-export const b = (x) => <span style={{"color":"#43AFCA"}}>b<sub style={{"color":"#43AFCA"}}>{x}</sub></span>;
-export const b_alone = () => <span style={{"color":"#43AFCA"}}>b</span>;
-export const b_parenthesis = (sub, inside) => <span style={{"color":"#43AFCA"}}>b<sub style={{"color":"#43AFCA"}}>{sub}</sub>({inside})</span>;
+export const A = (x) => <mark className="red">A<sub style={{"color":redColor}}>{x}</sub></mark>;
+export const A_alone = () => <mark className="red">A</mark>;
+export const a = (x) => <mark className="red">a<sub style={{"color":"#E95252"}}>{x}</sub></mark>;
+export const a_alone = () => <mark className="red">a</mark>;
 
-export const t = (x) => <span style={{"color":"#2d2d2d"}}>t<sub style={{"color":"#2d2d2d"}}>{x}</sub></span>;
+export const B = (x) => <mark className="blue">B<sub style={{"color":blueColor}}>{x}</sub></mark>;
+export const B_alone = () => <mark className="blue">B</mark>;
+export const b = (x) => <mark className="blue">b<sub style={{"color":"#E95252"}}>{x}</sub></mark>;
+export const b_alone = () => <mark className="blue">b</mark>;
+export const b_parenthesis = (sub, inside) => <mark className="blue">b<sub style={{"color":blueColor}}>{sub}</sub>({inside})</mark>;
 
-export const O = (x) => <span style={{"color":"#43AFCA"}}>O<sub style={{"color":"#43AFCA"}}>{x}</sub></span>;
-export const O_black = (x) => <span style={{"color":"#2d2d2d"}}>O<sub style={{"color":"#2d2d2d"}}>{x}</sub></span>;
-export const O_alone = () => <span><b style={{"color":"#43AFCA"}}>O</b></span>;
+export const t = (x) => <mark className="black">t<sub style={{"color":blackColor}}>{x}</sub></mark>;
 
-export const S = (x) => <span style={{"color":"#E95252"}}>S<sub style={{"color":"#E95252"}}>{x}</sub></span>;
-export const S_alone = () => <span><b style={{"color":"#E95252"}}>S</b></span>;
-export const S_black = (x) => <span style={{"color":"#2d2d2d"}}>S<sub style={{"color":"#2d2d2d"}}>{x}</sub></span>;
+export const O = (x) => <mark className="blue">O<sub style={{"color":blueColor}}>{x}</sub></mark>;
+export const O_black = (x) => <mark className="black">O<sub style={{"color":blackColor}}>{x}</sub></mark>;
+export const O_alone = () => <mark className="blue"><b>O</b></mark>;
 
-export const alpha_orange = (sub, inside) => {
-    return (
-        <div style={{"color":"#FFA500", "display":"inline"}}>
-            α
-            <sub style={{"color":"#FFA500"}}>{sub}</sub>
-            (<span style={{"color":"#2d2d2d"}} >{inside}</span>)
-        </div>
+export const S = (x) => <mark className="red">S<sub style={{"color":redColor}}>{x}</sub></mark>;
+export const S_black = (x) => <mark className="black">S<sub style={{"color":blackColor}}>{x}</sub></mark>;
+export const S_alone = () => <mark className="red"><b>S</b></mark>;
 
-    )
-}
+export const alpha_orange = (sub, inside) => <mark className="orange">α<sub style={{"color":orangeColor}}>{sub}</sub>({inside})</mark>;
+export const alpha_without_parenthesis = (x) => <mark className="orange">α<sub style={{"color":orangeColor}}>{x}</sub></mark>;
 
 // --- PSEUDOCODE ---
 export const pseudo_variable = (variable) => <span style={{"color":"#2CEC93", "fontWeight":"600"}}>{variable}</span>;
 
-
-export const alpha_without_parenthesis = (x) => <span style={{"color":"#FFA500"}}>α<sub style={{"color":"#FFA500"}}>{x}</sub></span>;
-
-export const curlyLeft = <span style={{"display":"inlineBlock", "marginRight":"-6px"}}>&#123;</span>;
-export const curlyRight = <span style={{"display":"inlineBlock", "marginRight":"-6px"}}>&#125;</span>;
-export const multiply = <span style={{"fontWeight":"300"}}>×</span>
-export const blankSpace = <span>&nbsp;</span>
+export const curlyLeft = <mark className="black">&#123;</mark>;
+export const curlyRight = <mark className="black">&#125;</mark>;
+export const multiply = <mark className="black">×</mark>
+export const blankSpace = <mark className="black">&nbsp;</mark>
 
 export const brackets = (content, contentColor, bracketColor) => {
-    let _bracketColor, _contentColor;
-
-    if (bracketColor === "green") {
-        _bracketColor = "#6EC668";
-    } else if (bracketColor === "red") {
-        _bracketColor = "#E95252";
-    } else if (bracketColor === "blue") {
-        _bracketColor = "#43AFCA";
-    } else if (bracketColor === "black") {
-        _bracketColor = "#2d2d2d";
-    }
-
-    if (contentColor === "green") {
-        _contentColor = "#6EC668";
-    } else if (contentColor === "red") {
-        _contentColor = "#E95252";
-    } else if (contentColor === "blue") {
-        _contentColor = "#43AFCA";
-    } else if (contentColor === "black") {
-        _contentColor = "#2d2d2d";
-    }
-
-    return <span>
-        <span style={{"color":_bracketColor}}>[</span>
-        <span style={{"color":_contentColor}}>{content}</span>
-        <span style={{"color":_bracketColor}}>]</span>
-    </span>
+    return (
+    <>
+        <mark className={bracketColor}>[</mark>
+        <mark className={contentColor}>{blankSpace}{content}{blankSpace}</mark>
+        <mark className={bracketColor}>]</mark>
+    </>)
 }
 
 export const imageInText = (image) => {

@@ -3,3 +3,9 @@
     top: 110px;
     right: 40px;
 }
+
+@media (min-width: 850px) {
+    .ExampleButtons {
+        position: fixed;
+    }
+}

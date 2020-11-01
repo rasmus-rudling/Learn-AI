@@ -45,7 +45,7 @@ const ForwardAlgorithm = (props) => {
 
         setObservationsSequenceInText(
             <span> 
-                {"{"}
+                {"{ "}
                     {_exampleObservationSequence.map((observationIndex, i) => {
                         if (i + 1 !== _exampleObservationSequence.length) {
                             return <span key={i}>{utility.O_black(observationIndex)}, </span>
@@ -134,19 +134,22 @@ const ForwardAlgorithm = (props) => {
             <HomeButton extraClass={classes.homeButton}/>
             <BackButton />
 
-            <h1>Forward Algorithm / α-pass</h1>
+            <h1 style={window.innerWidth < 850 ? {"marginTop":"40px"} : null}>Forward Algorithm / α-pass</h1>
 
-            <ExampleButtons weatherExampleSelected={weatherExampleSelected} handleChangeActiveExample={handleChangeActiveExample} />
+            <ExampleButtons 
+                weatherExampleSelected={weatherExampleSelected} 
+                handleChangeActiveExample={handleChangeActiveExample} 
+            />
 
-            <Subsection header = "About the Forward Algorithm" maxHeight="190px" hideDefault={false}>
+            <Subsection header = "About the Forward Algorithm" hideDefault={false}>
                 <p>
                     The algoritm is used to solve problems in the category <b>evaluation/filtering</b>. That is, if we want to compute the
                     likelihood 𝑃( {utility.O("0:T-1")} | {utility.lambda("x")} ) = 𝑃( {utility.O("x")} | {utility.lambda("x")} ) = 𝑃( {utility.curlyLeft} {utility.O("0")}, {utility.O("1")}, ..., {utility.O("T-1")}
-                    {utility.curlyRight} | {utility.lambda("x")} ). In other words, if we want to compute the likelihood of observing a specific sequence of observations given our {utility.lambda("x")}  = {utility.curlyLeft} {utility.A("x")}, {utility.B("x")}, {utility.pi("x")} {utility.curlyRight}.
+                    {utility.blankSpace}{utility.curlyRight} | {utility.lambda("x")} ). In other words, if we want to compute the likelihood of observing a specific sequence of observations given our {utility.lambda("x")}  = {utility.curlyLeft} {utility.A("x")}, {utility.B("x")}, {utility.pi("x")} {utility.curlyRight}.
                 </p>
             </Subsection>
 
-            <Subsection header = "Given information" maxHeight="1210px" hideDefault={true}>
+            <Subsection header = "Given information" hideDefault={true}>
                 <p>
                     In order to perform the forward algorithm, we first need to know what model we should
                     use to make the evaluation. The currently selected example is the weather example and
@@ -196,14 +199,14 @@ const ForwardAlgorithm = (props) => {
                 </div>
             </Subsection>
 
-            <Subsection header = "Information to find" maxHeight="190px" hideDefault={true}>
+            <Subsection header = "Information to find" hideDefault={true}>
                 The goal of this algorithm is to find out what the likelihood is of observing a certain observation sequence, also called
                 the emission sequence. That is, we want to calculate 𝑃( {utility.O(`0:${exampleObservationSequence.length - 1}`)} | {utility.lambda(exampleSubscript)} ) = 
                 <br/> 𝑃( <span className={classes.oInText}>O</span> | {utility.lambda(exampleSubscript)} ) = 𝑃( {observationsSequenceInText} | {utility.lambda(exampleSubscript)} ) = 
                 𝑃( {observationsSequenceInImages} | {utility.lambda(exampleSubscript)} ).
             </Subsection>
             
-            <Subsection header = "Mathematical derivation" maxHeight={"1525px"} hideDefault={true}>
+            <Subsection header = "Mathematical derivation"  hideDefault={true}>
                 <MathematicalDerivation 
                     exampleSubscript = {exampleSubscript}
                     weatherExampleSelected = {weatherExampleSelected}
@@ -214,7 +217,7 @@ const ForwardAlgorithm = (props) => {
                 />
             </Subsection>
 
-            <Subsection header = "The Forward Algorithm / α-pass" maxHeight="5660px" hideDefault={true}>
+            <Subsection header = "The Forward Algorithm / α-pass" hideDefault={true}>
                 <ExplanationOfTheFA 
                     weatherExampleSelected = {weatherExampleSelected}
                     exampleA = {exampleA}
@@ -235,7 +238,6 @@ const ForwardAlgorithm = (props) => {
         
             <Subsection 
                 header = "Pseudo code for the forward algorithm / α-pass" 
-                maxHeight="925px" 
                 hideDefault={true}
                 extraClass = {classes.pseudoCode}
             >
@@ -244,7 +246,6 @@ const ForwardAlgorithm = (props) => {
 
             <Subsection 
                 header = "Play around with examples" 
-                maxHeight="1510px" 
                 hideDefault={true}
                 extraClass = {null}
             >
