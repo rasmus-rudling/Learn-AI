@@ -1,6 +1,8 @@
 import React from 'react';
 import classes from './vector.module.scss';
 
+import * as utility from '../Utility/utility';
+
 const Vector = (props) => {
     let borderColor;
 
@@ -12,7 +14,7 @@ const Vector = (props) => {
 
     return (
         <div className={classes.Vector} >
-            <span style={{"marginRight":"10px"}}>{props.vectorName}</span> = 
+            {props.vectorName}{utility.blankSpace}= 
             <div className={classes.leftBracket} style={{"borderColor": borderColor, "marginLeft":"10px"}} />
             <ul>
                 {props.vector.map((element, index) => {

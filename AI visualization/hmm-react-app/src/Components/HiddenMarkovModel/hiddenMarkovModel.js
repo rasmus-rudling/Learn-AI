@@ -38,7 +38,8 @@ const HiddenMarkovModel = () => {
                 <Link to="/hmm/backwardAlgorithm">
                     <SectionCard 
                         backgroundImage={backwardAlgorithmBackgroundImg} 
-                        title="Backward Algorithm" 
+                        title="Backward Algorithm"
+                        inActive = {true}
                     />
                 </Link>
 
@@ -46,6 +47,7 @@ const HiddenMarkovModel = () => {
                     <SectionCard 
                         backgroundImage={viterbiAlgorithmBackgroundImg} 
                         title="Viterbi Algorithm" 
+                        inActive = {true}
                     />
                 </Link>
 
@@ -53,6 +55,7 @@ const HiddenMarkovModel = () => {
                     <SectionCard 
                         backgroundImage={baumWelchAlgorithmBackgroundImg} 
                         title="Baum-Welch Algorithm" 
+                        inActive = {true}
                     />
                 </Link>
 
@@ -60,6 +63,7 @@ const HiddenMarkovModel = () => {
                     <SectionCard 
                         backgroundImage={advancedTopicsBackgroundImg} 
                         title="Advanced Topics" 
+                        inActive = {true}
                     />
                 </Link>
             </div>

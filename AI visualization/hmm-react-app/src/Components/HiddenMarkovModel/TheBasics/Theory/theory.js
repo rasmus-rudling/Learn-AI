@@ -46,8 +46,8 @@ const Theory = () => {
                 </p>
 
                 <MathContent extraStyle={{"margin":"0px 0px 5px 0px"}}>
-                    {utility.a("i,j")}{utility.blankSpace}={utility.blankSpace}{utility.A_alone()}{utility.brackets(" i ", "black", "red")}
-                    {utility.brackets(" j ", "black", "red")}
+                    {utility.a("i,j")}{utility.blankSpace}={utility.blankSpace}{utility.A_alone()}{utility.brackets("i", "black", "red")}
+                    {utility.brackets("j", "black", "red")}
                     {utility.blankSpace}= 𝑃({utility.S("t")}{utility.blankSpace}= {utility.blankSpace} {utility.S_black("j")} {utility.blankSpace}|
                     {utility.blankSpace}{utility.S("t-1")} {utility.blankSpace}= {utility.blankSpace}{utility.S_black("i")})
                 </MathContent>
@@ -63,8 +63,8 @@ const Theory = () => {
                 </p>
 
                 <MathContent extraStyle={{"margin":"0px 0px 5px 0px"}}>
-                    {utility.b("j,k")}{utility.blankSpace}={utility.blankSpace}{utility.B_alone()}{utility.brackets(" j ", "black", "blue")}
-                    {utility.brackets(" k ", "black", "blue")}
+                    {utility.b("j,k")}{utility.blankSpace}={utility.blankSpace}{utility.B_alone()}{utility.brackets("j", "black", "blue")}
+                    {utility.brackets("k", "black", "blue")}
                     {utility.blankSpace}= 𝑃({utility.O("t")} {utility.blankSpace}= {utility.blankSpace} {utility.O_black("k")}{utility.blankSpace}|
                     {utility.blankSpace}{utility.S("t")} {utility.blankSpace} = {utility.blankSpace} {utility.S_black("j")})
                 </MathContent>
@@ -81,7 +81,7 @@ const Theory = () => {
                 When the red {utility.S("t")} is used, we imply the active state at time step t. Conversely,
                 when the black {utility.S_black("n")} is used, we imply a specific state without taking time steps into
                 account. E.g. if the set of possible states is {utility.curlyLeft} {utility.blankSpace}{utility.S_black(0)},{utility.blankSpace}
-                {utility.S_black(1)},{utility.S_black(2)} {utility.curlyRight}{utility.blankSpace} then {utility.S(5)} could be either {utility.S_black(0)},
+                {utility.S_black(1)}, {utility.S_black(2)} {utility.curlyRight}{utility.blankSpace} then {utility.S(5)} could be either {utility.S_black(0)},
                 {utility.blankSpace}{utility.S_black(1)} or {utility.S_black(2)}.
             </ExtraInfo>
 
@@ -161,7 +161,7 @@ const Theory = () => {
                         to one. Let's define the following two matrices:
 
                         <Matrix 
-                            matrixName={<span>x<sub>i,j</sub></span>} 
+                            matrixName={<mark className="black">x<sub>i,j</sub></mark>} 
                             matrix= {[
                                 [0.3, 0.35, 0.53],
                                 [0.43, 0.12, 0.31],
@@ -171,7 +171,7 @@ const Theory = () => {
                         />
 
                         <Matrix 
-                            matrixName={<span>y<sub>i,j</sub></span>} 
+                            matrixName={<mark className="black">y<sub>i,j</sub></mark>} 
                             matrix= {[
                                 [0.3, 0.3, 0.4],
                                 [0.25, 0.25, 0.50],
@@ -215,7 +215,7 @@ const Theory = () => {
         
             <Subsection 
                 header = "HMM Parameters" 
-                hideDefault={false}
+                hideDefault={true}
             >
                 <ul className={classes.listStyle}>
                     <GreenListItem title="Initial state distribution">
@@ -239,15 +239,15 @@ const Theory = () => {
                         also write the probabilities with the following notation:
                         
                         <MathContent extraStyle={{"margin":"0 0 0 0"}}>
-                            {utility.pi("0")} = 0.42
+                            {utility.pi("0")}{utility.blankSpace}= 0.42
                         </MathContent>
 
                         <MathContent extraStyle={{"margin":"0 0 0 0"}}>
-                            {utility.pi("1")} = 0.12
+                            {utility.pi("1")}{utility.blankSpace}= 0.12
                         </MathContent>
 
                         <MathContent extraStyle={{"margin":"0 0 0 0"}}>
-                            {utility.pi("2")} = 0.46
+                            {utility.pi("2")}{utility.blankSpace}= 0.46
                         </MathContent>
 
                         <ImportantInfo extraStyle={{"width":"100%"}}>
@@ -258,7 +258,7 @@ const Theory = () => {
                     <GreenListItem title="Transition matrix">
                         The transition matrix {utility.A_alone()}, or {utility.a("i,j")}, is used to store probabilities when
                         traveling between different states. E.g. if {utility.A_alone()}{utility.brackets("0", "black", "red")}{utility.brackets("2", "black", "red")}
-                        = 0.37, the probability of traveling
+                        {utility.blankSpace}= 0.37, the probability of traveling
                         from S<sub>0</sub> to S<sub>2</sub> between any given time steps is 0.37. As seen above we can express the
                         transition matrix as:
                         
@@ -304,6 +304,77 @@ const Theory = () => {
                             verticalImages={[utility.S_black(0), utility.S_black(1), utility.S_black(2)]}
                             weatherExampleSelected = {false}
                         />
+                    </GreenListItem>
+
+                    <GreenListItem title="Observation matrix">
+                        The observation matrix {utility.B_alone()}, or {utility.b("j,k")}, is used to store probabilities of
+                        making specific observations given that the hidden model is in a particular state. E.g. 
+                        if {utility.B_alone()}{utility.brackets("2", "black", "blue")}
+                        {utility.brackets("0", "black", "blue")} = 0.05, the probability of observing O<sub>0</sub> given that we are in state S<sub>2</sub> is 0.05.
+                        As seen above we can express the observation matrix as:
+
+                        <MathContent extraStyle={{"margin":"0px 0px 5px 0px"}}>
+                            {utility.b("j,k")}{utility.blankSpace}={utility.blankSpace}{utility.B_alone()}{utility.brackets("j", "black", "blue")}
+                            {utility.brackets("k", "black", "blue")}
+                            {utility.blankSpace}= 𝑃({utility.O("t")} {utility.blankSpace}= {utility.blankSpace} {utility.O_black("k")}{utility.blankSpace}|
+                            {utility.blankSpace}{utility.S("t")} {utility.blankSpace} = {utility.blankSpace} {utility.S_black("j")})
+                        </MathContent>
+                    
+                        This reads as <i>"the value positioned at the i<sup>th</sup> row and at the j<sup>th</sup> column in the
+                        transition matrix A is the probability that we are in state number j <b>given</b> that we
+                        were in state number i in the previous time step"</i>. 
+
+                        <ImportantInfo>
+                            The observation matrix {utility.B_alone()} is <i>not</i> necessarily a square matrix.
+                        </ImportantInfo>
+
+                        Let's look at an example:
+                        
+                        <Matrix 
+                            matrixName={utility.b("j,k")} 
+                            matrix= {[
+                                [0.13, 0.24, 0.16, 0.18, 0.29],
+                                [0.15 , 0.55 , 0.04 , 0.11 , 0.15],
+                                [0.05 , 0.14 , 0.43 , 0.22 , 0.16]
+                            ]}
+                            themeColor="blue"
+                        />
+
+                        By looking at the observation matrix we can see that the model consists of three
+                        different states and that we can make five types of observations. The following figure
+                        is a clarification of the same observation matrix:
+
+                        <VisualMatrix 
+                            matrixName={utility.B_alone()}
+                            matrix={[
+                                [0.13, 0.24, 0.16, 0.18, 0.29],
+                                [0.15 , 0.55 , 0.04 , 0.11 , 0.15],
+                                [0.05 , 0.14 , 0.43 , 0.22 , 0.16]
+                            ]}
+                            useImages = {false}
+                            horizontalImages={[utility.O_black(0), utility.O_black(1), utility.O_black(2), utility.O_black(3), utility.O_black(4)]}
+                            themeColor="blue"
+                            verticalImages={[utility.S_black(0), utility.S_black(1), utility.S_black(2)]}
+                            weatherExampleSelected = {false}
+                        />
+
+                        <ImportantInfo>
+                            The observation matrix {utility.B_alone()} is row-stochastic.
+                        </ImportantInfo>
+                    </GreenListItem>
+
+                    <GreenListItem title="Lambda">
+                        The combination of a specific initial state distribution vector, a specific
+                        transition matrix and a specific observation matrix is what together makes the Hidden
+                        Markov Model. Because we in different scenarios would like to distinguish different
+                        models, we can combine {utility.A("x")}, {utility.B("x")} and {utility.pi("x")} in a variabel {utility.lambda("x")}. 
+                        In this way, we can discuss
+                        models without confusing ourselves. We define lambda as the set {utility.lambda("x")} = {utility.curlyLeft} {utility.A("x")}, {utility.B("x")}, 
+                        {utility.blankSpace}{utility.pi("x")} {utility.curlyRight}.
+
+                        <ImportantInfo>
+                            The combination of the initial state distribution vector, the transition matrix and the observation matrix is what together makes the HMM.
+                        </ImportantInfo>
                     </GreenListItem>
                 </ul>
             </Subsection>

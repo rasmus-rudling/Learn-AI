@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import classes from './forwardAlgorithm.module.scss';
+import {Link} from "react-router-dom";
 
 import forwardAlgorithmBackgroundImage from '../../../Resources/Images/Backgrounds/bg2.png';
 
@@ -155,7 +156,11 @@ const ForwardAlgorithm = (props) => {
                     use to make the evaluation. The currently selected example is the weather example and
                     is what we will use to illustrate the algorithm (you can change example in the top-right
                     corner). The {utility.lambda(exampleSubscript)} for the weather example is presented below (if you haven't already
-                    checked out how we got that specific {utility.lambda(exampleSubscript)}, I strongly encourage you to do so <u>here</u>):
+                    checked out how we got that specific {utility.lambda(exampleSubscript)}, I strongly encourage you to do so{utility.blankSpace}
+                    <Link 
+                        to={weatherExampleSelected ? "/hmm/theBasics/weatherExample" : "/hmm/theBasics/runnerExample"}
+                        className="linkStyle"
+                    >here</Link>):
                 </p>
                 
                 <Vector vectorName={utility.pi("i")} vector={examplePi} themeColor="green" />

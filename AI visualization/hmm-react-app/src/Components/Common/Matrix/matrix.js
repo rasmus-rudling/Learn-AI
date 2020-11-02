@@ -23,7 +23,7 @@ const Matrix = (props) => {
 
     return (
         <div className={classes.Matrix} >
-            <span style={{"marginRight":"10px"}}>{props.matrixName}</span> = 
+            <span>{props.matrixName}</span> = 
             <div className={classes.leftBracket} 
                 style={{
                     "borderColor": borderColor, 

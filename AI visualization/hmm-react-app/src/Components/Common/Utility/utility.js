@@ -86,7 +86,7 @@ export const a_alone = () => <mark className="red">a</mark>;
 
 export const B = (x) => <mark className="blue">B<sub style={{"color":blueColor}}>{x}</sub></mark>;
 export const B_alone = () => <mark className="blue">B</mark>;
-export const b = (x) => <mark className="blue">b<sub style={{"color":"#E95252"}}>{x}</sub></mark>;
+export const b = (x) => <mark className="blue">b<sub style={{"color":blueColor}}>{x}</sub></mark>;
 export const b_alone = () => <mark className="blue">b</mark>;
 export const b_parenthesis = (sub, inside) => <mark className="blue">b<sub style={{"color":blueColor}}>{sub}</sub>({inside})</mark>;
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 import * as utility from '../../../Common/Utility/utility';
 
@@ -18,7 +19,7 @@ const MathematicalDerivation = (
     return (
         <>
             <p><i>
-                If you haven't already, check out the <u>Mathematical concepts</u> section to understand the
+                If you haven't already, check out the <Link to="/hmm/theBasics/mathematicalConcepts" className="linkStyle">Mathematical concepts</Link> section to understand the
                 basic mathematics. Also, remember that</i> {utility.S_alone()} = {utility.S("0:T-1")}.
             </p>
             
@@ -177,7 +178,8 @@ const MathematicalDerivation = (
 
             <p>
                 There are two algorithms that will return the desired likelihood: the <b>forward algorithm </b> 
-                    (also called <b>α-pass</b>) and the <u>backward algorithm</u> (also called <u>β-pass</u>). In this section we
+                (also called <b>α-pass</b>) and the <Link to="/hmm/backwardAlgorithm" className="linkStyle">backward algorithm</Link>
+                {utility.blankSpace}(also called <Link to="/hmm/backwardAlgorithm" className="linkStyle">β-pass</Link>). In this section we
                 will discuss the <b>forward algorithm</b>.
             </p>
 
