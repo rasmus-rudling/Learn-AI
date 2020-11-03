@@ -3,13 +3,18 @@ import React from 'react';
 import * as utility from '../../../Common/Utility/utility';
 import classes from './mathematicalConcepts.module.scss';
 import theBasicsBackgroundImage from '../../../../Resources/Images/Backgrounds/bg5.png';
+import vennDiagram1 from '../../../../Resources/Other/venn-diagram-1.svg';
+import vennDiagram2 from '../../../../Resources/Other/venn-diagram-2.svg';
 
 import BackButton from '../../../Common/BackButton/backButton';
 import Subsection from '../../../Common/Subsection/subsection';
 import HomeButton from '../../../Common/HomeButton/homeButton';
 import MathContent from '../../../Common/MathContent/mathContent';
 import ExtraInfo from '../../../Common/ExtraInfo/extraInfo';
-import SumChar from '../../../Common/SumChar/sumChar';
+import SumChar from '../../../Common/MathContent/SumChar/sumChar';
+import Division from '../../../Common/MathContent/Division/division';
+
+
 import GreenListItem from '../../../Common/GreenListItem/greenListItem';
 
 const MathematicalConcepts = () => {
@@ -103,7 +108,7 @@ const MathematicalConcepts = () => {
 
             <Subsection 
                 header = "Rule of Sum" 
-                hideDefault={false}
+                hideDefault={true}
             >
                 <ul style={{"margin":"0 0 0 5px"}}>
                     <GreenListItem title="Mutually exclusive events">
@@ -120,6 +125,87 @@ const MathematicalConcepts = () => {
                 <p style={{"margin":"10px 0 0 0"}}>
                     Let 𝑋 and 𝑌 be two mutually exclusive events, then:
                 </p>
+
+                <MathContent extraStyle={{"margin":"4px 0 5px 0px"}}>
+                    𝑃(𝑋 ⋃ 𝑌) = 𝑃(𝑋) + 𝑃(𝑌)
+                </MathContent>
+
+                <p>
+                    Let's illustrate this further with a Venn diagram where 𝑆<sub>1</sub> is the sample space:
+                </p>
+
+                <img src={vennDiagram1} style={{"height":"200px", "margin":"3px auto 5px auto", "display":"block"}} />
+
+                <p>
+                    The goal with the sum rule is to calculate the probability that some of the events 𝑋 and
+                    𝑌 happens. As we know, 𝑋 and 𝑌 are mutually exclusive, meaning they cannot occur at
+                    the same time. Therefore, the probability that some of the events happen is the sum of
+                    their individual probability. Hence, 𝑃(𝑋) + 𝑃(𝑌).
+                </p>
+
+                <p style={{"marginTop":"10px"}}>
+                    Now let's say that we have two other events, 𝐴 and 𝐵, which are not mutually exclusive.
+                    That is, they can occur at the same time. Then the total probability of some of the
+                    events 𝐴 and 𝐵 to occur is:
+                </p>
+
+                <MathContent extraStyle={{"margin":"4px 0 5px 0px"}}>
+                    𝑃(𝐴 ⋃ 𝐵) = 𝑃(𝐴) + 𝑃(𝐵){utility.blankSpace}<mark className="blue">− 𝑃(𝐴 ⋂ 𝐵)</mark> 
+                </MathContent>
+
+                Why{utility.blankSpace}<mark className="blue">− 𝑃(𝐴 ⋂ 𝐵)</mark>? Let's have a look at the following Venn diagram:
+
+                <img src={vennDiagram2} style={{"height":"200px", "margin":"3px auto 5px auto", "display":"block"}} />
+
+                As we can see in the dark are in the middle, we have accounted for the overlapping
+                section two times. That is, we have counted the scenarios when both A and B
+                happens two times. And since we are only interested in the probability that some of
+                the events happen, we have to subtract for one of those times. Hence,{utility.blankSpace}<mark className="blue">− 𝑃(𝐴 ⋂ 𝐵)</mark>.
+            </Subsection>
+
+            <Subsection 
+                header="Conditional Probability"
+                hideDefault = {true}
+            >
+                <p>
+                    A conditional probability is a probability that a certain event will occur given information
+                    about the outcome of some other event. Let 𝑋 and 𝑌 be two events, then:
+                </p>
+
+                <MathContent extraStyle={{"margin":"4px 0 5px 0px", "alignItems":"center"}}>
+                    <mark className="green">𝑃(𝑋 | 𝑌)</mark>{utility.blankSpace}={utility.blankSpace}
+                    <Division 
+                        numerator = {<mark className="blue">𝑃(𝑋 ⋂ 𝑌)</mark>}
+                        denominator = {<mark className="red">𝑃(𝑌)</mark>}
+                    />
+                </MathContent>
+                
+                <p>
+                    That is, the <mark className="green">probability that event X occurs given that event Y occurred</mark> is equivalent to
+                    {utility.blankSpace}the <mark className="blue">probability that both X and Y happens at the same time</mark> divided by the <mark className="red">probability
+                    that Y happens</mark>.
+                </p>
+            </Subsection>
+
+            <Subsection
+                header="Rule of Product"
+                hideDefault={false}
+            >
+                <ul>
+                    <GreenListItem title="Independent events">
+                        In the context of probability, we call two events <i>independent</i> if the
+                        occurrence of one of the events doesn't affect the probability of the other event
+                        occurring. E.g. if we roll a six-sided dice twice. Let E<sub>1</sub> = {utility.curlyLeft} <i>a four is obtained on the first
+                        roll</i> {utility.curlyRight} be the first event and E<sub>2</sub> = {utility.curlyLeft} <i>a six is obtained on the second roll</i>
+                        {utility.curlyRight} the second. Then,
+                        if we would successfully roll a four at the first throw, the probability of rolling a six on
+                        the second throw wouldn't be affected. In a more mathematical context we can write
+                        the following: 𝑃( E<sub>2</sub> | E<sub>1</sub> ) = P( E<sub>2</sub> ). That is, the probability that we roll a six on the second
+                        throw given that we rolled a four on the first row is equivalent with the probability that
+                        we roll a six given no additional information.
+                    </GreenListItem>
+                </ul>
+
             </Subsection>
         </div>
     )

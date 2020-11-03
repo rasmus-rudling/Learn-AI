@@ -50,34 +50,34 @@ sup, sub {
     line-height: 0;
 }
 
+
+mark {
+    display: inline;
+    background: none;
+}
+
 mark.red {
     color:$redColor;
-    background: none;
 }
 
 mark.green {
     color:$greenColor;
-    background: none;
 }
 
 mark.blue {
     color:$blueColor;
-    background: none;
 }
 
 mark.black {
     color:$blackColor;
-    background: none;
 }
 
 mark.pink {
     color: $pinkColor;
-    background: none;
 }
 
 mark.orange {
     color: $orangeColor;
-    background: none;
 }
 
 .linkStyle {

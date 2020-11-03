@@ -1,0 +1,17 @@
+<svg id="Component_113_1" data-name="Component 113 – 1" xmlns="http://www.w3.org/2000/svg" width="650" height="304" viewBox="0 0 650 304">
+  <g id="Path_31" data-name="Path 31" transform="translate(0 4)" fill="#f0f0f0">
+    <path d="M 648.5 298.5 L 1.5 298.5 L 1.5 1.5 L 648.5 1.5 L 648.5 298.5 Z" stroke="none"/>
+    <path d="M 3 3 L 3 297 L 647 297 L 647 3 L 3 3 M 0 0 L 650 0 L 650 300 L 0 300 L 0 0 Z" stroke="none" fill="#2d2d2d"/>
+  </g>
+  <text id="_1" data-name="𝑆1" transform="translate(11 38)" fill="#2d2d2d" font-size="35" font-family="SegoeUISymbol, Segoe UI Symbol"><tspan x="0" y="0">𝑆</tspan><tspan y="0" font-size="20.416" font-family="Roboto-Regular, Roboto" baseline-shift="-11.66550036619524">1</tspan></text>
+  <g id="Ellipse_77" data-name="Ellipse 77" transform="translate(111 67)" fill="#6ec668" stroke="#2d2d2d" stroke-width="2">
+    <circle cx="87.5" cy="87.5" r="87.5" stroke="none"/>
+    <circle cx="87.5" cy="87.5" r="86.5" fill="none"/>
+  </g>
+  <g id="Ellipse_78" data-name="Ellipse 78" transform="translate(365 67)" fill="#6ec668" stroke="#2d2d2d" stroke-width="2">
+    <circle cx="87.5" cy="87.5" r="87.5" stroke="none"/>
+    <circle cx="87.5" cy="87.5" r="86.5" fill="none"/>
+  </g>
+  <text id="_" data-name="𝑌" transform="translate(453 166)" fill="#2d2d2d" font-size="35" font-family="SegoeUISymbol, Segoe UI Symbol"><tspan x="-10.544" y="0">𝑌</tspan></text>
+  <text id="_2" data-name="𝑋" transform="translate(199 166)" fill="#2d2d2d" font-size="35" font-family="SegoeUISymbol, Segoe UI Symbol"><tspan x="-11.288" y="0">𝑋</tspan></text>
+</svg>
