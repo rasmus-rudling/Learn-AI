@@ -21,7 +21,7 @@ import VisualMatrix from '../../../Common/VisualMatrix/visualMatrix';
 const Theory = () => {
     return (
         <div className={classes.Theory}>
-            <img src = {theBasicsBackgroundImage} className={classes.backgroundImage} alt="" />
+            <img src = {theBasicsBackgroundImage} className="backgroundImage" alt="" />
             <HomeButton extraClass={classes.homeButton}/>
 
             <h1>Theory</h1>
@@ -35,7 +35,6 @@ const Theory = () => {
 
             <Subsection 
                 header = "Intuitive meaning" 
-                maxHeight="500px" 
                 hideDefault={false}
             >
                 <p>
@@ -89,7 +88,7 @@ const Theory = () => {
                 header = "Definitions" 
                 hideDefault={true}
             >
-                <ul className={classes.listStyle}>
+                <ul className="greenList">
                     <GreenListItem title="Background info">
                         The abbreviation <b>HMM</b> stands for <b>H</b>idden <b>M</b>arkov <b>M</b>odel. The word 
                         hidden is used because the states are hidden. We make observations that will help us
@@ -217,7 +216,7 @@ const Theory = () => {
                 header = "HMM Parameters" 
                 hideDefault={true}
             >
-                <ul className={classes.listStyle}>
+                <ul className="greenList">
                     <GreenListItem title="Initial state distribution">
                         The initial state distribution, which is sometimes called
                         initial state probabilities, is a vector containing probabilities of being in a certain state
