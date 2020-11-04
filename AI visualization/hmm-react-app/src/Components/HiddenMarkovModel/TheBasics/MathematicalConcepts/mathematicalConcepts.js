@@ -28,7 +28,7 @@ const MathematicalConcepts = () => {
 
             <Subsection 
                 header = "Denotations" 
-                hideDefault={true}
+                hideDefault={false}
             >
                 <ul className="greenList">
                     <GreenListItem title="Not (¬)">
@@ -189,9 +189,9 @@ const MathematicalConcepts = () => {
 
             <Subsection
                 header="Rule of Product"
-                hideDefault={false}
+                hideDefault={true}
             >
-                <ul>
+                <ul style={{"margin":"0 0 0 5px"}}>
                     <GreenListItem title="Independent events">
                         In the context of probability, we call two events <i>independent</i> if the
                         occurrence of one of the events doesn't affect the probability of the other event
@@ -204,9 +204,78 @@ const MathematicalConcepts = () => {
                         throw given that we rolled a four on the first row is equivalent with the probability that
                         we roll a six given no additional information.
                     </GreenListItem>
+
+                    <GreenListItem title="Dependent events">
+                        Conversely from the previous section, if the occurrence of one event
+                        does affect the probability of the other event taking place, then we call the events
+                        <i>dependent</i>. Let's look at an example of two such events. Let E<sub>3</sub> = {utility.curlyLeft} <i>the sun is shining</i> {utility.curlyRight}
+                        be the first event and E<sub>4</sub> = {utility.curlyLeft} <i>Kim wears sunglasses</i> {utility.curlyRight} be the second. If event E<sub>3</sub> occurs,
+                        we can reason that Kim probably will wear sunglasses. Therefore, the events E<sub>3</sub> and E<sub>4</sub>
+                        are dependent. If the two events are dependent, then 𝑃( E<sub>4</sub> | E<sub>3</sub> ) ≠ P( E<sub>4</sub> ), because the
+                        probability of E<sub>4</sub> occurring given that E<sub>3</sub> occurred is higher then if observed E<sub>4</sub> with no
+                        additional information.
+                    </GreenListItem>
                 </ul>
 
+                <p style={{"marginTop":"10px"}}>
+                    Let 𝑋 and 𝑌 be two <b>independent events</b>, then:
+                </p>
+                
+                <MathContent extraStyle={{"margin":"4px 0 5px 0px"}}>
+                    𝑃(𝑋 ⋂ 𝑌) = 𝑃(𝑋) × 𝑃(𝑌)
+                </MathContent>
+
+                <p>
+                    That is, we find the probability that both event 𝑋 and event 𝑌 occur at the same time by
+                    multiplying the individual probabilities 𝑃(𝑋) and 𝑃(𝑌). Let's again look at the two
+                    independent events E<sub>1</sub> = {utility.curlyLeft} <i>a four is obtained on the first roll</i> {utility.curlyRight} and E<sub>2</sub> = 
+                    {utility.curlyLeft} <i>a six is obtained
+                    on the second roll</i> {utility.curlyRight}. We know that 𝑃(E<sub>1</sub>) = 1/6 and that 𝑃(E<sub>2</sub>) = 1/6. Therefore, the
+                    probability that both E<sub>1</sub> and E<sub>2</sub> occurs is 𝑃(E<sub>1</sub> ⋂ E2) = 𝑃(E<sub>1</sub>) × 𝑃(E<sub>2</sub>) = 1/6 × 1/6 = 1/36.
+                </p>
+
+                <p style={{"marginTop":"10px"}}>
+                    Let 𝐴 and 𝐵 be two <b>dependent</b> events, then:
+                </p>
+                
+                <MathContent extraStyle={{"margin":"4px 0 5px 0px"}}>
+                    𝑃(𝐴 ⋂ 𝐵) = 𝑃(𝐴) × 𝑃(𝐵 | 𝐴) = 𝑃(𝐵) × 𝑃(𝐴 | 𝐵) 
+                </MathContent>
+
+                <p>
+                    To better understand why the intersection of 𝐴 and 𝐵 is equal to the expression above,
+                    check out the conditional probability section. The expression above is a direct derivation
+                    from conditional probability.
+                </p>
             </Subsection>
+
+            <Subsection
+                header="Bayes' rule"
+                hideDefault={true}
+            >
+                If we think about the example given above, where we have the two events E<sub>3</sub> = {utility.curlyLeft} <i>the sun
+                is shining</i> {utility.curlyRight} and E<sub>4</sub> = {utility.curlyLeft} <i>Kim wears sunglasses</i> {utility.curlyRight}. Then we said that if the sun is shining,
+                then Kim probably wear sunglasses. In other words P( E<sub>4</sub> | E<sub>3</sub> ) ≥ P( E<sub>4</sub> | ¬E<sub>3</sub> ). But what if
+                we are interested in the probability that the sun is shining? And would information about
+                Kim wearing sunglasses affect that probability? The answer is yes and we can find out
+                the answer using <b>Bayes' rule</b>:
+
+                <MathContent extraStyle={{"margin":"4px 0 5px 0px", "alignItems":"center"}}>
+                    𝑃(𝑋 | 𝑌) ={utility.blankSpace}
+                    <Division 
+                        numerator = "𝑃(𝑌 | 𝑋)"
+                        denominator = "𝑃(𝑌)"
+                    />
+                    {utility.blankSpace}× 𝑃(𝑋)
+                </MathContent>
+
+                <p>
+                    As we can see with Bayes' rule, dependent probabilities affects each other in both directions. 
+                </p>
+
+            </Subsection>
+
+            
         </div>
     )
 }

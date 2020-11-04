@@ -44,7 +44,6 @@ const TheBasics = () => {
                     <SectionCard 
                         backgroundImage={theBasicsBackgroundImg} 
                         title="Mathematical Concepts"
-                        inActive = {true}
                     />
                 </Link>
             </div>

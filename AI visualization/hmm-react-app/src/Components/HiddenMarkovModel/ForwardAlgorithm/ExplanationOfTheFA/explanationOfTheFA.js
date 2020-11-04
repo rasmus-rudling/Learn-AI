@@ -3,7 +3,7 @@ import React from 'react';
 import * as utility from '../../../Common/Utility/utility';
 
 import MathContent from '../../../Common/MathContent/mathContent';
-import SumChar from '../../../Common/SumChar/sumChar';
+import SumChar from '../../../Common/MathContent/SumChar/sumChar';
 import ExampleExplanation from '../../../Common/ExampleExplanation/exampleExplanation';
 import Vector from '../../../Common/Vector/vector';
 import ExampleAlphaOne from '../ExampleAlphaOne/exampleAlphaOne';
