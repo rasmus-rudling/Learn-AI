@@ -142,7 +142,7 @@ const ForwardAlgorithm = (props) => {
                 handleChangeActiveExample={handleChangeActiveExample} 
             />
 
-            <Subsection header = "About the Forward Algorithm" hideDefault={false}>
+            <Subsection header = "About the Forward Algorithm" hideDefault={true}>
                 <p>
                     The algoritm is used to solve problems in the category <b>evaluation/filtering</b>. That is, if we want to compute the
                     likelihood 𝑃( {utility.O("0:T-1")} | {utility.lambda("x")} ) = 𝑃( {utility.O("x")} | {utility.lambda("x")} ) = 𝑃( {utility.curlyLeft} {utility.O("0")}, {utility.O("1")}, ..., {utility.O("T-1")}
@@ -251,7 +251,7 @@ const ForwardAlgorithm = (props) => {
 
             <Subsection 
                 header = "Play around with examples" 
-                hideDefault={true}
+                hideDefault={false}
                 extraClass = {null}
             >
                 <PlayAroundWithExamples />
