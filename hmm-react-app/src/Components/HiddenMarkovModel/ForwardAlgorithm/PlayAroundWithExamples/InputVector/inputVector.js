@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './inputVector.module.scss';
 
-import * as utility from '../../../../Common/Utility/utility';
+import * as utility from '../../../../Common/utility';
 
 const InputVector = (props) => {
     let borderColor, _vectorName, fontSize, marginToUse;

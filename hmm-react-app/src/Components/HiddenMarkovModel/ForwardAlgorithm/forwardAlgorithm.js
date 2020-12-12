@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 
 import forwardAlgorithmBackgroundImage from '../../../Resources/Images/Backgrounds/bg2.png';
 
-import * as utility from '../../Common/Utility/utility';
+import * as utility from '../../Common/utility';
 
 // --- COMPONENTS ---
 import Subsection from '../../Common/Subsection/subsection';

@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './vector.module.scss';
 
-import * as utility from '../Utility/utility';
+import * as utility from '../../Common/utility';
 
 const Vector = (props) => {
     let borderColor;

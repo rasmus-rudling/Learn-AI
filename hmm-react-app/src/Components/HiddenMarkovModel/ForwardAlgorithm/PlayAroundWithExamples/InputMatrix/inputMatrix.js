@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './inputMatrix.module.scss';
 
-import * as utility from '../../../../Common/Utility/utility';
+import * as utility from '../../../../Common/utility';
 
 const InputMatrix = (props) => {
     let borderColor;

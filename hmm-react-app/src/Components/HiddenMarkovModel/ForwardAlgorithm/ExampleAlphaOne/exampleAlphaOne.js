@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './exampleAlphaOne.module.scss';
-import * as utility from '../../../Common/Utility/utility';
+import * as utility from '../../../Common/utility';
 
 
 import MathContent from '../../../Common/MathContent/mathContent';

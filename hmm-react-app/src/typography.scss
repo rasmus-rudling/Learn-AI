@@ -4,6 +4,8 @@ $blueColor: #43AFCA;
 $blackColor: #2d2d2d;
 $pinkColor: #E967E0;
 $orangeColor: #FFA500;
+$darkOrangeColor: #e09200;
+$yellowColor: #f0c900;
 
 * {
     font-family: 'Roboto', sans-serif;
@@ -80,9 +82,17 @@ mark.orange {
     color: $orangeColor;
 }
 
+mark.yellow {
+    color: $yellowColor;
+}
+
 .linkStyle {
     text-decoration: underline;
     color: $orangeColor;
+}
+
+.linkStyle:hover {
+    color: $darkOrangeColor;
 }
 
 img.backgroundImage {

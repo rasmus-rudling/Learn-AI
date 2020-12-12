@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import classes from './playAroundWithExamples.module.scss';
 
-import * as utility from '../../../Common/Utility/utility';
+import * as utility from '../../../Common/utility';
 
 import thumb from '../../../../Resources/Icons/thumb.svg';
 

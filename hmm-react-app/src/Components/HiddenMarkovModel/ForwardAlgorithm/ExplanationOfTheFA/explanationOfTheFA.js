@@ -1,6 +1,6 @@
 import React from 'react';
 
-import * as utility from '../../../Common/Utility/utility';
+import * as utility from '../../../Common/utility';
 
 import MathContent from '../../../Common/MathContent/mathContent';
 import SumChar from '../../../Common/MathContent/SumChar/sumChar';

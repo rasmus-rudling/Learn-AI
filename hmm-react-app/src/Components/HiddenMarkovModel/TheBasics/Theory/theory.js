@@ -3,7 +3,7 @@ import React from 'react';
 import BackButton from '../../../Common/BackButton/backButton';
 import classes from './theory.module.scss';
 
-import * as utility from '../../../Common/Utility/utility';
+import * as utility from '../../../Common/utility';
 
 import theBasicsBackgroundImage from '../../../../Resources/Images/Backgrounds/bg5.png';
 import hmmIllustration from '../../../../Resources/Other/hmm-illustration.svg';

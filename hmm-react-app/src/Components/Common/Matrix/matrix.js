@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './matrix.module.scss';
+import * as utility from '../../Common/utility';
 
 const Matrix = (props) => {
     let borderColor;
@@ -23,11 +24,11 @@ const Matrix = (props) => {
 
     return (
         <div className={classes.Matrix} >
-            <span>{props.matrixName}</span> = 
+            <span>{props.matrixName}</span>{utility.blankSpace}= 
             <div className={classes.leftBracket} 
                 style={{
                     "borderColor": borderColor, 
-                    "marginLeft":"10px",
+                    "marginLeft":"12px",
                     "marginRight":"-8px",
                     "height":heightOfBrackets
                 }} 

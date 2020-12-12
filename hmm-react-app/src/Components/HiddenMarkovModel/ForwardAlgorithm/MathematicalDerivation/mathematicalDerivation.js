@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
-import * as utility from '../../../Common/Utility/utility';
+import * as utility from '../../../Common/utility';
 
 import MathContent from '../../../Common/MathContent/mathContent';
 import SumChar from '../../../Common/MathContent/SumChar/sumChar';

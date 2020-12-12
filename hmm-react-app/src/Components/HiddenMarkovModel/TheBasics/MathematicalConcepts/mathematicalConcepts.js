@@ -1,6 +1,6 @@
 import React from 'react';
 
-import * as utility from '../../../Common/Utility/utility';
+import * as utility from '../../../Common/utility';
 import classes from './mathematicalConcepts.module.scss';
 import theBasicsBackgroundImage from '../../../../Resources/Images/Backgrounds/bg5.png';
 import vennDiagram1 from '../../../../Resources/Other/venn-diagram-1.svg';
@@ -13,8 +13,6 @@ import MathContent from '../../../Common/MathContent/mathContent';
 import ExtraInfo from '../../../Common/ExtraInfo/extraInfo';
 import SumChar from '../../../Common/MathContent/SumChar/sumChar';
 import Division from '../../../Common/MathContent/Division/division';
-
-
 import GreenListItem from '../../../Common/GreenListItem/greenListItem';
 
 const MathematicalConcepts = () => {

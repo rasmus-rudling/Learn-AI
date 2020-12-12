@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './FAPseudoCode.module.scss';
 
-import * as utility from '../../../Common/Utility/utility';
+import * as utility from '../../../Common/utility';
 
 const FAPseudoCode = (props) => {
     return (
