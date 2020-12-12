@@ -21,17 +21,17 @@ import FAPseudoCode from './FAPseudoCode/FAPseudoCode';
 import PlayAroundWithExamples from './PlayAroundWithExamples/playAroundWithExamples';
 
 const ForwardAlgorithm = (props) => {
-    const [weatherExampleSelected, setWeatherExampleSelected] = useState(true);
+    const [weatherExampleSelected, setWeatherExampleSelected] = useState(false);
 
-    const [exampleSubscript, setExampleSubscript] = useState("W");
-    const [examplePi, setExamplePi] = useState(utility.weatherPiVector);
-    const [exampleA, setExampleA] = useState(utility.weatherAMatrix);
-    const [exampleB, setExampleB] = useState(utility.weatherBMatrix);
-    const [exampleAlphaVector, setExampleAlphaVector] = useState(utility.weatherAlphaVector)
-    const [exampleStatesImages, setExampleStatesImages] = useState(utility.weatherStatesImages);
-    const [exampleObservationsImages, setExampleObservationsImages] = useState(utility.weatherObservationsImages);
-    const [exampleObservationSequence, setExampleObservationSequence] = useState(utility.weatherObservationSequence);
-    const [exampleAlphaSums, setExampleAlphaSums] = useState(utility.weatherAlphaSums);
+    const [exampleSubscript, setExampleSubscript] = useState("R");
+    const [examplePi, setExamplePi] = useState(utility.runnerPiVector);
+    const [exampleA, setExampleA] = useState(utility.runnerAMatrix);
+    const [exampleB, setExampleB] = useState(utility.runnerBMatrix);
+    const [exampleAlphaVector, setExampleAlphaVector] = useState(utility.runnerAlphaVector)
+    const [exampleStatesImages, setExampleStatesImages] = useState(utility.runnerStatesImages);
+    const [exampleObservationsImages, setExampleObservationsImages] = useState(utility.runnerObservationsImages);
+    const [exampleObservationSequence, setExampleObservationSequence] = useState(utility.runnerObservationSequence);
+    const [exampleAlphaSums, setExampleAlphaSums] = useState(utility.runnerAlphaSums);
     const [observationsSequenceInText, setObservationsSequenceInText] = useState(null);
     const [observationsSequenceInImages, setObservationsSequenceInImages] = useState(null);
     const [statesImagesInText, setStatesImagesInText] = useState(null);
@@ -124,8 +124,8 @@ const ForwardAlgorithm = (props) => {
     }
 
     useEffect(() => {
-        setVectorsForExamples(false);
-        changeObservationSequenceInText(false);
+        setVectorsForExamples(true);
+        changeObservationSequenceInText(true);
     }, []);
     
     return (
