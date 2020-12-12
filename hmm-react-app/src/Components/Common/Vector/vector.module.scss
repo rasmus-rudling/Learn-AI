@@ -1,0 +1,40 @@
+$lineThickness: 2px;
+$black: #2d2d2d;
+$bracketHeight: 30px;
+$bracketWidth: 7px;
+
+
+.Vector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+
+.leftBracket {
+    border-top: $lineThickness solid $black;
+    border-left: $lineThickness solid $black;
+    border-bottom: $lineThickness solid $black;
+    height: $bracketHeight;
+    width: $bracketWidth;
+    float: left;
+    // margin-right: 20px;
+}
+
+.rightBracket {
+    border-top: $lineThickness solid $black;
+    border-right: $lineThickness solid $black;
+    border-bottom: $lineThickness solid $black;
+    height: $bracketHeight;
+    width: $bracketWidth;
+    float: left;
+}
+
+
+.vectorElement {
+    display: inline;
+    float: left;
+    padding: 0 5px;
+}

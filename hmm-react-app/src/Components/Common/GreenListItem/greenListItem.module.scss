@@ -1,0 +1,16 @@
+.listItemStyle::marker {
+    color: #6EC668;
+    display: list-item;
+    font-size: 1.3em;
+    left: 10px;
+}
+
+.listItemStyle span {
+    position: relative;
+    left: -5px;
+    top: -1px;
+}
+
+.listItemStyle:not(:first-child) {
+    margin-top: 10px;
+}

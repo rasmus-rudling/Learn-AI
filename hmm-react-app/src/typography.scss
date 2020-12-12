@@ -1,0 +1,101 @@
+$redColor: #E95252;
+$greenColor: #6EC668;
+$blueColor: #43AFCA;
+$blackColor: #2d2d2d;
+$pinkColor: #E967E0;
+$orangeColor: #FFA500;
+
+* {
+    font-family: 'Roboto', sans-serif;
+    color: $blackColor;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #f0f0f0;
+}
+
+p, div {
+    line-height: 1.75rem;
+    color: $blackColor;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: 300;
+    text-align: center;
+    color: #fff;
+}
+
+h1 {
+    padding: 30px 0 20px 0;
+}
+
+h4 {
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+h1 {
+    color: $blackColor;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+sup, sub {
+    line-height: 0;
+}
+
+
+mark {
+    display: inline;
+    background: none;
+}
+
+mark.red {
+    color:$redColor;
+}
+
+mark.green {
+    color:$greenColor;
+}
+
+mark.blue {
+    color:$blueColor;
+}
+
+mark.black {
+    color:$blackColor;
+}
+
+mark.pink {
+    color: $pinkColor;
+}
+
+mark.orange {
+    color: $orangeColor;
+}
+
+.linkStyle {
+    text-decoration: underline;
+    color: $orangeColor;
+}
+
+img.backgroundImage {
+    height: 100px;
+    width: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 5;
+    user-select: none;
+}
+
+ul.greenList {
+    display: inline-block;
+    list-style: disc;
+    margin-left: 10px;
+}

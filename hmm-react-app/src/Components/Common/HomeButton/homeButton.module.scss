@@ -1,0 +1,22 @@
+.HomeButton {
+    height: 110px;
+    width: 110px;
+    background-color: #fff;
+    border: 3px solid  #43AFCA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: .3s;
+    user-select: none;
+}
+
+.HomeButton img {
+    height: 75%;
+}
+
+.HomeButton:hover {
+    background-color: #f8f8f8;
+    transform: scale(1.03);
+    cursor: pointer;
+}

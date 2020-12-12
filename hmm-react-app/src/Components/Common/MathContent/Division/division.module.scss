@@ -1,0 +1,22 @@
+.Division {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.numerator {
+
+}
+
+.horizontalLine {
+    height: 0px;
+    width: auto;
+    margin: -3px 0;
+    border-top: .5px solid #2d2d2d;
+    border-bottom: .5px solid #2d2d2d;
+}
+
+.denominator {
+
+}

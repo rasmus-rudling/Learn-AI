@@ -1,0 +1,122 @@
+$white: #fff;
+$borderRadius: 10px;
+$lightBlue: #43AFCA;
+$darkBlue: #287689;
+$darkBlueHover: #123741;
+
+.Subsection {
+    width: 100%;
+    margin: 0 auto 50px auto;
+    border-radius: 0;
+    background-color: $white;
+}
+
+.headerContainer {
+    display: grid;
+    grid-template-columns: 100% 0%;
+    grid-template-rows: 50px;
+}
+
+
+.applyRadiusBottomRight {
+    border-bottom-right-radius: 0;
+}
+
+.applyRadiusBottomLeft {
+    border-bottom-left-radius: 0;
+}
+
+.headerPart {
+    background-color: $lightBlue;
+    color: $white;
+    padding: 10px 0;
+    border-top-left-radius: 0;
+    transition: .2s;
+}
+
+.showHideContentToggler {
+    display: none;
+}
+
+.showHideContentToggler img {
+    width: 30px;
+    transform: rotate(180deg);
+    transition: .7s;
+    user-select: none;
+}
+
+.rotateArrow {
+    transition: .7s;
+    transform: rotate(0deg) !important;
+}
+
+.showHideContentToggler:hover {
+    background-color: $darkBlueHover;
+    cursor: pointer;
+}
+
+.contentPart {
+    padding-left: 30px;
+    padding-right: 30px;
+    overflow-y: hidden;
+    transition-duration: .7s;
+}
+
+
+@media (min-width: 850px) {
+    .Subsection {
+        width: 750px;
+        background-color: rgba(255, 255, 255, 0);
+        margin: 0 auto 50px auto;
+        border-radius: $borderRadius;
+    }
+
+    .headerContainer {
+        display: grid;
+        grid-template-columns: 700px 50px;
+        grid-template-rows: 50px;
+        background-color: rgba(255, 255, 255, 0);
+    }
+
+    .contentPart {
+        padding-left: 30px;
+        padding-right: 30px;
+        overflow-y: hidden;
+        transition-duration: .7s;
+        opacity: 0.0;
+    }
+
+    .headerPart {
+        border-top-left-radius: $borderRadius;
+    }
+
+    .showHideContentToggler {
+        border-top-right-radius: $borderRadius;
+    }
+
+    .applyRadiusBottomRight {
+        border-bottom-right-radius: $borderRadius;
+    }
+    
+    .applyRadiusBottomLeft {
+        border-bottom-left-radius: $borderRadius;
+    }
+
+    .showHideContentToggler {
+        background-color: $darkBlue;
+        box-sizing: border-box;
+        border-top-right-radius: $borderRadius;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        transition: .2s;
+    }
+
+    .exampleModeHover {
+        background-color: #4E8F4A;
+    }
+    
+    .exampleModeHover:hover {
+        background-color: #214b1f;
+    }
+}

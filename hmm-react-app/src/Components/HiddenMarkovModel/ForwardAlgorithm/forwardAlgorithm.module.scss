@@ -1,0 +1,81 @@
+.ForwardAlgorithm {
+    padding-bottom: 50px;
+}
+
+.backgroundImage {
+    height: 100px;
+    width: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 5;
+    user-select: none;
+}
+
+.homeButton {
+    margin: -70px auto 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+.observationImageInText {
+    margin-right: 5px;
+    display: inline;
+    justify-content: center;
+} 
+
+.observationImageInText img {
+    height: 14px;
+    position: relative;
+    top: 1.5px;
+}
+
+
+.oInText {
+    color: #43AFCA !important;
+    font-weight: 900;   
+}
+
+.extraLineHeight {
+    margin-top: 10px;
+}
+
+.noUpperCase {
+    text-transform: inherit !important;
+}
+
+$lineThickness: 2px;
+$black: #2d2d2d;
+$bracketHeight: 30px;
+$bracketWidth: 7px;
+
+.leftBracket {
+    border-top: $lineThickness solid $black;
+    border-left: $lineThickness solid $black;
+    border-bottom: $lineThickness solid $black;
+    height: $bracketHeight;
+    width: $bracketWidth;
+    float: left;
+}
+
+.rightBracket {
+    border-top: $lineThickness solid $black;
+    border-right: $lineThickness solid $black;
+    border-bottom: $lineThickness solid $black;
+    height: $bracketHeight;
+    width: $bracketWidth;
+    float: left;
+}
+
+.pseudoCode {
+    background-color: #287689 !important;
+}
+
+.pseudoCode p, .pseudoCode span, .pseudoCode div {
+    font-size: 1.2rem;
+    color: #fff;
+    font-weight: 400;
+}
+
+.pseudoCode h2 {
+    font-size: 1.5rem;
+}
