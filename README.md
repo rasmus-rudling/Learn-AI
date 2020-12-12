@@ -1,5 +1,6 @@
 # Learn AI
+A web based project created to ease the learning of basic AI concepts.
 
-## Ladda upp kod på Firebase
-1. Kör `npm run build`
-2. Kör `firebase deploy`
+## Upload code to Firebase
+1. Run `npm run build`
+2. Run `firebase deploy`
