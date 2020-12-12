@@ -28,7 +28,7 @@ const TheBasics = () => {
                     <SectionCard 
                         backgroundImage={theBasicsBackgroundImg} 
                         title="Runner Example"
-                        inActive = {true}
+                        inActive = {false}
                     />
                 </Link>
 
