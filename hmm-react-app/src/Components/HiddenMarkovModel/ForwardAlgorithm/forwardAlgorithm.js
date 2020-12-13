@@ -152,9 +152,11 @@ const ForwardAlgorithm = (props) => {
             <Subsection header = "Given information" hideDefault={true}>
                 <p>
                     In order to perform the forward algorithm, we first need to know what model we should
-                    use to make the evaluation. The currently selected example is the weather example and
+                    use to make the evaluation. The currently selected example is the {weatherExampleSelected ? "weather" : "runner"} 
+                    {utility.blankSpace}example and
                     is what we will use to illustrate the algorithm (you can change example in the top-right
-                    corner). The {utility.lambda(exampleSubscript)} for the weather example is presented below (if you haven't already
+                    corner). The {utility.lambda(exampleSubscript)} (where <mark className="pink">{exampleSubscript}</mark> stands for {weatherExampleSelected ? <><mark className="pink">W</mark>eather</> : <><mark className="pink">R</mark>unner</>}) 
+                    for the weather example is presented below (if you haven't already
                     checked out how we got that specific {utility.lambda(exampleSubscript)}, I strongly encourage you to do so{utility.blankSpace}
                     <Link 
                         to="/hmm/theBasics/Examples"
