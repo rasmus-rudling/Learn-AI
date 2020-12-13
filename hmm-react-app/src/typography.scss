@@ -6,6 +6,7 @@ $pinkColor: #E967E0;
 $orangeColor: #FFA500;
 $darkOrangeColor: #e09200;
 $yellowColor: #f0c900;
+$grayColor: #838383;
 
 * {
     font-family: 'Roboto', sans-serif;
@@ -86,6 +87,10 @@ mark.yellow {
     color: $yellowColor;
 }
 
+mark.gray {
+    color: $grayColor;
+}
+
 .linkStyle {
     text-decoration: underline;
     color: $orangeColor;
@@ -108,4 +113,16 @@ ul.greenList {
     display: inline-block;
     list-style: disc;
     margin-left: 10px;
+}
+
+.exampleImageInText {
+    margin-right: 5px;
+    display: inline;
+    justify-content: center;
+} 
+
+.exampleImageInText img {
+    height: 18px;
+    position: relative;
+    top: 3px;
 }

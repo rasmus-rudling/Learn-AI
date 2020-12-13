@@ -22,7 +22,6 @@ import PlayAroundWithExamples from './PlayAroundWithExamples/playAroundWithExamp
 
 const ForwardAlgorithm = (props) => {
     const [weatherExampleSelected, setWeatherExampleSelected] = useState(false);
-
     const [exampleSubscript, setExampleSubscript] = useState("R");
     const [examplePi, setExamplePi] = useState(utility.runnerPiVector);
     const [exampleA, setExampleA] = useState(utility.runnerAMatrix);
@@ -45,7 +44,7 @@ const ForwardAlgorithm = (props) => {
         let _exampleStatesImages = _weatherExampleSelected ? utility.runnerStatesImages : utility.weatherStatesImages;
 
         setObservationsSequenceInText(
-            <span> 
+            <mark> 
                 {"{ "}
                     {_exampleObservationSequence.map((observationIndex, i) => {
                         if (i + 1 !== _exampleObservationSequence.length) {
@@ -56,39 +55,39 @@ const ForwardAlgorithm = (props) => {
                         
                     })}
                 {"}"}
-            </span>
+            </mark>
         );
 
         setObservationsSequenceInImages (
-            <span> 
+            <mark> 
                 {"{ "}
                     {_exampleObservationSequence.map((observationIndex, i) => {
                         if (i + 1 !== _exampleObservationSequence.length) {
-                            return <div className={classes.observationImageInText} key={i}><img 
+                            return <div className="exampleImageInText" key={i}><img 
                                 src={_exampleObservationsImages[observationIndex]} alt="Observation" />, </div>
                         } else {
-                            return <div className={classes.observationImageInText} key={i}><img 
+                            return <div className="exampleImageInText" key={i}><img 
                                 src={_exampleObservationsImages[observationIndex]} alt="Observation" /></div>
                         }
                     })}
                 {"}"}
-            </span>
+            </mark>
         );
 
         setStatesImagesInText (
-            <span> 
+            <mark> 
                 {"{ "}
                     {_exampleStatesImages.map((image, i) => {
                         if (i + 1 !== _exampleStatesImages.length) {
-                            return <div className={classes.observationImageInText} key={i}><img 
+                            return <div className="exampleImageInText" key={i}><img 
                                 src={image} alt="Observation" />, </div>
                         } else {
-                            return <div className={classes.observationImageInText} key={i}><img 
+                            return <div className="exampleImageInText" key={i}><img 
                                 src={image} alt="Observation" /></div>
                         }
                     })}
                 {"}"}
-            </span>
+            </mark>
         );
     }
 
@@ -158,7 +157,7 @@ const ForwardAlgorithm = (props) => {
                     corner). The {utility.lambda(exampleSubscript)} for the weather example is presented below (if you haven't already
                     checked out how we got that specific {utility.lambda(exampleSubscript)}, I strongly encourage you to do so{utility.blankSpace}
                     <Link 
-                        to={weatherExampleSelected ? "/hmm/theBasics/weatherExample" : "/hmm/theBasics/runnerExample"}
+                        to="/hmm/theBasics/Examples"
                         className="linkStyle"
                     >here</Link>):
                 </p>
@@ -253,6 +252,7 @@ const ForwardAlgorithm = (props) => {
                 header = "Play around with examples" 
                 hideDefault={false}
                 extraClass = {null}
+                maxHeight = {1650}
             >
                 <PlayAroundWithExamples />
             </Subsection>

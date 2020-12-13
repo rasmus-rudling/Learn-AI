@@ -12,8 +12,7 @@ import HiddenMarkovModel from './Components/HiddenMarkovModel/hiddenMarkovModel'
 
 import TheBasics from './Components/HiddenMarkovModel/TheBasics/theBasics';
 import Theory from './Components/HiddenMarkovModel/TheBasics/Theory/theory';
-import RunnerExample from './Components/HiddenMarkovModel/TheBasics/RunnerExample/runnerExample';
-import WeatherExample from './Components/HiddenMarkovModel/TheBasics/WeatherExample/weatherExample';
+import Examples from './Components/HiddenMarkovModel/TheBasics/Examples/examples';
 import MathematicalConcepts from './Components/HiddenMarkovModel/TheBasics/MathematicalConcepts/mathematicalConcepts';
 
 import ForwardAlgorithm from './Components/HiddenMarkovModel/ForwardAlgorithm/forwardAlgorithm';
@@ -42,12 +41,8 @@ const App = () => {
                 <Theory />
             </Route>
 
-            <Route exact path="/hmm/theBasics/runnerExample">
-                <RunnerExample />
-            </Route>
-
-            <Route exact path="/hmm/theBasics/weatherExample">
-                <WeatherExample />
+            <Route exact path="/hmm/theBasics/examples">
+                <Examples />
             </Route>
 
             <Route exact path="/hmm/theBasics/mathematicalConcepts">

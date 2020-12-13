@@ -31,17 +31,20 @@ const Subsection = (props) => {
     useEffect(() => {
         let elementHeight = contentPartElement.current.offsetHeight;
         setContentHeight(elementHeight);
-
+        
         if (window.innerWidth <= 850) {
+            if (props.maxHeight == null) {
+                setMaxHeight(elementHeight);
+            } else {
+                setMaxHeight(props.maxHeight);
+            }
             setHideContent(false);
-            setMaxHeight(elementHeight);
             setPaddingForContent("20px");
             
         } else {
             setHideContent(props.hideDefault);
             setMaxHeight("0px");
             setPaddingForContent("0px");
-            
         }
 
         if (!hideContent) {
@@ -69,7 +72,11 @@ const Subsection = (props) => {
         if (!props.hideDefault) {
             arrowContainerElement.current.classList.toggle(classes.applyRadiusBottomRight);
             headerPartElement.current.classList.toggle(classes.applyRadiusBottomLeft);
-            setMaxHeight(elementHeight);
+            if (props.maxHeight == null) {
+                setMaxHeight(elementHeight);
+            } else {
+                setMaxHeight(props.maxHeight);
+            }
             setPaddingForContent("20px");
         }
     }, [])

@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import classes from './inputMatrix.module.scss';
 
 import * as utility from '../../../../Common/utility';
 
 const InputMatrix = (props) => {
     let borderColor;
-
     const greenColor = "#6EC668";
     const redColor = "#E95252";
     const blueColor = "#43AFCA";
-    
+
     if (props.themeColor === "green") {
         borderColor = greenColor;
     } else if (props.themeColor === "red") {
@@ -30,15 +29,16 @@ const InputMatrix = (props) => {
 
     let _matrix = [firstMatrixRow, ...props.matrix];
     
-    let _matrixCopy = [];
+    let _matrixCopyTemp = [];
 
     if (_matrix[1].length === props.numberOfColumns) {
         for (let i = 0; i < props.numberOfRows; i++) {
-            _matrixCopy.push([<span>S<sub><b className={classes.setOrangeColor}>{i}</b></sub></span>, ..._matrix[i + 1]])
+            _matrixCopyTemp.push([<span>S<sub><b className={classes.setOrangeColor}>{i}</b></sub></span>, ..._matrix[i + 1]])
         }
     }
     
-    _matrixCopy = [firstMatrixRow, ..._matrixCopy];
+    let _matrixCopy = [firstMatrixRow, ..._matrixCopyTemp];
+
     return (
         <div className={classes.VisualMatrix} >
             <div className={classes.matrixContent} style={{"borderColor":borderColor}}>

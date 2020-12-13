@@ -6,5 +6,8 @@ A web based project created to ease the learning of basic AI concepts.
 2. Run `firebase deploy`
 
 ## TODO
-1. Fix graphics in math explanation
-2. At "Play around with examples", make sure all content fits inside of the div. Make matrices as big as possible at first such that the div is getting a high as possible maxheight.
+1. Give credit to Flaticon for the icons.
+2. Create context for which example is being viewed throughout the site.
+3. At play around with example: If state is non-emitting, make yellow, else, make red (if not row-stochastic)
+4. Create side menu for when browsing content
+5. Define general terms such as: `Stochastic` and `deterministic`.

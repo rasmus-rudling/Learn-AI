@@ -130,7 +130,7 @@ export const imageInText = (image) => {
             "display":"inline",
             "justifyContent":"center"
         }}>
-            <img src={image} alt=" " style={{"height":"14px", "position":"relative", "top":"1.5px"}}/>
+            <img src={image} alt=" " style={{"height":"18px", "position":"relative", "top":"3px"}}/>
         </div>
     )
 }

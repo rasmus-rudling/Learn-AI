@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import classes from './playAroundWithExamples.module.scss';
 
 import * as utility from '../../../Common/utility';
@@ -23,7 +23,7 @@ const PlayAroundWithExamples = (props) => {
     const [numberOfPossibleObservations, setNumberOfPossibleObservations] = useState(utility.runnerBMatrix[0].length);
     const [lengthOfObservationSequence, setLengthOfObservationSequence] = useState(utility.runnerObservationSequence.length)
     const [observationSequence, setObservationSequence] = useState(utility.deepCopyFunction(utility.runnerObservationSequence));
-    const [assignProbabilitiesForUser, setAssignProbabilitiesForUser] = useState(true);
+    const [assignProbabilitiesForUser, setAssignProbabilitiesForUser] = useState(false);
 
     const [aMatrixFullyRowStochastic, setAMatrixFullyRowStochastic] = useState(false);
     const [aMatrixRowStochastic, setAMatrixRowStochastic] = useState(true);
@@ -396,29 +396,29 @@ const PlayAroundWithExamples = (props) => {
 
     if (aMatrixRowStochastic) {
         aMatrixMessageClass = classes.greenMessage;
-        aMatrixMessage = <span><i>The transition matrix A is row stochastic (except for the non-emitting state row(s))!</i></span>;
+        aMatrixMessage = <span><i>The transition matrix {utility.A()} is row stochastic (except for the non-emitting state row(s))!</i></span>;
     } else if (aMatrixFullyRowStochastic) {
         aMatrixMessageClass = classes.greenMessage;
-        aMatrixMessage = <span>The transition matrix A is row stochastic!</span>;
+        aMatrixMessage = <span>The transition matrix {utility.A()} is row stochastic!</span>;
     } else {
         aMatrixMessageClass = classes.redMessage;
-        aMatrixMessage = <span>The transition matrix A is not row stochastic!</span>;
+        aMatrixMessage = <span>The transition matrix {utility.A()} is not row stochastic!</span>;
     }
 
     if (bMatrixFullyRowStochastic) {
         bMatrixMessageClass = classes.greenMessage;
-        bMatrixMessage = <span><i>The emission matrix B is row stochastic!</i></span>;
+        bMatrixMessage = <span><i>The emission matrix {utility.B()} is row stochastic!</i></span>;
     } else {
         bMatrixMessageClass = classes.redMessage;
-        bMatrixMessage = <span>The emission matrix B is not row stochastic!</span>;
+        bMatrixMessage = <span>The emission matrix {utility.B()} is not row stochastic!</span>;
     }
 
     if (piVectorFullyRowStochastic) {
         piVectorMessageClass = classes.greenMessage;
-        piVectorMessage = <span>The initial state distribution π is row stochastic!</span>;
+        piVectorMessage = <span>The initial state distribution {utility.pi()} is row stochastic!</span>;
     } else {
         piVectorMessageClass = classes.redMessage;
-        piVectorMessage = <span>The initial state distribution π is not row stochastic!</span>;
+        piVectorMessage = <span>The initial state distribution {utility.pi()} is not row stochastic!</span>;
     }
 
     let alphaVectorCorrect = (aMatrixFullyRowStochastic || aMatrixRowStochastic) && bMatrixFullyRowStochastic && piVectorFullyRowStochastic;
@@ -429,7 +429,7 @@ const PlayAroundWithExamples = (props) => {
                 <b>Settings</b>
 
                 <div className={classes.chooseExample}>
-                    <ExampleType 
+                    <ExampleType
                         thisSettingIsSelected={whatExampleToUse === "Runner example"}
                         checkboxSelectedHandler={exampleTypeSelectedHandler}
                         exampleType = "Runner example"
@@ -560,7 +560,6 @@ const PlayAroundWithExamples = (props) => {
                 <InputVector 
                     vectorName = {`alpha_${alphaToShow}`}
                     numberOfColumns = {numberOfStates}
-                    // vector = {exampleVectorAlpha[alphaToShow].map(val => utility.roundTo(val, 6))}
                     vector = {exampleVectorAlpha[alphaToShow].map(val => {
                         if (val > 0.0001 || val === 0) {
                             return utility.roundTo(val, 5);

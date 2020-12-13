@@ -12,7 +12,7 @@ const UserExampleInput = (props) => {
     return (
         <div className={classes.UserExampleInput}>
             <form>
-                <input 
+                <input
                     type="text"
                     value={value}
                     onChange={e => {
@@ -36,9 +36,16 @@ const UserExampleInput = (props) => {
                         props.changeSettingsHandler(props.typeOfSetting, newValue)
                     }}
 
-                    onClick={e => e.target.select()}
+                    onClick={e => {
+                        // e.preventDefault();
+                        e.target.select();
+                    }}
 
                     onKeyDown={e => {
+                        if (e.key == "Enter") {
+                            e.preventDefault();
+                        }
+
                         let valueInInput = e.target.value;
                         if (e.key === "ArrowDown") {
                             if (valueInInput > props.minValue) {

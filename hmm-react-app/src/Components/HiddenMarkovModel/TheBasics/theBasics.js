@@ -24,26 +24,18 @@ const TheBasics = () => {
                     />
                 </Link>
 
-                <Link to="/hmm/theBasics/runnerExample">
-                    <SectionCard 
-                        backgroundImage={theBasicsBackgroundImg} 
-                        title="Runner Example"
-                        inActive = {false}
-                    />
-                </Link>
-
-                <Link to="/hmm/theBasics/weatherExample">
-                    <SectionCard 
-                        backgroundImage={theBasicsBackgroundImg} 
-                        title="Weather Example"
-                        inActive = {true}
-                    />
-                </Link>
-
                 <Link to="/hmm/theBasics/mathematicalConcepts">
                     <SectionCard 
                         backgroundImage={theBasicsBackgroundImg} 
                         title="Mathematical Concepts"
+                    />
+                </Link>
+
+                <Link to="/hmm/theBasics/examples">
+                    <SectionCard 
+                        backgroundImage={theBasicsBackgroundImg} 
+                        title="Examples"
+                        inActive = {false}
                     />
                 </Link>
             </div>
